@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>William Shakespeare | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>William Shakespeare</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/23
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/English/" style="color: #03a9f4">English</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="William-Shakespeare"><a href="#William-Shakespeare" class="headerlink" title="William Shakespeare"></a>William Shakespeare</h1><h4 id="–Bard-of-Avon"><a href="#–Bard-of-Avon" class="headerlink" title="–Bard of Avon"></a>–Bard of Avon</h4><span id="more"></span>
+
+<p>我们都知道莎士比亚，但你觉得不知道这是一位多么伟大的<code>诗人</code>。<br>虽然莎士比亚以戏剧闻名，但我仍想称他为传奇<code>诗人</code>。</p>
+<hr>
+<p><code>William Shakespeare</code>, Shakespeare also spelled Shakspere, byname <code>Bard of Avon</code> or <code>Swan of Avon</code>,<br>(baptized April 26, 1564, Stratford-upon-Avon, Warwickshire, England—died April 23, 1616, Stratford-upon-Avon)，<br>English poet, dramatist, and actor often called the English national poet and considered by many to be </p>
+<h4 id="the-greatest-dramatist-of-all-time"><a href="#the-greatest-dramatist-of-all-time" class="headerlink" title="the greatest dramatist of all time."></a><code>the greatest dramatist of all time</code>.</h4><hr>
+<ul>
+<li><p>To be or not to be: that is a question. (Hamlet 3.1)<br>生存还是毁灭，这是个值得考虑的问题。——莎士比亚《哈姆雷特》</p>
+</li>
+<li><p>Brevity is the soul of wit. (Hamlet 2.2)<br>简洁是智慧的灵魂，冗长是肤浅的藻饰。——莎士比亚《哈姆雷特》</p>
+</li>
+<li><p>Love is merely a madness. (As You Like It, 3.2)<br>爱情不过是一种疯狂。——莎士比亚《皆大欢喜》</p>
+</li>
+<li><p>The course of true love never did run smooth. (A Midsummer Night’s Dream 1.1)<br>真爱无坦途。 ——莎士比亚《仲夏夜之梦》</p>
+</li>
+<li><p>Keep up your bright swords, for the dew will rust them. (Othello 1.2)<br>收起你们明晃晃的剑，它们沾了露水会生锈的。——莎士比亚《奥赛罗》</p>
+</li>
+<li><p>The lunatic, the lover and the poet are of imagination all compact. (A Midsummer Night’s Dream 5.1)<br>疯子、情人、诗人都是想象的产儿。——莎士比亚《仲夏夜之梦》</p>
+</li>
+<li><p>Some rise by sin, and some by virtue fall. (Measure for Measure 2.1)<br>有些人因罪恶而升迁，有些人因德行而没落。——莎士比亚《一报还一报》</p>
+</li>
+</ul>
+<h5 id="虚假的William-Shakespeare"><a href="#虚假的William-Shakespeare" class="headerlink" title="虚假的William Shakespeare "></a>虚假的William Shakespeare <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.xzfrT13V3oWw5S0iuZL4yQHaHa?w=202&h=202&c=7&r=0&o=5&pid=1.7"></h5><h5 id="真实的William-Shakes-pear"><a href="#真实的William-Shakes-pear" class="headerlink" title="真实的William Shakes pear "></a>真实的William Shakes pear <img src="https://pic3.zhimg.com/v2-45a40e3209838fe18d2eb44cf27157d2_b.jpg"></h5>
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tamomo.model.json"},"display":{"position":"right","width":150,"height":400,"hOffset":0,"vOffset":-80},"mobile":{"show":false},"react":{"opacity":1},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>

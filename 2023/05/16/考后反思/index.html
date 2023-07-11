@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>考后反思 | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+<script src="https://cdn.staticfile.org/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>考后反思</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/16
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/life/" style="color: #00a596">life</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoClass]"
+        :disabled="check"
+        ref="crypto"
+        placeholder="文章被Florance藏起来啦，请输入咒语"
+        data-encrypted="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"
+        data-shasum="3c241de0cf2b7fffd0245a59e7255e62b9ec34d97e4a44320662c46c79c8ec68"
+        v-model="crypto"
+    />
+    <transition name="fade">
+    <div class="content" ref="content" v-html="decrypted" v-show="check"></div>
+    </transition>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tamomo.model.json"},"display":{"position":"right","width":150,"height":400,"hOffset":0,"vOffset":-80},"mobile":{"show":false},"react":{"opacity":1},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>
