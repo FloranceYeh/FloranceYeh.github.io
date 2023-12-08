@@ -1,0 +1,1 @@
+{"Version":3,"FileReferences":{"Moc":"Florance.moc3","Textures":["Florance.4096/texture_00.png"],"Physics":"Florance.physics3.json","DisplayInfo":"Florance.cdi3.json"},"Groups":[{"Target":"Parameter","Name":"LipSync","Ids":[]},{"Target":"Parameter","Name":"EyeBlink","Ids":[]}]}

@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Music Test | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+<script src="https://cdn.staticfile.org/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>Music Test</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/5
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%85%AC%E5%AE%B6%E4%BA%8B/" style="color: #ff7d73">公家事</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoClass]"
+        :disabled="check"
+        ref="crypto"
+        placeholder="文章被Florance藏起来啦，请输入咒语"
+        data-encrypted="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"
+        data-shasum="be1258724fd474e3b04e6009db5f731bc12b3eb4120b9394b437796dcbd920de"
+        v-model="crypto"
+    />
+    <transition name="fade">
+    <div class="content" ref="content" v-html="decrypted" v-show="check"></div>
+    </transition>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['Florance']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>
