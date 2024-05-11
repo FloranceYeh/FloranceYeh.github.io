@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>每日一fun | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>每日一fun</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/18
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/fun/" style="color: #ff7d73">fun</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/English/" style="color: #00a596">English</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="分享一些英文爆笑梗"><a href="#分享一些英文爆笑梗" class="headerlink" title="分享一些英文爆笑梗"></a>分享一些英文爆笑梗</h1><span id="more"></span>
+
+<h3 id="纯文梗："><a href="#纯文梗：" class="headerlink" title="纯文梗："></a>纯文梗：</h3><ul>
+<li>What do you call a deer with no eye?<ul>
+<li>No eye deer (No idea).</li>
+</ul>
+</li>
+<li>What did a late tomato say to other tomatoes?<ul>
+<li>I will ketchup (catch up). &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; <small>(ketchup 蕃茄酱)</small></li>
+</ul>
+</li>
+<li>I only know 25 letters of the alphabet.<ul>
+<li>why?</li>
+<li>I don’t know Y (why).</li>
+</ul>
+</li>
+<li>What do you call a bee from America?<ul>
+<li>A USB (US bee).</li>
+</ul>
+</li>
+<li>Which is faster, hot or cold?<ul>
+<li>Hot. Because you can catch a cold. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; <small>(catch a cold 感冒)</small></li>
+</ul>
+</li>
+<li>Why is “dark” is spelled with a ‘k’ not a ‘c’? &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; <del>单个字符要用单引号</del><ul>
+<li>Because you can’t c (see) in the dark.</li>
+</ul>
+</li>
+<li>Why shouldn’t we give Elsa a balloon?<ul>
+<li>Because she will Let It Go. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; <del>迪士尼不会找我要版权吧</del></li>
+</ul>
+</li>
+<li>Who is closer to you, your mom or your dad?<ul>
+<li>Mom is close, because dad is farther.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="配图梗："><a href="#配图梗：" class="headerlink" title="配图梗："></a>配图梗：</h3><p><img src="https://n.sinaimg.cn/sinakd20122/640/w600h840/20210712/9dc0-5d93b2042c11ca9465063458d98467a8.jpg" alt="William shakes pear"></p>
+<ul>
+<li><code>William shakes pear</code></li>
+</ul>
+<p><img src="https://n.sinaimg.cn/sinakd20122/492/w680h612/20210712/5ab5-f7d5b7d677a55ca4f5ea757544daf2cd.jpg" alt="W hit e"></p>
+<ul>
+<li><code>W hit e</code></li>
+</ul>
+<p><img src="https://n.sinaimg.cn/sinakd20122/469/w600h669/20210712/5ab7-abb9774c17ba191b12d2e16a7050e91b.jpg" alt="Man go"></p>
+<ul>
+<li><code>Man go</code></li>
+</ul>
+<p><img src="https://n.sinaimg.cn/sinakd20122/372/w600h572/20210712/58c5-92f257880a97564856c259c56eb496a6.jpg" alt="Bears no ears"></p>
+<ul>
+<li><code>Bears no ears</code></li>
+</ul>
+<p><img src="https://n.sinaimg.cn/sinakd20122/192/w952h840/20210712/ff2c-5f0c35fdeefc2f32f45d0f3f4aedc89a.jpg" alt="Mine"></p>
+<ul>
+<li><code>Minecraft</code>总听说过吧</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['caracal']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>

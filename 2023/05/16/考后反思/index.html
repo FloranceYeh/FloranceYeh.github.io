@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>考后反思 | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+<script src="https://cdn.staticfile.org/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>考后反思</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/16
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Life/" style="color: #00bcd4">Life</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoClass]"
+        :disabled="check"
+        ref="crypto"
+        placeholder="文章被Florance藏起来啦，请输入咒语"
+        data-encrypted="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"
+        data-shasum="3c241de0cf2b7fffd0245a59e7255e62b9ec34d97e4a44320662c46c79c8ec68"
+        v-model="crypto"
+    />
+    <transition name="fade">
+    <div class="content" ref="content" v-html="decrypted" v-show="check"></div>
+    </transition>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['caracal']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>
