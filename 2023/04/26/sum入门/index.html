@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>sum入门 | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>sum入门</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/26
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/KaTeX/" style="color: #ffa2c4">KaTeX</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/math/" style="color: #00a596">math</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="sum"><a href="#sum" class="headerlink" title="sum"></a>sum</h1><h1 id="sum-sigma"><a href="#sum-sigma" class="headerlink" title="$\sum$ sigma"></a>$\sum$ sigma</h1><span id="more"></span>
+
+<p>$\sum$ 是求和符号，发音是[‘sɪgmə]，英文里叫sum。求和符号是对求和内容的简写，并不是运算。<del>又一人类为了偷懒的产物</del><br>$$ \sum_{B}^{A}C $$</p>
+<p>A: 求和上限</p>
+<p>B: 求和下限 or 所求和的数的特征或性质</p>
+<p>C: 求和内容</p>
+<p>常见的例子 $\sum_{i&#x3D;1}^{n}a_i$ ，表示从 $i &#x3D; 1$ 开始取值，取到 $n$ 为止，将所有的数相加，</p>
+<p>即 $$\sum_{i&#x3D;1}^{n}a_i &#x3D; a_1 + a_2 + a_3 + … + a_n$$</p>
+<p>接下来看下面这些例子：</p>
+<p>$$ \sum_{i&#x3D;1}^{n}a_i &#x3D; \sum_{j&#x3D;1}^{n}b_j &#x3D; \sum_{k&#x3D;1}^{n}c_k $$</p>
+<p>$$ \sum_{i&#x3D;1}^{4}a_i^2 &#x3D; 1^2 + 2^2 + 3^2 + 4^2 &#x3D; 30 $$</p>
+<p>$$ \sum_{i&#x3D;1}^{666}1 &#x3D; 666 $$</p>
+<p>可以看出，$\sum$ 符号内的字母可以是任意的，求和内容也可以是常数，</p>
+<p>另外的，当上限为无限是，它就有了个新名称：无穷级数：$\sum_{n&#x3D;1}^{\infty}f(n)$</p>
+<h2 id="下面介绍其它几种常用表示方法："><a href="#下面介绍其它几种常用表示方法：" class="headerlink" title="下面介绍其它几种常用表示方法："></a>下面介绍其它几种常用表示方法：</h2><ul>
+<li><h3 id="集合表示"><a href="#集合表示" class="headerlink" title="集合表示"></a><code>集合表示</code></h3></li>
+</ul>
+<p><del>为了更加偷懒，于是有了集合表示</del>。例如 $A$ &#x3D; {所有偶数} ，那么所有偶数的和为 $\sum_{n\in A} n$</p>
+<p>即 $$ \sum_{n\in A}n &#x3D; \sum_{n&#x3D;0}^{\infty}2n $$</p>
+<p>若 $N$ &#x3D; {自然数}，那么所有自然数的倒数和为 $$ \sum_{n \in N}n^{-1} &#x3D; \sum_{i&#x3D;1}^{\infty}n_{i}^{-1} &#x3D; \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + … $$</p>
+<ul>
+<li><h3 id="整数表示"><a href="#整数表示" class="headerlink" title="整数表示"></a><code>整数表示</code></h3></li>
+</ul>
+<p>常在数论中出现，所以不细谈</p>
+<p>在数论中, $d\mid n$ 表示 $d$ 能整除 $n$ ，则 $\sum_{d\mid n}d$ 表示 $d$ 的所有因数和</p>
+<ul>
+<li><h3 id="范围表示"><a href="#范围表示" class="headerlink" title="范围表示"></a><code>范围表示</code></h3></li>
+</ul>
+<p>比较好理解，给你一个式子就懂了</p>
+<p>$$ \sum_{1\le i \le 4}a_i &#x3D; \sum_{i&#x3D;1}^{4}a_i &#x3D; 1 + 2 + 3 + 4 &#x3D; 10$$</p>
+<p>当然，求和变量可以有多个，例如</p>
+<p>$$ \sum_{1\le n, m\le 2}f(n, m) &#x3D; f(1, 1) + f(1, 2) + f(2, 1) + f(2, 2) $$</p>
+<ul>
+<li><h3 id="描述表示"><a href="#描述表示" class="headerlink" title="描述表示"></a><code>描述表示</code></h3></li>
+</ul>
+<p>把集合表示中的例子改一改就是描述表示，适用于比较复杂的一类数，或自定义类型的数，例如</p>
+<p>$$ \sum_{n是自然数}n^{-1} &#x3D; \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + …$$</p>
+<ul>
+<li><h3 id="双求和及多求和表示"><a href="#双求和及多求和表示" class="headerlink" title="双求和及多求和表示"></a><code>双求和及多求和表示</code></h3></li>
+</ul>
+<p>类似多个变量求和，例如：</p>
+<p>$$ \sum_{n&#x3D;1}^{2} \sum_{m&#x3D;1}^{2} f(n, m) &#x3D; \sum_{m&#x3D;1}^{2} \sum_{n&#x3D;1}^{2} f(n, m) &#x3D; \sum_{1\le n, m\le 2}f(n, m) &#x3D; f(1, 1) + f(1, 2) + f(2, 1) + f(2, 2)$$</p>
+<p>$$ \sum_{i&#x3D;1}^{n} \sum_{j&#x3D;1}^{m} \sum_{k&#x3D;1}^{x} \sum_{l&#x3D;1}^{y} a_i b_j c_k d_l &#x3D; … $$</p>
+<p>要是求和变量太多，写成范围的形式会更好,例如：</p>
+<p>$$ \sum_{1\le x_1, x_2 .. x_8, x_9 \le 4} f(x_1, x_2 .. x_8, x_9) $$</p>
+<ul>
+<li><h3 id="轮番求和和对称求和"><a href="#轮番求和和对称求和" class="headerlink" title="轮番求和和对称求和"></a><code>轮番求和和对称求和</code></h3></li>
+</ul>
+<p>轮番求和</p>
+<p>$$ \sum_{cyc}a^2 b &#x3D; x^2 y + y^2 z + z^2 x $$</p>
+<p>对称求和</p>
+<p>$$ \sum_{sym}a^2 b &#x3D; x^2 y + x^2 y + y^2 x + y^2 z + z^2 x + z^2 y $$</p>
+<ul>
+<li><h3 id="多种表示"><a href="#多种表示" class="headerlink" title="多种表示"></a><code>多种表示</code></h3></li>
+</ul>
+<p>可以把以上多种表示写到一起</p>
+<p>$$ \sum_{1\le n \le 20, n为素数}n &#x3D; 1 + 2 + 3 + 5 + 7 + 11 + 13 + 17 + 19$$</p>
+<p><small> 首先，我不是数学脑，其次，我数学不好……. </small></p>
+<blockquote>
+<p>参考文献</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/138748362">数学求和符号大总汇</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35125180/article/details/108304877">求和符号的定义和性质</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/502706892">关于求和符号用法约定进一步探讨及相关应用</a></p>
+</blockquote>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['caracal']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>

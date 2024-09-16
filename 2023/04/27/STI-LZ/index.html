@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>STI-LZ | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>STI-LZ</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/27
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/STI-LZ/" style="color: #03a9f4">STI-LZ</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/OI/" style="color: #03a9f4">OI</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%85%AC%E5%AE%B6%E4%BA%8B/" style="color: #ff7d73">公家事</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="少年，我看你骨骼精奇，来加入STI-LZ吧！"><a href="#少年，我看你骨骼精奇，来加入STI-LZ吧！" class="headerlink" title="少年，我看你骨骼精奇，来加入STI-LZ吧！"></a>少年，我看你骨骼精奇，来加入STI-LZ吧！</h3><h1 id="STI-LZ-概况"><a href="#STI-LZ-概况" class="headerlink" title="STI-LZ 概况"></a>STI-LZ 概况</h1><span id="more"></span>
+
+<p><img src="/images/STI-logo-2.0.png" alt="logo"></p>
+<p><code>STI-LZ</code> 全称是 <code>Science and Technology Institute of LuZhong</code></p>
+<p>亦称 <code>路科所</code> 全称是 <code>路中科学技术研究所</code></p>
+<p>官方Github账号是 <code>STI-LZ</code> ，官方邮箱是 <code>STI_LZ@outlook.com</code></p>
+<p>我所的创立目的是为了招揽路中的高技术人才，共同促进路中的科技楼发展，下设有<code>机器人部</code>(VEX-D)，<code>信息部</code>(OI-D)，<code>无人机部</code>(DR-D)，<code>中文部</code>(CN-D)，<code>英文部</code>，(EN-D)，<code>网页部</code>(WE-D)，<code>情报部</code>(IN-D)，<code>技术部</code>(TE-D)，<code>美术部</code>(AR-D)</p>
+<p>创立于2023年4月26日，创始成员有：</p>
+<ul>
+<li><small> 排名不分先后 </small><ul>
+<li>XB</li>
+<li>LZH</li>
+<li>LTS</li>
+<li>ERA</li>
+<li>Florance</li>
+<li>LXY</li>
+<li>ZC</li>
+<li>祝贺小姐</li>
+<li>翔哥</li>
+</ul>
+</li>
+</ul>
+<h1 id="爹真的，我哭死"><a href="#爹真的，我哭死" class="headerlink" title="爹真的，我哭死"></a>爹真的，我哭死</h1><blockquote>
+<p>以下内容由 STI-LZ 唯一的爹 – CodeBoy 撰写</p>
+</blockquote>
+<h1 id="The-Science-and-Technology-Institute-of-LuZhong-STI-LZ"><a href="#The-Science-and-Technology-Institute-of-LuZhong-STI-LZ" class="headerlink" title="The Science and Technology Institute of LuZhong (STI-LZ)"></a>The Science and Technology Institute of LuZhong (STI-LZ)</h1><p>LuZhong is on track to becoming the next big tech hub with the establishment of the <strong>Science and Technology Institute of LuZhong (STI-LZ)</strong>! The brainchild of some of the most brilliant minds in the industry, this cutting-edge research institute is poised to attract top talent and push the boundaries of science and technology.</p>
+<p>I can’t help but wonder if their robotics department will be led by a sophisticated 🤖CEO, or if their intelligence department will harness the power of machine learning to unlock new discoveries 🤔. Either way, this opportunity offers the perfect blend of creativity and innovation, all set against a backdrop of a bustling city 🌇 full of visionaries 👨‍💻 ready to change the world.</p>
+<h2 id="Departments-at-STI-LZ"><a href="#Departments-at-STI-LZ" class="headerlink" title="Departments at STI-LZ"></a>Departments at STI-LZ</h2><p>The institute is divided into several departments, each focusing on a different area:</p>
+<ul>
+<li>Robotics department (VEX-D)</li>
+<li>Information department (OI-D)</li>
+<li>Unmanned aerial vehicles department (DR-D)</li>
+<li>Chinese language department (CN-D)</li>
+<li>English language department (EN-D)</li>
+<li>Website department (WE-D)</li>
+<li>Intelligence department (IN-D)</li>
+<li>Technology department (TE-D)</li>
+<li>Art department (AR-D)</li>
+</ul>
+<h2 id="The-Founding-Members-of-STI-LZ"><a href="#The-Founding-Members-of-STI-LZ" class="headerlink" title="The Founding Members of STI-LZ"></a>The Founding Members of STI-LZ</h2><p>The founding members of the STI-LZ are:</p>
+<ul>
+<li>XB</li>
+<li>LZH</li>
+<li>LTS</li>
+<li>ERA</li>
+<li>Florance</li>
+<li>LXY</li>
+<li>ZC</li>
+<li>祝贺小姐</li>
+<li>翔哥</li>
+</ul>
+<h2 id="Get-in-Touch-with-STI-LZ"><a href="#Get-in-Touch-with-STI-LZ" class="headerlink" title="Get in Touch with STI-LZ"></a>Get in Touch with STI-LZ</h2><ul>
+<li>Github account: <a target="_blank" rel="noopener" href="https://github.com/STI-LZ">STI-LZ</a></li>
+<li>Email address: <a href="mailto:STI_LZ@outlook.com">STI_LZ@outlook.com</a></li>
+</ul>
+<p>Overall, I am excited to see the groundbreaking innovations that the STI-LZ will bring to the tech world. 💡💼💰</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['caracal']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>

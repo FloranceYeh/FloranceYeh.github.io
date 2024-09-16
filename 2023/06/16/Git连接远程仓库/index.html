@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Git连接远程仓库 | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>Git连接远程仓库</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/16
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Git/" style="color: #ffa2c4">Git</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <script>
+    function inputSub() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var repo = document.getElementById("repo").value;
+        document.getElementById("namer").innerHTML = (name);
+        document.getElementById("emailr").innerHTML = (email);
+        document.getElementById("emailr2").innerHTML = (email);
+        document.getElementById("emailr3").innerHTML = (email);
+        document.getElementById("repor").innerHTML = (repo);
+    }
+</script>
+
+<h1 id="写给机房的儿子们看"><a href="#写给机房的儿子们看" class="headerlink" title="写给机房的儿子们看"></a>写给机房的儿子们看</h1><blockquote>
+<p>我这里写了个自动生成代码，填一下表单然后提交就行</p>
+</blockquote>
+<p><input id="name"> 在这里输入Github的名称<br><input id="email"> 在这里输入Github的邮箱<br><input id="repo"> 在这里输入Github远程仓库ssh地址<br><button onclick="inputSub()">提交</button></p>
+<ol>
+<li><p><code>下Git</code></p>
+</li>
+<li><p>配置用户数据<br>  <code>git config --global user.name "<span id="namer">FloranceYeh</span>"</code><br>  <code>git config --global user.email "<span id="emailr"><a href="mailto:&#70;&#x6c;&#x6f;&#114;&#97;&#110;&#99;&#101;&#95;&#x53;&#x75;&#110;&#114;&#x69;&#x73;&#101;&#64;&#x6f;&#117;&#116;&#108;&#111;&#111;&#x6b;&#46;&#x63;&#111;&#x6d;">&#70;&#x6c;&#x6f;&#114;&#97;&#110;&#99;&#101;&#95;&#x53;&#x75;&#110;&#114;&#x69;&#x73;&#101;&#64;&#x6f;&#117;&#116;&#108;&#111;&#111;&#x6b;&#46;&#x63;&#111;&#x6d;</a></span>"</code></p>
+</li>
+<li><p>生成 ssh key<br> <code>ssh-keygen -t rsa -C "<span id="emailr2"><a href="mailto:&#x46;&#108;&#111;&#114;&#97;&#110;&#99;&#x65;&#x5f;&#83;&#x75;&#110;&#114;&#105;&#x73;&#101;&#x40;&#111;&#x75;&#116;&#108;&#x6f;&#x6f;&#x6b;&#46;&#99;&#x6f;&#109;">&#x46;&#108;&#111;&#114;&#97;&#110;&#99;&#x65;&#x5f;&#83;&#x75;&#110;&#114;&#105;&#x73;&#101;&#x40;&#111;&#x75;&#116;&#108;&#x6f;&#x6f;&#x6b;&#46;&#99;&#x6f;&#109;</a></span>"</code></p>
+</li>
+<li><p>Github 链接 ssh key</p>
+<ol>
+<li><code>cat ~/.ssh/id_rsa.pub</code></li>
+<li><code>https://github.com/settings/keys</code> <a target="_blank" rel="noopener" href="https://github.com/settings/keys">to</a></li>
+</ol>
+</li>
+<li><p>检查链接</p>
+<ol>
+<li><code>ssh -T git@github.com</code></li>
+<li>若22端口失败，配置443端口<ol>
+<li><code>vim ~/.ssh/config</code></li>
+<li>编写 config 里的内容</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<pre>
+                    <div class="code-content">Host github.com
+    User <span id="emailr3">Florance_Sunrise@outlook.com</span>
+    Hostname ssh.github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_rsa
+    Port 443
+</div>
+                    <div class="language">bash</div>
+                </pre>
+
+<ol start="6">
+<li><p>再次检查链接</p>
+<ol>
+<li><code>ssh -T git@github.com</code></li>
+</ol>
+</li>
+<li><p>生成Git文件夹<br> <code>git init</code></p>
+</li>
+<li><p>连接仓库<br> <code>git remote add origin <span id="repor"><a href="mailto:&#103;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:FloranceYeh/blog.git</span></code></p>
+</li>
+<li><p>添加文件<br> <code>git add .</code><br> <small>.是添加所有文件</small></p>
+</li>
+<li><p>添加注释<br><code>git commit -m &quot;push&quot;</code></p>
+</li>
+<li><p>上传！！！<br><code>git push origin master --force</code><br><small>–force是强制覆盖上传</small></p>
+</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['caracal']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>

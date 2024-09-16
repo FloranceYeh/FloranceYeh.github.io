@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hexo自动部署 | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>Hexo自动部署</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/7/17
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Git/" style="color: #00bcd4">Git</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Hexo/" style="color: #03a9f4">Hexo</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>前几篇文章里我提到了我给博客弄了自动部署</p>
+<p>有朋友问我是怎么做的，我就写一篇文章介绍一下吧</p>
+<h1 id="I-Github-Actions"><a href="#I-Github-Actions" class="headerlink" title="I.Github Actions"></a>I.Github Actions</h1><p>官方描述</p>
+<blockquote>
+<p>GitHub Actions 是一种持续集成和持续交付 (CI&#x2F;CD) 平台，可用于自动执行生成、测试和部署管道。 您可以创建工作流程来构建和测试存储库的每个拉取请求，或将合并的拉取请求部署到生产环境。<br>GitHub Actions 不仅仅是 DevOps，还允许您在存储库中发生其他事件时运行工作流程。 例如，您可以运行工作流程，以便在有人在您的存储库中创建新问题时自动添加相应的标签。<br>GitHub 提供 Linux、Windows 和 macOS 虚拟机来运行工作流程，或者您可以在自己的数据中心或云基础架构中托管自己的自托管运行器。</p>
+</blockquote>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>利用 Github Actions ，根据博客源码，自动部署到另一个库中，</p>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Github原生</td>
+<td>需要两个仓库</td>
+</tr>
+<tr>
+<td>完全免费</td>
+<td>速度慢</td>
+</tr>
+</tbody></table>
+<ol>
+<li>新建一个仓库，用来存放生成后的博客文件，建议使用<code>用户名.github.io</code>的后缀，这样Github Pages会自动生成页面</li>
+<li>设置Deploy<ol>
+<li>安装 hexo-deployer-git 插件<pre><code class="bash">npm install hexo-deployer-git --save
+</code></pre>
+</li>
+<li>修改配置文件，找到博客根目录下的<code>_config.yml</code>并修改<pre><code class="yml">deploy:
+type: git
+repo: &lt;repository url&gt; # 生成后文件的库的ssh地址
+branch: [branch] # 分支，默认为gh-pages，建议使用master
+message: [message] # 提交消息，可选
+</code></pre>
+</li>
+<li><em>此步骤可略过</em> 配置好后，Git连接Github账号，连接教程可看<a target="_blank" rel="noopener" href="https://florance.eu.org/2023/06/16/Git%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">Git连接远程仓库</a>，尝试提交一下 <pre><code class="bash">hexo deploy # 或 hexo d
+</code></pre>
+</li>
+</ol>
+</li>
+<li>新建一个仓库，将博客源代码全部上传，上传方法可看<a target="_blank" rel="noopener" href="https://florance.eu.org/2023/06/16/Git%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">Git连接远程仓库</a>，如果有文章加密之类的东西，这个库可以设为私密</li>
+<li>配置公钥和密钥<ol>
+<li>生成<pre><code class="bash">ssh-keygen -t rsa -C &quot;Auto Deploy&quot;
+</code></pre>
+</li>
+<li>在<code>C:\Users\User\.ssh</code>路径下会有两个文件，私钥<code>id_rsa</code>，公钥<code>id_rsa.pub</code><ol>
+<li>添加公钥到<code>生成后文件的库</code>，打开仓库的Settings-&gt;Deploy Keys-&gt;Add Deploy Key，name随意，但要记住，然后将<code>id_rsa.pub</code>里的内容粘贴进来</li>
+<li>添加私钥到<code>源文件</code>库，打开仓库的Settings-&gt;Secrets and variablSes-&gt;Actions-&gt;New repository secret，name随意，但要记住，建议填HEXO_DEPLOY_KEY，将<code>id_rsa</code>里的内容粘贴进来</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>创建Workflow<ol>
+<li>来到源文件库，点击Actions-&gt;New workflow-&gt;set up a workflow yourself<pre><code class="yml"> name: Deploy 
+
+ on: [push]
+
+ jobs:
+   build:
+
+     runs-on: ubuntu-latest
+
+     steps:
+     - name: Checkout
+       uses: actions/checkout@v2
+       with:
+         ref: master # 源文件的分支
+
+     - name: Setup Node
+       uses: actions/setup-node@v1
+       with:
+         node-version: &quot;18.16&quot;
+
+     - name: Setup Hexo
+       env:
+         ACTION_DEPLOY_KEY: $&#123;&#123; secrets.HEXO_DEPLOY_KEY &#125;&#125; # secret.后面填你4.2步写的key的名字
+       run: |
+         mkdir -p ~/.ssh/
+         echo &quot;$ACTION_DEPLOY_KEY&quot; &gt; ~/.ssh/id_rsa
+         chmod 700 ~/.ssh
+         chmod 600 ~/.ssh/id_rsa
+         ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts
+         git config --global user.email &quot;你的邮箱&quot;
+         git config --global user.name &quot;你的用户名&quot;
+         npm install hexo-cli -g
+         npm install
+
+     - name: Deploy
+       run: |
+         hexo clean
+         hexo deploy
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="II-vercel"><a href="#II-vercel" class="headerlink" title="II.vercel"></a>II.vercel</h1><p>利用vercel自动部署</p>
+<p>登录你的Github账号，新建项目，引用源文件的库，vercel会自动识别Hexo，自动就配置好了</p>
+<h1 id="III-Netlify"><a href="#III-Netlify" class="headerlink" title="III.Netlify"></a>III.Netlify</h1><p>登录你的Github账号，新建项目，引用源文件的库，其他按照默认配置就行了</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['caracal']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>

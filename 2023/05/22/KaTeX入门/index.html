@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>KaTeX入门 | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>KaTeX入门</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/22
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/KaTeX/" style="color: #00a596">KaTeX</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/math/" style="color: #03a9f4">math</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="KaTeX-入门教程"><a href="#KaTeX-入门教程" class="headerlink" title="KaTeX 入门教程"></a>KaTeX 入门教程</h1><h2 id="毕竟-Markdown-教程都写了"><a href="#毕竟-Markdown-教程都写了" class="headerlink" title="毕竟 Markdown 教程都写了"></a>毕竟 Markdown 教程都写了</h2><span id="more"></span>
+
+<blockquote>
+<p>你可以查看<a target="_blank" rel="noopener" href="https://katex.org/">KaTeX官方文档</a><br>但如果你不喜欢阅读大量的文字，可以看我的博客</p>
+</blockquote>
+<ul>
+<li><code>目录</code><br>  0.<a href="#0-KaTeX%E4%BB%8B%E7%BB%8D">KaTeX介绍</a><br>  1.<a href="#1-%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6">二元运算符</a><br>  2.<a href="#2-%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB%E7%AC%A6">二元关系符</a><br>  3.<a href="#3-%E7%AE%AD%E5%A4%B4%E7%AC%A6%E5%8F%B7">箭头符号</a><br>  4.<a href="#4-%E5%85%B6%E4%BB%96%E7%AC%A6%E5%8F%B7">其他符号</a><br>  5.<a href="#5-%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D">希腊字母</a><br>  6.<a href="#6-%E6%8B%AC%E5%8F%B7">括号</a><br>  7.<a href="#7-%E4%B8%8A%E4%B8%8B%E6%A0%87">上下标</a><br>  8.<a href="#8-%E5%88%86%E6%95%B0">分数</a><br>  9.<a href="#9-%E6%A0%B9%E5%BC%8F">根式</a><br>  10.<a href="#10-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0">三角函数</a><br>  11.<a href="#11-%E7%A7%AF%E5%88%86">积分</a><br>  12.<a href="#12-%E6%B1%82%E5%92%8C">求和</a><br>  13.<a href="#13-%E5%A4%A7%E5%B0%8F">大小</a><br>  14.<a href="#14-%E9%A2%9C%E8%89%B2">颜色</a><br>  15.<a href="#15-%E5%AD%97%E4%BD%93">字体</a></li>
+</ul>
+<h1 id="0-KaTeX介绍"><a href="#0-KaTeX介绍" class="headerlink" title="0.KaTeX介绍"></a>0.<code>KaTeX介绍</code></h1><p>$\TeX$ 是一种排版系统，但它对于使用者要求较高</p>
+<p>$\LaTeX$ 则是 $\TeX$ 的宏集，较于 $\TeX$ 使用更简单</p>
+<p>$\KaTeX$ 是 $\LaTeX$ 的web渲染器，将 $\LaTeX$ 公式渲染为HTML</p>
+<p>$\KaTeX$ 虽然渲染速度快，但支持不够全面，所以并不能渲染 $\LaTeX$ 的所有公式，但够用</p>
+<p>而要使用 $\KaTeX$ ，只需用 <code>$</code> 将指令围起来即可， 用 <code>$$</code> 可以将公式独立一行</p>
+<p>如 <code>$ 1 + 1 = 2 $</code> 为 $ 1 + 1 &#x3D; 2 $<br>而 <code>$$ 1 + 1 = 2 $$</code> 为 $$ 1 + 1 &#x3D; 2 $$</p>
+<h1 id="1-二元运算符"><a href="#1-二元运算符" class="headerlink" title="1.二元运算符"></a>1.<code>二元运算符</code></h1><blockquote>
+<p>我只列了我用过的符号<br><del>若您真的是那样的人物的话，应该不会关注鄙人的 Blog</del></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>+,\+</code></td>
+<td>$+$</td>
+<td><code>-,\-</code></td>
+<td>$-$</td>
+<td><code>\times</code></td>
+<td>$\times$</td>
+<td><code>\div</code></td>
+<td>$\div$</td>
+</tr>
+<tr>
+<td><code>\pm</code></td>
+<td>$\pm$</td>
+<td><code>\mp</code></td>
+<td>$\mp$</td>
+<td><code>cup</code></td>
+<td>$\cup$</td>
+<td><code>\cap</code></td>
+<td>$\cap$</td>
+</tr>
+<tr>
+<td><code>\cdot</code></td>
+<td>$\cdot$</td>
+<td><code>\setminus</code></td>
+<td>$\setminus$</td>
+<td><code>\star</code></td>
+<td>$\star$</td>
+<td><code>\ast</code></td>
+<td>$\ast$</td>
+</tr>
+</tbody></table>
+<h1 id="2-二元关系符"><a href="#2-二元关系符" class="headerlink" title="2.二元关系符"></a>2.<code>二元关系符</code></h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;,\&lt;</code></td>
+<td>$&lt;$</td>
+<td><code>&gt;,\&gt;</code></td>
+<td>$&lt;$</td>
+<td><code>\le</code></td>
+<td>$\le$</td>
+<td><code>\re</code></td>
+<td>$\ge$</td>
+</tr>
+<tr>
+<td><code>=,\=</code></td>
+<td>$=$</td>
+<td><code>\propto</code></td>
+<td>$\propto$</td>
+<td><code>ll</code></td>
+<td>$\ll$</td>
+<td><code>\gg</code></td>
+<td>$\gg$</td>
+</tr>
+<tr>
+<td><code>\approx</code></td>
+<td>$\approx$</td>
+<td><code>cong</code></td>
+<td>$\cong$</td>
+<td><code>subset</code></td>
+<td>$\subset$</td>
+<td><code>supset</code></td>
+<td>$\supset$</td>
+</tr>
+<tr>
+<td><code>\subseteq</code></td>
+<td>$\subseteq$</td>
+<td><code>\supseteq</code></td>
+<td>$\supseteq$</td>
+<td><code>\in</code></td>
+<td>$\in$</td>
+<td><code>\ni</code></td>
+<td>$\ni$</td>
+</tr>
+</tbody></table>
+<h1 id="3-箭头符号"><a href="#3-箭头符号" class="headerlink" title="3.箭头符号"></a>3.<code>箭头符号</code></h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\gets</code></td>
+<td>$\gets$</td>
+<td><code>\to</code></td>
+<td>$\to$</td>
+</tr>
+<tr>
+<td><code>\longleftarrow</code></td>
+<td>$\longleftarrow$</td>
+<td><code>\longrightarrow</code></td>
+<td>$\longrightarrow$</td>
+</tr>
+<tr>
+<td><code>\Leftarrow</code></td>
+<td>$\Leftarrow$</td>
+<td><code>\Longleftarrow</code></td>
+<td>$\Longleftarrow$</td>
+</tr>
+<tr>
+<td><code>\Rightarrow</code></td>
+<td>$\Rightarrow$</td>
+<td><code>\Longrightarrow</code></td>
+<td>$\Longrightarrow$</td>
+</tr>
+<tr>
+<td><code>\Leftrightarrow</code></td>
+<td>$\Leftrightarrow$</td>
+<td><code>\Longleftrightarrow</code></td>
+<td>$\Longleftrightarrow$</td>
+</tr>
+<tr>
+<td><code>\uparrow</code></td>
+<td>$\uparrow$</td>
+<td><code>\downarrow</code></td>
+<td>$\downarrow$</td>
+</tr>
+</tbody></table>
+<h1 id="4-其他符号"><a href="#4-其他符号" class="headerlink" title="4.其他符号"></a>4.<code>其他符号</code></h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\because</code></td>
+<td>$\because$</td>
+<td><code>\therefore</code></td>
+<td>$\therefore$</td>
+<td><code>forall</code></td>
+<td>$\forall$</td>
+<td><code>\exists</code></td>
+<td>$\exists$</td>
+</tr>
+<tr>
+<td><code>\triangle</code></td>
+<td>$\triangle$</td>
+<td><code>\Box</code></td>
+<td>$\Box$</td>
+<td><code>Diamond</code></td>
+<td>$\Diamond$</td>
+<td><code>\angle</code></td>
+<td>$\angle$</td>
+</tr>
+<tr>
+<td><code>\diamondsuit</code></td>
+<td>$\diamondsuit$</td>
+<td><code>\heartsuit</code></td>
+<td>$\heartsuit$</td>
+<td><code>\clubsuit</code></td>
+<td>$\clubsuit$</td>
+<td><code>\spadesuit</code></td>
+<td>$\spadesuit$</td>
+</tr>
+<tr>
+<td><code>\complement</code></td>
+<td>$\complement$</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="5-希腊字母"><a href="#5-希腊字母" class="headerlink" title="5.希腊字母"></a>5.<code>希腊字母</code></h1><table>
+<thead>
+<tr>
+<th>小写</th>
+<th>对照</th>
+<th>大写</th>
+<th>对照</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\alpha</code></td>
+<td>$\alpha$</td>
+<td><code>\Alpha</code></td>
+<td>$\Alpha$</td>
+</tr>
+<tr>
+<td><code>\beta</code></td>
+<td>$\beta$</td>
+<td><code>\Beta</code></td>
+<td>$\Beta$</td>
+</tr>
+<tr>
+<td><code>\gamma</code></td>
+<td>$\gamma$</td>
+<td><code>\Gamma</code></td>
+<td>$\Gamma$</td>
+</tr>
+<tr>
+<td><code>\delta</code></td>
+<td>$\delta$</td>
+<td><code>\Delta</code></td>
+<td>$\Delta$</td>
+</tr>
+<tr>
+<td><code>\epsilon</code> <code>\varepsilon</code></td>
+<td>$\epsilon$ $\varepsilon$</td>
+<td><code>\Epsilon</code></td>
+<td>$\Epsilon$</td>
+</tr>
+<tr>
+<td><code>\zeta</code></td>
+<td>$\zeta$</td>
+<td><code>\Zeta</code></td>
+<td>$\Zeta$</td>
+</tr>
+<tr>
+<td><code>\eta</code></td>
+<td>$\eta$</td>
+<td><code>\Eta</code></td>
+<td>$\Eta$</td>
+</tr>
+<tr>
+<td><code>\theta</code> <code>\vartheta</code></td>
+<td>$\theta$ $\vartheta$</td>
+<td><code>\Theta</code></td>
+<td>$\Theta$</td>
+</tr>
+<tr>
+<td><code>\iota</code></td>
+<td>$\iota$</td>
+<td><code>\Iota</code></td>
+<td>$\Iota$</td>
+</tr>
+<tr>
+<td><code>\kappa</code></td>
+<td>$\kappa$</td>
+<td><code>\Kappa</code></td>
+<td>$\Kappa$</td>
+</tr>
+<tr>
+<td><code>\lambda</code></td>
+<td>$\lambda$</td>
+<td><code>\Lambda</code></td>
+<td>$\Lambda$</td>
+</tr>
+<tr>
+<td><code>\mu</code></td>
+<td>$\mu$</td>
+<td><code>\Mu</code></td>
+<td>$\Mu$</td>
+</tr>
+<tr>
+<td><code>\nu</code></td>
+<td>$\nu$</td>
+<td><code>\Nu</code></td>
+<td>$\Nu$</td>
+</tr>
+<tr>
+<td><code>\xi</code></td>
+<td>$\xi$</td>
+<td><code>\Xi</code></td>
+<td>$\Xi$</td>
+</tr>
+<tr>
+<td><code>\omicron</code></td>
+<td>$\omicron$</td>
+<td><code>\Omicron</code></td>
+<td>$\Omicron$</td>
+</tr>
+<tr>
+<td><code>\pi</code> <code>\varpi</code></td>
+<td>$\pi$ $\varpi$</td>
+<td><code>\Pi</code></td>
+<td>$\Pi$</td>
+</tr>
+<tr>
+<td><code>\rho</code> <code>\varrho</code></td>
+<td>$\rho$ $\varrho$</td>
+<td><code>\Rho</code></td>
+<td>$\Rho$</td>
+</tr>
+<tr>
+<td><code>\sigma</code> <code>\varsigma</code></td>
+<td>$\sigma$ $\varsigma$</td>
+<td><code>\Sigma</code></td>
+<td>$\Sigma$</td>
+</tr>
+<tr>
+<td><code>\tau</code></td>
+<td>$\tau$</td>
+<td><code>\Tau</code></td>
+<td>$\Tau$</td>
+</tr>
+<tr>
+<td><code>\upsilon</code></td>
+<td>$\upsilon$</td>
+<td><code>\Upsilon</code></td>
+<td>$\Upsilon$</td>
+</tr>
+<tr>
+<td><code>\phi</code> <code>\varphi</code></td>
+<td>$\phi$ $\varphi$</td>
+<td><code>\Phi</code></td>
+<td>$\Phi$</td>
+</tr>
+<tr>
+<td><code>\chi</code></td>
+<td>$\chi$</td>
+<td><code>\Chi</code></td>
+<td>$\Chi$</td>
+</tr>
+<tr>
+<td><code>\psi</code></td>
+<td>$\psi$</td>
+<td><code>\Psi</code></td>
+<td>$\Psi$</td>
+</tr>
+<tr>
+<td><code>\omega</code></td>
+<td>$\omega$</td>
+<td><code>\Omega</code></td>
+<td>$\Omega$</td>
+</tr>
+</tbody></table>
+<h1 id="6-括号"><a href="#6-括号" class="headerlink" title="6.括号"></a>6.<code>括号</code></h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\lparen</code></td>
+<td>$\lparen$</td>
+<td><code>\rparen</code></td>
+<td>$\rparen$</td>
+</tr>
+<tr>
+<td><code>\lbrack</code></td>
+<td>$\lbrack$</td>
+<td><code>\rbrack</code></td>
+<td>$\rbrack$</td>
+</tr>
+<tr>
+<td><code>\langle</code></td>
+<td>$\langle$</td>
+<td><code>\rangle</code></td>
+<td>$\rangle$</td>
+</tr>
+<tr>
+<td><code>\lbrace</code></td>
+<td>$\lbrace$</td>
+<td><code>\rbrace</code></td>
+<td>$\rbrace$</td>
+</tr>
+<tr>
+<td><code>\lVert</code></td>
+<td>$\lVert$</td>
+<td><code>\rVert</code></td>
+<td>$\rVert$</td>
+</tr>
+</tbody></table>
+<h1 id="7-上下标"><a href="#7-上下标" class="headerlink" title="7.上下标"></a>7.<code>上下标</code></h1><p>下标：<code>a_&#123;b&#125;</code><br>上标：<code>a^&#123;b&#125;</code></p>
+<p>例如 <code>a_&#123;b&#125;</code> <code>a^&#123;b&#125;</code> <code>a_b</code> <code>a^b</code></p>
+<p>$a_b$ $a^b$ $a_b$ $a^b$</p>
+<p>也可以 <code>a_&#123;b&#125;^&#123;c&#125;</code> <code>_&#123;b&#125;^&#123;c&#125;a</code></p>
+<p>$a_{b}^{c}$ $_{b}^{c}a$</p>
+<p>当然可以这样<code>_1^2 X _3^4</code></p>
+<p>$$ _1^2 X _3^4 $$</p>
+<h1 id="8-分数"><a href="#8-分数" class="headerlink" title="8.分数"></a>8.<code>分数</code></h1><p><code>\frac&#123;&#125;&#123;&#125;</code> <code>\tfrac&#123;&#125;&#123;&#125;</code> <code>\cfrac&#123;&#125;&#123;&#125;</code> <code>\dfrac&#123;&#125;&#123;&#125;</code> <code>&#123;&#125;\over&#123;&#125;</code></p>
+<p>例如 <code>\frac&#123;1&#125;&#123;2&#125;</code> <code>\tfrac&#123;1&#125;&#123;3&#125;</code> <code>\cfrac&#123;1&#125;&#123;4&#125;</code> <code>\dfrac&#123;1&#125;&#123;5&#125;</code> <code>&#123;1&#125;\over&#123;6&#125;</code></p>
+<p>$\frac{1}{2}$ $\tfrac{1}{3}$ $\cfrac{1}{4}$ $\dfrac{1}{5}$ ${1}\over{6}$</p>
+<p>也可以 <code>\frac&#123;1 + a&#125;&#123;b - c&#125;</code> <code>\frac&#123;\frac&#123;1&#125;&#123;2&#125;a&#125;&#123;3&#125;</code> &#96;&#96;</p>
+<p>$$ \frac{1 + a}{b - c} $$</p>
+<p>$$ \frac{\frac{1}{2}a}{3} $$</p>
+<p>当然，可以这么玩 <code>\frac&#123;1&#125;&#123;a + \frac&#123;7&#125;&#123;b + \frac&#123;2&#125;&#123;9&#125;&#125;&#125; = c</code><br><code>x = a_0 + \frac&#123;1&#125;&#123;a_1 + \frac&#123;1&#125;&#123;a_2 + \frac&#123;1&#125;&#123;a_3 + \frac&#123;1&#125;&#123;a_4&#125;&#125;&#125;&#125;</code></p>
+<p>$$ \cfrac{1}{a + \cfrac{7}{b + \cfrac{2}{9}}} &#x3D; c $$</p>
+<p>$$x &#x3D; a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{a_3 + \cfrac{1}{a_4} } } }$$</p>
+<h1 id="9-根式"><a href="#9-根式" class="headerlink" title="9.根式"></a>9.<code>根式</code></h1><p><code>\sqrt&#123;&#125;</code> <code>\sqrrt[]&#123;&#125;</code></p>
+<p>例如 <code>\sqrt&#123;3&#125;</code> <code>\sqrt[3]&#123;2&#125;</code></p>
+<p>$\sqrt{3}$ $\sqrt[3]{2}$</p>
+<h1 id="10-三角函数"><a href="#10-三角函数" class="headerlink" title="10.三角函数"></a>10.<code>三角函数</code></h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+<th>指令</th>
+<th>对照</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\sin</code></td>
+<td>$\sin$</td>
+<td><code>\cos</code></td>
+<td>$\cos$</td>
+<td><code>\tan</code></td>
+<td>$\tan$</td>
+</tr>
+<tr>
+<td><code>\cot</code></td>
+<td>$\cot$</td>
+<td><code>\sec</code></td>
+<td>$\sec$</td>
+<td><code>\csc</code></td>
+<td>$\csc$</td>
+</tr>
+</tbody></table>
+<h1 id="11-积分"><a href="#11-积分" class="headerlink" title="11.积分"></a>11.<code>积分</code></h1><p><code>\int</code> <code>\int_&#123;&#125;^&#123;&#125;</code> <code>\int\limits_&#123;&#125;^&#123;&#125;</code></p>
+<p>例如 <code>\int</code> <code>\int_&#123;a&#125;^&#123;b&#125;</code> <code>\int\limits_&#123;a&#125;^&#123;b&#125;</code></p>
+<p>$\int$ $\int_{a}^{b}$ $\int\limits_{a}^{b}$</p>
+<h4 id="双重积分"><a href="#双重积分" class="headerlink" title="双重积分"></a>双重积分</h4><p>例如 <code>\iint</code> <code>\iint_&#123;a&#125;^&#123;b&#125;</code> <code>\iint\limits_&#123;a&#125;^&#123;b&#125;</code></p>
+<p>$\iint$ $\iint_{a}^{b}$ $\iint\limits_{a}^{b}$</p>
+<h4 id="三重积分"><a href="#三重积分" class="headerlink" title="三重积分"></a>三重积分</h4><p>例如 <code>\iiint</code> <code>\iiint_&#123;a&#125;^&#123;b&#125;</code> <code>\iiint\limits_&#123;a&#125;^&#123;b&#125;</code></p>
+<p>$\iiint$ $\iiint_{a}^{b}$ $\iiint\limits_{a}^{b}$</p>
+<h4 id="积分曲线"><a href="#积分曲线" class="headerlink" title="积分曲线"></a>积分曲线</h4><p>例如 <code>\oint</code> <code>\oint_&#123;C&#125;</code></p>
+<p>$\oint$ $\oint_{C}$</p>
+<h1 id="12-求和"><a href="#12-求和" class="headerlink" title="12.求和"></a>12.<code>求和</code></h1><p><code>\sum</code> <code>\sum&#123;&#125;&#123;&#125;</code></p>
+<p>例如 <code>\sum_&#123;i=1&#125;^&#123;10&#125;a_i</code></p>
+<p>$\sum_{i&#x3D;1}^{10}a_i$</p>
+<p>用 <code>$$</code> 效果如下</p>
+<p>$$ \sum_{i&#x3D;1}^{10}a_i $$</p>
+<h1 id="13-大小"><a href="#13-大小" class="headerlink" title="13.大小"></a>13.<code>大小</code></h1><p>从小到大排序为：<br><code>\tiny</code> <code>\scriptsize</code> <code>\small</code><br><code>\normalsize</code><br><code>\large</code> <code>\Large</code> <code>\LARGE</code> <code>\huge</code> <code>\Huge</code></p>
+<p>例如<br><code>\tiny tiny</code> <code>\scriptsize scriptsize</code> <code>\small small</code><br><code>\normalsize normalsize</code><br><code>\large large</code> <code>\Large Large</code> <code>\LARGE LARGE</code> <code>\huge huge</code> <code>\Huge Huge</code></p>
+<p>$\tiny tiny$ $\scriptsize scriptsize$ $\small small$<br>$\normalsize normalsize$<br>$\large large$ $\Large Large$ $\LARGE LARGE$ $\huge huge$ $\Huge Huge$</p>
+<h1 id="14-颜色"><a href="#14-颜色" class="headerlink" title="14.颜色"></a>14.<code>颜色</code></h1><p><code>\color&#123;&#125;</code><br>注：用 colour 似乎不行……</p>
+<p>花括号里写颜色名称，例如 <code>\color&#123;red&#125;red</code> <code>\color&#123;violet&#125;violet</code> <code>\color&#123;tan&#125;tan</code></p>
+<p>$\color{red}red$ $\color{violet}violet$ $\color{tan}tan$</p>
+<p>常见的颜色直接打英文就行</p>
+<p>当然，你也可以使用 16进制颜色 <code>\color&#123;FFFFFF&#125;</code></p>
+<p>例如 <code>\color&#123;FF0000&#125;red</code> <code>\color&#123;00FF00&#125;green</code> <code>\color&#123;0000FF&#125;blue</code></p>
+<p>$\color{FF0000}red$ $\color{00FF00}green$ $\color{0000FF}blue$</p>
+<h1 id="15-字体"><a href="#15-字体" class="headerlink" title="15.字体"></a>15.<code>字体</code></h1><p>常规<code>\rm</code> 粗体<code>\bf&#123;&#125;</code> 斜体<code>\it</code> 手写体<code>\cal</code><br>无衬线体<code>\sf</code> 手写体<code>\scr</code> 板报体<code>\Bbb</code> 花体<code>\frak</code> </p>
+<table>
+<thead>
+<tr>
+<th align="left">第一列</th>
+<th align="left">第二列</th>
+<th align="left">第三列</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$\mathrm{Ab0}$ <code>\mathrm&#123;Ab0&#125;</code></td>
+<td align="left">$\mathbf{Ab0}$ <code>\mathbf&#123;Ab0&#125;</code></td>
+<td align="left">$\mathit{Ab0}$ <code>\mathit&#123;Ab0&#125;</code></td>
+</tr>
+<tr>
+<td align="left">$\mathnormal{Ab0}$ <code>\mathnormal&#123;Ab0&#125;</code></td>
+<td align="left">$\textbf{Ab0}$ <code>\textbf&#123;Ab0&#125;</code></td>
+<td align="left">$\textit{Ab0}$ <code>\textit&#123;Ab0&#125;</code></td>
+</tr>
+<tr>
+<td align="left">$\textrm{Ab0}$ <code>\textrm&#123;Ab0&#125;</code></td>
+<td align="left">$\bf{Ab0}$ <code>\bf&#123;Ab0&#125;</code></td>
+<td align="left">$\it{Ab0}$ <code>\it Ab0</code></td>
+</tr>
+<tr>
+<td align="left">$\rm{Ab0}$ <code>\rm&#123;Ab0&#125;</code></td>
+<td align="left">$\bold{Ab0}$ <code>\bold&#123;Ab0&#125;</code></td>
+<td align="left">$\textup{Ab0}$ <code>\textup&#123;Ab0&#125;</code></td>
+</tr>
+<tr>
+<td align="left">$\textnormal{Ab0}$ <code>\textnormal&#123;Ab0&#125;</code></td>
+<td align="left">$\boldsymbol{Ab0}$ <code>\boldsymbol&#123;Ab&#125;</code></td>
+<td align="left">$\Bbb{AB}$ <code>\Bbb&#123;AB&#125;</code></td>
+</tr>
+<tr>
+<td align="left">$\text{Ab0}$ <code>\text&#123;Ab0&#125;</code></td>
+<td align="left">$\bm{Ab0}$ <code>\bm&#123;Ab0&#125;</code></td>
+<td align="left">$\mathbb{AB}$ <code>\mathbb&#123;AB&#125;</code></td>
+</tr>
+<tr>
+<td align="left">$\mathsf{Ab0}$ <code>\mathsf&#123;Ab0&#125;</code></td>
+<td align="left">$\textmd{Ab0}$ <code>\textmd&#123;Ab0&#125;</code></td>
+<td align="left">$\frak{Ab0}$ <code>\frak&#123;Ab0&#125;</code></td>
+</tr>
+<tr>
+<td align="left">$\textsf{Ab0}$ <code>\textsf&#123;Ab0&#125;</code></td>
+<td align="left">$\mathtt{Ab0}$ <code>\mathtt&#123;Ab0&#125;</code></td>
+<td align="left">$\mathfrak{Ab0}$ <code>\mathfrak&#123;Ab0&#125;</code></td>
+</tr>
+<tr>
+<td align="left">$\sf{Ab0}$ <code>\sf Ab0</code></td>
+<td align="left">$\texttt{Ab0}$ <code>\texttt&#123;Ab0&#125;</code></td>
+<td align="left">$\mathcal{AB0}$ <code>\mathcal&#123;AB0&#125;</code></td>
+</tr>
+<tr>
+<td align="left">$\tt{Ab0}$ <code>\tt Ab0</code></td>
+<td align="left">$\mathscr{AB}$ <code>\mathscr&#123;AB&#125;</code></td>
+<td align="left">$\cal{AB0}$ <code>\cal&#123;AB0&#125;</code></td>
+</tr>
+</tbody></table>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['caracal']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>

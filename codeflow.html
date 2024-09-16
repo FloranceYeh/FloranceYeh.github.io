@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Code</title>
+    <style>
+        * {
+            margin: 0;
+            user-select: none;
+            font-family: sans-serif;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 92vmin;
+            position: fixed;
+            text-shadow: 0 0 10vmin #fff;
+        }
+
+        h2 {
+            color: #afa6a639;
+            font-size: 53vmin;
+            position: relative;
+        }
+
+        span {
+            color: #fff;
+            font-size: 75vmin;
+            text-shadow: 0 0 10vmin #fff;
+        }
+
+        div {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    
+
+    <div>
+        <h1>∞</h1>
+        <h2>0<span>1</span>&nbsp;&nbsp;&nbsp;&nbsp;10</h2>
+    </div>
+
+    <canvas id="myCanvas"></canvas>
+    <script>
+        const width = document.getElementById("myCanvas").width = window.screen.width;
+        const height = document.getElementById("myCanvas").height = window.screen.height;
+        const ctx = document.getElementById("myCanvas").getContext("2d");
+        ctx.font = "30px sans-serif";
+        const arr = Array(Math.ceil(width / 10)).fill(0);
+        const str = "18eighteen18EIGHTEEN";
+
+        var i = 1;
+        var position = 30;
+
+        function rain() {
+            ctx.fillStyle = "rgba(0,0,0,0.05)";
+            ctx.fillRect(0, 0, width, height);
+            ctx.fillStyle = "#00f";
+            arr.forEach(function (value, index) {
+                ctx.fillText(str[i], index * position, value + position);
+                arr[index] = value >= height || value > 3000 * Math.random() ? 0 : value + position;
+            });
+            i = (i + 1) % str.length;
+        }
+
+        setInterval(rain, 50);
+    </script>
+
+</body>
+
+</html>

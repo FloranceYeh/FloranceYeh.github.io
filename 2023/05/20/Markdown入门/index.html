@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Markdown入门 | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>Markdown入门</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/20
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Markdown/" style="color: #00a596">Markdown</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="Markdown入门语法教程"><a href="#Markdown入门语法教程" class="headerlink" title="Markdown入门语法教程"></a>Markdown入门语法教程</h1><h2 id="因为看到OJ上很多人不会，就想教一下"><a href="#因为看到OJ上很多人不会，就想教一下" class="headerlink" title="因为看到OJ上很多人不会，就想教一下"></a>因为看到OJ上很多人不会，就想教一下</h2><span id="more"></span>
+
+<blockquote>
+<p>你可以查看<a target="_blank" rel="noopener" href="https://markdown.com.cn/">Markdown官方中文文档</a><br>但如果你不喜欢阅读大量的文字，可以看我的博客<br>如果你有兴趣或需求，可以看<a target="_blank" rel="noopener" href="https://floranceyeh.netlify.app/2023/05/22/KaTeX%E5%85%A5%E9%97%A8">KaTeX入门教程</a></p>
+</blockquote>
+<ul>
+<li><code>目录</code><ol start="0">
+<li><a href="#0-Markdown%E4%BB%8B%E7%BB%8D">Markdown介绍</a></li>
+<li><a href="#1-%E6%A0%87%E9%A2%98%E8%AF%AD%E6%B3%95">标题语法</a></li>
+<li><a href="#2-%E6%AE%B5%E8%90%BD%E8%AF%AD%E6%B3%95">段落语法</a></li>
+<li><a href="#3-%E5%BC%BA%E8%B0%83%E8%AF%AD%E6%B3%95">强调语法</a></li>
+<li><a href="#4-%E9%93%BE%E6%8E%A5%E8%AF%AD%E6%B3%95">链接语法</a></li>
+<li><a href="#5-%E5%9B%BE%E7%89%87%E8%AF%AD%E6%B3%95">图片语法</a></li>
+<li><a href="#6-%E5%BC%95%E7%94%A8%E8%AF%AD%E6%B3%95">引用语法</a></li>
+<li><a href="#7-%E4%BB%A3%E7%A0%81%E8%AF%AD%E6%B3%95">代码语法</a></li>
+<li><a href="#8-%E5%88%97%E8%A1%A8%E8%AF%AD%E6%B3%95">列表语法</a></li>
+<li><a href="#9-%E5%88%86%E9%9A%94%E7%BA%BF%E8%AF%AD%E6%B3%95">分隔线语法</a></li>
+<li><a href="#10-%E8%BD%AC%E4%B9%89%E8%AF%AD%E6%B3%95">转义语法</a></li>
+<li><a href="#11-%E8%A1%A8%E6%A0%BC%E8%AF%AD%E6%B3%95">表格语法</a></li>
+<li><a href="#12-%E9%99%84%E5%BD%95">附录</a></li>
+</ol>
+</li>
+</ul>
+<h1 id="0-Markdown介绍"><a href="#0-Markdown介绍" class="headerlink" title="0.Markdown介绍"></a>0.<code>Markdown介绍</code></h1><p>Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。</p>
+<p>它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。</p>
+<p>因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia、简书等。</p>
+<p><code>----摘自Markdown官方文档</code></p>
+<p>简单的说就是让你的文章更加丰富多彩，可读性更高。</p>
+<p>注意，在没有添加 Markdown 插件的网页中，如果要使用 Markdown ，就得将其转换成 HTML 语言。</p>
+<p>而在已经添加了 Markdown 插件的网页中，插件会自动识别 Markdwon 格式并转换为 HTML 语言。</p>
+<p>这就是为什么当你查看网页源码时，看不到 Markdown 的格式，而是转换后的 HTML 格式。</p>
+<h1 id="1-标题语法"><a href="#1-标题语法" class="headerlink" title="1.标题语法"></a>1.<code>标题语法</code></h1><h4 id="在文本的前面添加-可以创建标题"><a href="#在文本的前面添加-可以创建标题" class="headerlink" title="在文本的前面添加 # 可以创建标题"></a>在文本的前面添加 # 可以创建标题</h4><h4 id="的数量表示标题的级别，最小是6级"><a href="#的数量表示标题的级别，最小是6级" class="headerlink" title="# 的数量表示标题的级别，最小是6级"></a># 的数量表示标题的级别，最小是6级</h4><p><code>Tip: 一二级标题下会自动添加分隔线</code></p>
+<p><code>例如</code></p>
+<hr>
+<p># 一级标题<br>## 二级标题<br>### 三级标题<br>#### 四级标题<br>##### 五级标题<br>###### 六级标题</p>
+<hr>
+<p><code>效果</code></p>
+<hr>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><hr>
+<h1 id="2-段落语法"><a href="#2-段落语法" class="headerlink" title="2.段落语法"></a>2.<code>段落语法</code></h1><h4 id="在Markdown里，两个回车才是一个段落"><a href="#在Markdown里，两个回车才是一个段落" class="headerlink" title="在Markdown里，两个回车才是一个段落"></a>在Markdown里，两个回车才是一个段落</h4><h4 id="即两个段落间空一行"><a href="#即两个段落间空一行" class="headerlink" title="即两个段落间空一行"></a>即两个段落间空一行</h4><p><code>Tip: 有些编译器可能只需要一个回车，但为了养成习惯最好打两个</code></p>
+<p><code>例如</code></p>
+<hr>
+<p>错误的段落一<br>错误的段落二</p>
+<p>正确的段落三</p>
+<p>正确的段落四</p>
+<hr>
+<p><code>效果</code></p>
+<hr>
+<p>错误的段落一错误的段落二</p>
+<p>正确的段落三</p>
+<p>正确的段落四</p>
+<hr>
+<h1 id="3-强调语法"><a href="#3-强调语法" class="headerlink" title="3.强调语法"></a>3.<code>强调语法</code></h1><h4 id="强调即设置文本的-粗体-或-斜体"><a href="#强调即设置文本的-粗体-或-斜体" class="headerlink" title="强调即设置文本的 粗体 或 斜体"></a>强调即设置文本的 <code>粗体</code> 或 <code>斜体</code></h4><p><del>但我个人喜欢用行内代码块强调</del></p>
+<h4 id="要强调的话只需用-星号-下划线-将文本围起来即可"><a href="#要强调的话只需用-星号-下划线-将文本围起来即可" class="headerlink" title="要强调的话只需用 * (星号) _ (下划线) 将文本围起来即可"></a>要强调的话只需用 <code>*</code> (星号) <code>_</code> (下划线) 将文本围起来即可</h4><h4 id="一个强调符号是斜体，二两个则是粗体，三个就是又粗又斜"><a href="#一个强调符号是斜体，二两个则是粗体，三个就是又粗又斜" class="headerlink" title="一个强调符号是斜体，二两个则是粗体，三个就是又粗又斜"></a>一个强调符号是斜体，二两个则是粗体，三个就是又粗又斜</h4><p><code>Tip: 强调符和文本间最好不要加空格，否则会和列表语法冲突</code></p>
+<p><code>例如</code></p>
+<hr>
+<p>*看好了，我要让它变斜了！*<br>**看好了，我要让它变粗了！**<br>***看好了，我要让它又粗又斜了！***<br>_看好了，我要让它变斜了！_<br>__看好了，我要让它变粗了！__<br>___看好了，我要让它又粗又斜了！___</p>
+<hr>
+<p><code>效果</code></p>
+<hr>
+<p><em>看好了，我要让它变斜了！</em><br><strong>看好了，我要让它变粗了！</strong><br><em><strong>看好了，我要让它又粗又斜了！</strong></em><br><em>看好了，我要让它变斜了！</em><br><strong>看好了，我要让它变粗了！</strong><br><em><strong>看好了，我要让它又粗又斜了！</strong></em></p>
+<hr>
+<h1 id="4-链接语法"><a href="#4-链接语法" class="headerlink" title="4.链接语法"></a>4.<code>链接语法</code></h1><h4 id="链接文本放在中括号内，链接地址放在后面的括号中，链接title可选"><a href="#链接文本放在中括号内，链接地址放在后面的括号中，链接title可选" class="headerlink" title="链接文本放在中括号内，链接地址放在后面的括号中，链接title可选"></a>链接文本放在中括号内，链接地址放在后面的括号中，链接title可选</h4><h4 id="超链接Markdown语法代码：-超链接显示名-超链接地址-“超链接title”"><a href="#超链接Markdown语法代码：-超链接显示名-超链接地址-“超链接title”" class="headerlink" title="超链接Markdown语法代码：[超链接显示名](超链接地址 “超链接title”)"></a>超链接Markdown语法代码：[超链接显示名](超链接地址 “超链接title”)</h4><p><code>例如</code></p>
+<p>[TZHSOJ](<a target="_blank" rel="noopener" href="https://tzhsoj.com/">https://tzhsoj.com/</a>)</p>
+<p><code>效果</code></p>
+<p><a target="_blank" rel="noopener" href="https://tzhsoj.com/">TZHSOJ</a></p>
+<h1 id="5-图片语法"><a href="#5-图片语法" class="headerlink" title="5.图片语法"></a>5.<code>图片语法</code></h1><h4 id="只需在链接语法前加-感叹号-即可"><a href="#只需在链接语法前加-感叹号-即可" class="headerlink" title="只需在链接语法前加 ! (感叹号)即可"></a>只需在链接语法前加 <code>!</code> (感叹号)即可</h4><p><code>Tip: 图片语法中，中括号内的文本是可选的</code></p>
+<p><code>例如</code></p>
+<p>![](<a target="_blank" rel="noopener" href="https://tzhsoj.com/file/1040/.avatar.png">https://tzhsoj.com/file/1040/.avatar.png</a>)</p>
+<p><code>效果</code></p>
+<p><img src="https://tzhsoj.com/file/1040/.avatar.png"></p>
+<h1 id="6-引用语法"><a href="#6-引用语法" class="headerlink" title="6.引用语法"></a>6.<code>引用语法</code></h1><h4 id="用-gt-右尖括号-在文本前即可引用"><a href="#用-gt-右尖括号-在文本前即可引用" class="headerlink" title="用 &gt; (右尖括号) 在文本前即可引用"></a>用 <code>&gt;</code> (右尖括号) 在文本前即可引用</h4><p><code>例如</code></p>
+<p>&gt; 引用的文字</p>
+<p><code>效果</code></p>
+<blockquote>
+<p>引用的文字</p>
+</blockquote>
+<h1 id="7-代码语法"><a href="#7-代码语法" class="headerlink" title="7.代码语法"></a>7.<code>代码语法</code></h1><h4 id="用-可以创建行内代码块"><a href="#用-可以创建行内代码块" class="headerlink" title="用` `可以创建行内代码块"></a>用` `可以创建<code>行内代码块</code></h4><p><del>虽然我都是拿来当强调用的</del>，</p>
+<h4 id="还有更进阶的用法，-用-可以创建代码块，使代码更清晰"><a href="#还有更进阶的用法，-用-可以创建代码块，使代码更清晰" class="headerlink" title="` 还有更进阶的用法， 用```可以创建代码块，使代码更清晰"></a>` 还有更进阶的用法， 用<code>```</code>可以创建<code>代码块</code>，使代码更清晰</h4><p><code>例如</code></p>
+<hr>
+<p>`&#96;&#96;</p>
+<p>a &#x3D; int(input(a))</p>
+<p>b &#x3D; int(input(b))</p>
+<p>print(a + b)</p>
+<p>`&#96;&#96;</p>
+<hr>
+<p><code>效果</code></p>
+<hr>
+<pre><code>a = int(input(a))
+b = int(input(b))
+print(a + b)
+</code></pre>
+<hr>
+<h4 id="在第一个-后写上文件后缀，如py-python-cpp可以更改代码高亮"><a href="#在第一个-后写上文件后缀，如py-python-cpp可以更改代码高亮" class="headerlink" title="在第一个```后写上文件后缀，如py, python, cpp可以更改代码高亮"></a>在第一个<code>```</code>后写上文件后缀，如<code>py</code>, <code>python</code>, <code>cpp</code>可以更改代码高亮</h4><p><code>例如</code></p>
+<hr>
+<p>`&#96;&#96;python</p>
+<p>a &#x3D; int(input(a))</p>
+<p>b &#x3D; int(input(b))</p>
+<p>print(a + b)</p>
+<p>`&#96;&#96;</p>
+<p>`&#96;&#96;cpp</p>
+<p>#include &lt;iostream&gt;</p>
+<p>using namespace std;</p>
+<p>int main() {</p>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;int a, b;</p>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;cin &gt;&gt; a &gt;&gt; b;</p>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;cout &lt;&lt; a + b;</p>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;return 0;<br>}</p>
+<p>`&#96;&#96;</p>
+<hr>
+<p><code>效果</code></p>
+<hr>
+<pre><code class="python">a = int(input(a))
+b = int(input(b))
+print(a + b)
+</code></pre>
+<pre><code class="cpp">#include &lt;iostream&gt;
+using namespace std;
+int main() &#123;
+    int a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    cout &lt;&lt; a + b;
+    return 0;
+&#125;
+</code></pre>
+<hr>
+<h1 id="8-列表语法"><a href="#8-列表语法" class="headerlink" title="8.列表语法"></a>8.<code>列表语法</code></h1><h4 id="可以将多个条目组织成有序或无序列表"><a href="#可以将多个条目组织成有序或无序列表" class="headerlink" title="可以将多个条目组织成有序或无序列表"></a>可以将多个条目组织成有序或无序列表</h4><p><code>Tip: 无序列表和有序列表可以相互内嵌</code></p>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><h4 id="只需要用任意数字加一个点就行，Markdown会帮你生成有序列表"><a href="#只需要用任意数字加一个点就行，Markdown会帮你生成有序列表" class="headerlink" title="只需要用任意数字加一个点就行，Markdown会帮你生成有序列表"></a>只需要用任意数字加一个点就行，Markdown会帮你生成有序列表</h4><p><code>例如</code></p>
+<hr>
+<p>1. 睁眼<br>2. 起床<br>3. 到卫生间<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1. 看一看美丽的自己<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;234. 刷牙<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1283. 洗脸<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;8. 看一看美丽的自己<br>2. 出门<br>1. 吃饭</p>
+<hr>
+<p><code>效果</code></p>
+<hr>
+<ol>
+<li>睁眼</li>
+<li>起床</li>
+<li>到卫生间<ol>
+<li>看一看美丽的自己</li>
+<li>刷牙</li>
+<li>洗脸</li>
+<li>看一看美丽的自己</li>
+</ol>
+</li>
+<li>出门</li>
+<li>吃饭</li>
+</ol>
+<hr>
+<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><h4 id="使用-减号-加号-星号"><a href="#使用-减号-加号-星号" class="headerlink" title="使用 -(减号) +(加号) *(星号)"></a>使用 <code>-</code>(减号) <code>+</code>(加号) <code>*</code>(星号)</h4><p><code>Tip: 但同一个无序列表内只能使用同一个符号</code> </p>
+<p><code>例如</code></p>
+<p>* 11111<br>* 22222<br>* 33333</p>
+<p>- 111<br>- 111<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;- 11122<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;- 11133<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;- 1113344<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;- 1113355<br>- 111</p>
+<p>+ 11<br>+ 11<br>+ 11</p>
+<p><code>效果</code></p>
+<ul>
+<li>11111</li>
+<li>22222</li>
+<li>33333</li>
+</ul>
+<ul>
+<li>111</li>
+<li>111<ul>
+<li>11122</li>
+<li>11122<ul>
+<li>1113344</li>
+<li>1113355</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>111</li>
+</ul>
+<ul>
+<li>11</li>
+<li>11</li>
+<li>11</li>
+</ul>
+<h1 id="9-分隔线语法"><a href="#9-分隔线语法" class="headerlink" title="9.分隔线语法"></a>9.<code>分隔线语法</code></h1><h4 id="在单行内写-即可创建分割线-至少三个"><a href="#在单行内写-即可创建分割线-至少三个" class="headerlink" title="在单行内写 *** --- ___ 即可创建分割线(至少三个)"></a>在单行内写 <code>***</code> <code>---</code> <code>___</code> 即可创建分割线(至少三个)</h4><h4 id=""><a href="#" class="headerlink" title=""></a></h4><p><code>Tip: 为了兼容所有情况，打分隔线时应当在前后都加空白行</code></p>
+<p><code>例如</code></p>
+<p>***<br>****<br>-–<br>-———–<br>___<br>***************************</p>
+<p><code>效果</code></p>
+<hr>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+<hr>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+<hr>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+<hr>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+<hr>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+<hr>
+<h1 id="10-转义语法"><a href="#10-转义语法" class="headerlink" title="10.转义语法"></a>10.<code>转义语法</code></h1><h4 id="最后，你肯定好奇为什么我写的例如里面，有符号但样式不变"><a href="#最后，你肯定好奇为什么我写的例如里面，有符号但样式不变" class="headerlink" title="最后，你肯定好奇为什么我写的例如里面，有符号但样式不变"></a>最后，你肯定好奇为什么我写的<code>例如</code>里面，有符号但样式不变</h4><h4 id="使用转义字符-反斜杠-就行"><a href="#使用转义字符-反斜杠-就行" class="headerlink" title="使用转义字符 \ (反斜杠) 就行"></a>使用转义字符 <code>\</code> (反斜杠) 就行</h4><p><code>Tip: 转义字符可以转义转义字符</code></p>
+<p><code>例如</code></p>
+<p>\*1*</p>
+<p>\[TZHSOJ](<a target="_blank" rel="noopener" href="https://tzhsoj.com/">https://tzhsoj.com/</a>)</p>
+<p>\!\[](<a target="_blank" rel="noopener" href="https://tzhsoj.com/file/1040/.avatar.png">https://tzhsoj.com/file/1040/.avatar.png</a>)</p>
+<p>转义图片语法时，转义了感叹号后会被识别为链接语法，需要把中括号也转义了</p>
+<p>` \` &#96;</p>
+<p>转义代码块里的反引号时，不建议用反斜杠</p>
+<p>而应该在双反引号里写反引号</p>
+<p>`` &#96; &#96;&#96;</p>
+<p><code>效果</code></p>
+<p>*1*</p>
+<p>[TZHSOJ](<a target="_blank" rel="noopener" href="https://tzhsoj.com/">https://tzhsoj.com/</a>)</p>
+<p>![](<a target="_blank" rel="noopener" href="https://tzhsoj.com/file/1040/.avatar.png">https://tzhsoj.com/file/1040/.avatar.png</a>)</p>
+<p>转义图片语法时，转义了感叹号后会被识别为链接语法，需要把中括号也转义了</p>
+<p><code> \</code> &#96;</p>
+<p>转义代码块里的反引号时，不建议用反斜杠</p>
+<p>而应该在双反引号里写反引号</p>
+<p><code>`</code></p>
+<h1 id="11-表格语法"><a href="#11-表格语法" class="headerlink" title="11.表格语法"></a>11.<code>表格语法</code></h1><h4 id="要添加表，请使用三个或多个连字符（—）创建每列的标题"><a href="#要添加表，请使用三个或多个连字符（—）创建每列的标题" class="headerlink" title="要添加表，请使用三个或多个连字符（—）创建每列的标题"></a>要添加表，请使用三个或多个连字符（—）创建每列的标题</h4><h4 id="并使用管道（-）分隔每列。您可以选择在表的任一端添加管道"><a href="#并使用管道（-）分隔每列。您可以选择在表的任一端添加管道" class="headerlink" title="并使用管道（|）分隔每列。您可以选择在表的任一端添加管道"></a>并使用管道（|）分隔每列。您可以选择在表的任一端添加管道</h4><p><code>例如</code></p>
+<p>|基因型|A|a|<br>|—|—|—|<br>|A|AA|Aa|<br>|a|Aa|aa|</p>
+<p><code>效果</code></p>
+<table>
+<thead>
+<tr>
+<th>基因型</th>
+<th>A</th>
+<th>a</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>AA</td>
+<td>Aa</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Aa</td>
+<td>aa</td>
+</tr>
+</tbody></table>
+<p><code>Tip: 表格样式视网站而定，我的 Blog 里是蓝色的</code></p>
+<h1 id="12-附录"><a href="#12-附录" class="headerlink" title="12.附录"></a>12.<code>附录</code></h1><h4 id="现在给出-Markdown-支持的所有语言"><a href="#现在给出-Markdown-支持的所有语言" class="headerlink" title="现在给出 Markdown 支持的所有语言"></a>现在给出 Markdown 支持的所有语言</h4><pre><code>bash
+clojure, cpp, cs, css
+dart, dockerfile, diff
+erlang
+go, gradle, groovy
+haskell
+java, javascript, json, julia
+kotlin
+lisp, lua
+makefile, markdown, matlab
+objectivec
+perl, php, python
+r, ruby, rust
+scala, shell, sql, swift
+tex, typescript
+verilog, vhdl
+xml
+yaml
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['caracal']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>

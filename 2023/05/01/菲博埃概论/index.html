@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>菲博埃概论 | Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>菲博埃概论</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/1
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E8%8F%B2%E5%8D%9A%E5%9F%83/" style="color: #00bcd4">菲博埃</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="菲博埃-世界简史"><a href="#菲博埃-世界简史" class="headerlink" title="菲博埃-世界简史"></a>菲博埃-世界简史</h1><span id="more"></span>
+
+<blockquote>
+<p>菲博埃是由 Florance 和她的朋友在几年前共同编撰的架空世界。</p>
+</blockquote>
+<h2 id="创世之初"><a href="#创世之初" class="headerlink" title="创世之初"></a>创世之初</h2><p>世界之初，天地混沌，只有无边无际的汪洋，而在其之上，漂浮着两颗 <code>蛋</code> 。</p>
+<p>某一日，天地巨变，海面上掀起了百米高的海浪，而就在此时，两颗蛋破裂，出现了两条 <code>龙</code>。</p>
+<p>其一破壳时，迸发出滚滚熔岩，与海水接触，便形成了漆黑无比的黑耀岩，沉到海底，堆积成一条深渊。</p>
+<p>其二破壳时，冒出刺骨的寒气，寒气冻结了海面，形成了永冻坚冰，构成了一片寒冷的冰陆。</p>
+<p>二龙的咆哮被彼此听见，他们相聚在一起，热气与寒气交织，形成了石，形成了大陆。</p>
+<h2 id="龙族时代"><a href="#龙族时代" class="headerlink" title="龙族时代"></a>龙族时代</h2><p>二龙的后代被称为龙族，而二龙已被奉为 <code>龙神</code> ，龙族在发展数万年后，已是数量庞大。</p>
+<p>然而，龙族有个传统，当龙族顶尖的战士死亡后，族人们便会将战士的尸体及其所有力量封印在 <code>龙冢</code> 中。</p>
+<p>刚愎自用的龙族认为自己一族的力量是永恒的，自己一族的战士是无穷无尽的，然而，时间否定了这个观点。</p>
+<p>龙族的后代变得越发虚弱，体型越来越小，力量也大不如前，是龙冢害了他们。</p>
+<p>龙的力量来自龙神诞生时迸发的 <code>能</code> ，而这股力量，是有限的。</p>
+<p>最后，龙神也开始虚弱，最终沉睡，龙族退到冰陆上，履行他们最后是使命 – <code>守护</code>。</p>
+<h2 id="人族时代"><a href="#人族时代" class="headerlink" title="人族时代"></a>人族时代</h2><p>龙族末代，世界已是一片荒凉，而此时，末代龙族中平庸的两位，站了出来。</p>
+<p>其一人用一种奇特的力量，创造了一些生灵，有一些被叫做 <code>植物</code> ，而另一些叫 <code>动物</code>。</p>
+<p>这个人创造了生灵，也给与它们庇护的环境，生态。</p>
+<p>这个人最后精疲力尽的倒下，他的躯体变成了几座高山。</p>
+<p>另一人则开始捣鼓一些小玩意，他们只有瘦小的四足，孱弱的躯体。</p>
+<p>但这个人，给了他们更加独特的能力，智力，也向他们灌注了自己的心血，但力量是有限的。</p>
+<p>这个人夜以继日的创造，也开始变得疲惫，于是使用了一条粗糙的藤鞭，大量的这些小生灵被创造。</p>
+<p>最终，她自己也无法支撑下去，她踉跄地来到那条深渊中，一觉不起，而她的尸体，滋生了一些奇妙的生物。</p>
+<h2 id="万灵时代"><a href="#万灵时代" class="headerlink" title="万灵时代"></a>万灵时代</h2><p>不知多久，剩下的龙族内部变得破裂，其中一些离开了冰陆，进入大陆。</p>
+<p>而进入大陆的龙族被眼前的繁茂景象惊呆，在他们眼前的，</p>
+<p>是一个无数生灵和谐共生，秩序有条，繁荣，充满生机的世界。</p>
+<p>最终，他们被奉为 <code>人神</code> 。</p>
+<hr>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="文明种族及概况"><a href="#文明种族及概况" class="headerlink" title="文明种族及概况"></a>文明种族及概况</h3><p>二龙的后代 – <code>龙族</code></p>
+<p>女娲灌注心血创造 – <code>魔人</code></p>
+<p>女娲粗糙创造 – <code>人</code></p>
+<p>女娲尸体滋生 – <code>魔</code></p>
+<p>龙族与人后代 – <code>半龙</code></p>
+<p>龙族与鲨后代 – <code>龙鲨</code></p>
+<h3 id="地形区及概况："><a href="#地形区及概况：" class="headerlink" title="地形区及概况："></a>地形区及概况：</h3><p>世界北方的冰陆 – <code>极北之境</code> – 由 <code>龙族</code> 统治</p>
+<p>中央大陆 – <code>大陆</code> – 由 <code>人</code> 统治</p>
+<p>南洋岛陆 – <code>水月岛</code> – 由 <code>魔人</code> 统治</p>
+<p>南洋海沟 – <code>亚特兰蒂斯</code> – 由 <code>龙鲨</code> 统治</p>
+<p>天空浮岛 – <code>拉普达</code> – 由 <code>半龙</code> 统治</p>
+<p>南方海洋的深渊 – <code>幽暗深渊</code> 由 <code>魔</code> 统治</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="FloranceYeh/FloranceYeh.github.io"
+    data-repo-id="R_kgDOJSmneA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJSmneM4CVhhg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['caracal']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>

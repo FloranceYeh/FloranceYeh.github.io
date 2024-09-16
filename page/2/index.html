@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Florance&#39;s Blog</title>
+        <meta name="author" content="Florance" />
+        <meta name="description" content="It's Florance!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/Florance.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="/littleDemo/live2d/assets/waifu.css"/>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>若你不会魔法，这可能会有些慢</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/links">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-link fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background_s.png"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Florance&#39;s Blog</h1>
+                <h3>FFFFFF</h3>
+                <h5>It&#39;s Florance!</h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div id="home-posts-wrap"  ref="homePostsWrap">
+    <div id="home-posts">
+        <div class="mobile-card">
+    <img src="/images/Florance.png" alt="avatar">
+    <div>
+        <span class="name">Florance</span>
+        <br>
+        <span class="description">
+            <p>It’s Florance!<br>Florance的<small><del>朋友圈</del></small>博客</p>
+
+        </span>
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:Florance_Sunrise@outlook.com">
+                    <i
+                        class="fa-envelope fa-solid fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:FloranceYeh@outlook.com">
+                    <i
+                        class="fa-envelope fa-regular fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="post">
+    <a href="/2023/05/05/%E8%8F%B2%E5%8D%9A%E5%9F%83%E7%8E%B0%E4%BB%A3%E6%A6%82%E5%86%B5/">
+        <h2 class="post-title">菲博埃现代概况</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="菲博埃现代势力分布"><a href="#菲博埃现代势力分布" class="headerlink" title="菲博埃现代势力分布"></a>菲博埃现代势力分布</h1>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%8F%B2%E5%8D%9A%E5%9F%83/" style="color: #03a9f4">
+                菲博埃
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2023/05/05/%E8%8F%B2%E5%8D%9A%E5%9F%83%E7%8E%B0%E4%BB%A3%E6%A6%82%E5%86%B5/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/05/01/%E8%8F%B2%E5%8D%9A%E5%9F%83%E6%A6%82%E8%AE%BA/">
+        <h2 class="post-title">菲博埃概论</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/1
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="菲博埃-世界简史"><a href="#菲博埃-世界简史" class="headerlink" title="菲博埃-世界简史"></a>菲博埃-世界简史</h1>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%8F%B2%E5%8D%9A%E5%9F%83/" style="color: #03a9f4">
+                菲博埃
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2023/05/01/%E8%8F%B2%E5%8D%9A%E5%9F%83%E6%A6%82%E8%AE%BA/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/04/27/STI-LZ/">
+        <h2 class="post-title">STI-LZ</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/27
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="少年，我看你骨骼精奇，来加入STI-LZ吧！"><a href="#少年，我看你骨骼精奇，来加入STI-LZ吧！" class="headerlink" title="少年，我看你骨骼精奇，来加入STI-LZ吧！"></a>少年，我看你骨骼精奇，来加入STI-LZ吧！</h3><h1 id="STI-LZ-概况"><a href="#STI-LZ-概况" class="headerlink" title="STI-LZ 概况"></a>STI-LZ 概况</h1>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/STI-LZ/" style="color: #03a9f4">
+                STI-LZ
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/OI/" style="color: #ffa2c4">
+                OI
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%AC%E5%AE%B6%E4%BA%8B/" style="color: #03a9f4">
+                公家事
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2023/04/27/STI-LZ/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/04/26/sum%E5%85%A5%E9%97%A8/">
+        <h2 class="post-title">sum入门</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/26
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="sum"><a href="#sum" class="headerlink" title="sum"></a>sum</h1><h1 id="sum-sigma"><a href="#sum-sigma" class="headerlink" title="$\sum$ sigma"></a>$\sum$ sigma</h1>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/KaTeX/" style="color: #00bcd4">
+                KaTeX
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/math/" style="color: #03a9f4">
+                math
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2023/04/26/sum%E5%85%A5%E9%97%A8/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/04/25/%E7%A7%BB%E5%8A%A8%E6%8D%AE%E7%82%B9%E8%AE%BE%E7%BD%AE/">
+        <h2 class="post-title">移动据点设置</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/25
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="移动据点设置指南"><a href="#移动据点设置指南" class="headerlink" title="移动据点设置指南"></a>移动据点设置指南</h1><h2 id="已经成为历史"><a href="#已经成为历史" class="headerlink" title="已经成为历史"></a>已经成为历史</h2><h4 id="因为我已经写了自动部署"><a href="#因为我已经写了自动部署" class="headerlink" title="因为我已经写了自动部署"></a>因为我已经写了自动部署</h4>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Git/" style="color: #00bcd4">
+                Git
+            </a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Settings/" style="color: #ffa2c4">
+                Settings
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2023/04/25/%E7%A7%BB%E5%8A%A8%E6%8D%AE%E7%82%B9%E8%AE%BE%E7%BD%AE/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/04/16/%E6%9B%B4%E6%96%B0-2/">
+        <h2 class="post-title">更新</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Updates/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Updates
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="第三次大更新"><a href="#第三次大更新" class="headerlink" title="第三次大更新"></a>第三次大更新</h3><ul>
+<li><code>终于</code>是把crypto的插件加上了，由于各种各样的原因，过程十分曲折，我就不想说了。</li>
+<li>加了个背景流星，其实只是把之前的弃案拿回来用罢了。</li>
+<li>域名也申请了，还在审核中……</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Update/" style="color: #ffa2c4">
+                Update
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2023/04/16/%E6%9B%B4%E6%96%B0-2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/04/05/%E6%9B%B4%E6%96%B0-1/">
+        <h2 class="post-title">更新</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Updates/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Updates
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="第二次大更新"><a href="#第二次大更新" class="headerlink" title="第二次大更新"></a>第二次大更新</h3><ul>
+<li>更改了主页壁纸，更符合Florance的喜好！</li>
+<li>更改了博客主题色，让Florance更爱不释手！</li>
+<li>修了一下 About 。</li>
+<li>加了一个点击烟花特效，本来还想加一些其他插件，但好像有些画风不符，就没加了</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Update/" style="color: #00a596">
+                Update
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2023/04/05/%E6%9B%B4%E6%96%B0-1/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/04/05/%E6%9B%B4%E6%96%B0/">
+        <h2 class="post-title">更新</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Updates/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Updates
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <ul>
+<li>增加了live2d插件，后续考虑把我自己做的模型替换上去。但无国内加速器加载较慢。</li>
+<li>将网站部署到了Netlify上，通过网址 FloranceYeh.netlify.app 可以在无加速器的情况下更快访问博客，等资金充足了会去买域名。</li>
+<li>添加了一些美化，开发了 Categories ， About 和 Tags 界面。<del>虽然是主题自带，但设置起来怪麻烦。</del></li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Update/" style="color: #ffa2c4">
+                Update
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2023/04/05/%E6%9B%B4%E6%96%B0/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/04/04/%E5%A5%BD%E8%80%B6/">
+        <h2 class="post-title">好耶</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/4
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="好耶"><a href="#好耶" class="headerlink" title="好耶"></a>好耶</h1><p>在奋战了近四个小时后，博客框架基本搭建好了，之前用gittalk老是有问题，于是我换成了giscus，评论功能也算正式实现了。</p>
+<p>~~ 姐我果然是世界上最强的 ~~</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2023/04/04/%E5%A5%BD%E8%80%B6/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    <div class="prev">
+        
+        <a class="page-num" href="/">
+            <i class="fa-solid fa-caret-left fa-fw"></i>
+        </a>
+        
+    </div>
+    <div class="page-index">
+        
+        <span>
+            
+            
+            <a class="page-num" href="/">1</a>
+        </span>
+        
+        <span class="current">2</span>
+        
+    </div>
+    <div class="next">
+        
+    </div>
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style">
+        <div class="avatar">
+            <img src="/images/Florance.png" alt="avatar" />
+        </div>
+        <div class="name">Florance</div>
+        <div class="description">
+            <p>It’s Florance!<br>Florance的<small><del>朋友圈</del></small>博客</p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:Florance_Sunrise@outlook.com">
+                    <i
+                        class="fa-envelope fa-solid fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:FloranceYeh@outlook.com">
+                    <i
+                        class="fa-envelope fa-regular fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a href="/about">About</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="/archives">Archives</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="/categories">Categories</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="/tags">Tags</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="/links">Links</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-f"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+
+        <div class="waifu">
+            <div class="waifu-tips"></div>
+            <canvas id="live2d" width="1000" height="1000" class="live2d"></canvas>
+            <div class="waifu-tool">
+                <span class="fui-home"></span>
+                <span class="fui-chat"></span>
+                <span class="fui-photo"></span>
+                <span class="fui-info-circle"></span>
+                <span class="fui-cross"></span>
+            </div>
+        </div>
+          <!-- Live2DCubismCore script -->
+        <script src="/littleDemo/live2dcubismcore.js"></script>
+          <!-- Build script -->
+        <script src = "/littleDemo/meidou_live2d.js"></script>
+        <script src="/littleDemo/live2d/assets/waifu-tips.js"></script>
+        <script type="text/javascript">
+            let modulesPath = "/littleDemo/live2d/models/"
+            let modelNames = ['caracal']
+            let waifuTipsUrl = "/littleDemo/live2d/assets/waifu-tips.json"
+            initModel(modulesPath,modelNames,waifuTipsUrl);
+        </script>
+    </body>
+</html>
+
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="/js/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<canvas
+    id="background"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+></canvas>
+<script src="/js/background.min.js"></script>
