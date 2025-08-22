@@ -46,7 +46,7 @@
       }
     }
 
-    // 每次刷新都生成新seed并
+    // 每次刷新生成新seed
     function getSeed() {
       const params = new URLSearchParams(window.location.search);
       let seed = params.get('seed');
@@ -134,7 +134,7 @@
     const phaseX = rand() * Math.PI * 2;
     const phaseY = rand() * Math.PI * 2;
 
-    // 动画
+    // 晃动动画
     let t = 0;
     function animate() {
       t += 0.01;
@@ -155,4 +155,5 @@
     animate();
   </script>
 </body>
+
 </html>
