@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>Links | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <span class="seed-container">
+            <span class="seed-text">SEED</span>
+            <span class="expandable-form">
+                <input class="seed-input" type="number" inputmode="numeric" step="1">
+                <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </span>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <span class="seed-container">
+                    <span class="seed-text">SEED</span>
+                    <span class="expandable-form">
+                        <input class="seed-input" type="number" inputmode="numeric" step="1">
+                        <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </span>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div class="links-content">
+
+    
+
+    
+        <h2 class="link-category-title">
+        <i class="fa fa-link"></i>
+        Friends
+        </h2>
+
+        <div class="link-navigation">
+        
+        
+            
+            
+            <a href="https://Florance.top" target="_blank" class="card">
+            <div class="card-header">
+                <img src="/images/avatar.jpg" alt="Florance" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Florance</h3>
+                <p class="card-desc" title="It&#39;s Florance!">It&#39;s Florance!</p>
+            </div>
+            </a>
+
+        
+            
+            
+            <a href="https://www.codeboy.site/" target="_blank" class="card">
+            <div class="card-header">
+                <img src="https://avatars.githubusercontent.com/u/53615699?v=4" alt="Codeboy&#39;s Blog" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Codeboy&#39;s Blog</h3>
+                <p class="card-desc" title="👋 Hey! I&#39;m CodeBoy.(这是我爹我不允许任何人诋毁他)">👋 Hey! I&#39;m CodeBoy.(这是我爹我不允许任何人诋毁他)</p>
+            </div>
+            </a>
+
+        
+            
+            
+            <a href="https://chose-b-log.top/" target="_blank" class="card">
+            <div class="card-header">
+                <img src="https://chose-b-log.top/img/about/avatar_1.jpg" alt="Chose_B_log" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Chose_B_log</h3>
+                <p class="card-desc" title="Chose_B的笔记本">Chose_B的笔记本</p>
+            </div>
+            </a>
+
+        
+            
+            
+            <a href="https://www.enteleche1a.top" target="_blank" class="card">
+            <div class="card-header">
+                <img src="/images/NONE.jpg" alt="ENTELECHEIA" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">ENTELECHEIA</h3>
+                <p class="card-desc" title="XXX">XXX</p>
+            </div>
+            </a>
+
+        
+            
+            
+            <a href="https://blog.erina.top/blog/" target="_blank" class="card">
+            <div class="card-header">
+                <img src="https://era-yes.github.io/img/512.png" alt="Erina&#39;s Blog" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Erina&#39;s Blog</h3>
+                <p class="card-desc" title="因为伟大的戏剧正在上演,因为你可以献上一首诗">因为伟大的戏剧正在上演,因为你可以献上一首诗</p>
+            </div>
+            </a>
+
+        
+            
+            
+            <a href="https://gong-yie.github.io/" target="_blank" class="card">
+            <div class="card-header">
+                <img src="https://q1.qlogo.cn/g?b=qq&amp;nk=3750387410&amp;s=160" alt="工一阵" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">工一阵</h3>
+                <p class="card-desc" title="写代码、做题、折腾一些有用或没用的东西">写代码、做题、折腾一些有用或没用的东西</p>
+            </div>
+            </a>
+
+        
+            
+            
+            <a href="https://404nfd-team.github.io/404NFD/" target="_blank" class="card">
+            <div class="card-header">
+                <img src="https://404nfd-team.github.io/404NFD/assets/logo.png" alt="404NFD" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">404NFD</h3>
+                <p class="card-desc" title="404NFD Team">404NFD Team</p>
+            </div>
+            </a>
+
+        
+        </div>
+    
+        <h2 class="link-category-title">
+        <i class="fa fa-link"></i>
+        Tools
+        </h2>
+
+        <div class="link-navigation">
+        
+        
+            
+            
+            <a href="https://floranceyeh.github.io/STI-3rd-anniv" target="_blank" class="card">
+            <div class="card-header">
+                <img src="/images/avatar.jpg" alt="STI-3rd-anniv" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">STI-3rd-anniv</h3>
+                <p class="card-desc" title="A gift for STI&#39;s 3rd anniversary.">A gift for STI&#39;s 3rd anniversary.</p>
+            </div>
+            </a>
+
+        
+            
+            
+            <a href="https://particlexf-demo.florance.top" target="_blank" class="card">
+            <div class="card-header">
+                <img src="/images/avatar.jpg" alt="ParticleXF Demo" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">ParticleXF Demo</h3>
+                <p class="card-desc" title="A demo for ParticleXF theme.">A demo for ParticleXF theme.</p>
+            </div>
+            </a>
+
+        
+            
+            
+            <a href="/F/ASTR-CA" target="_blank" class="card">
+            <div class="card-header">
+                <img src="/F/ASTR-CA/logo.jpg" alt="ASTR-CA" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">ASTR-CA</h3>
+                <p class="card-desc" title="A QQ group of mine for tech-friends. (QQ群，技术交流)">A QQ group of mine for tech-friends. (QQ群，技术交流)</p>
+            </div>
+            </a>
+
+        
+            
+            
+            <a href="https://cloud.astrbot.app/users/floranceyeh" target="_blank" class="card">
+            <div class="card-header">
+                <img src="data:image/svg+xml,%3csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20width=&#39;512&#39;%20height=&#39;512&#39;%20viewBox=&#39;0%200%20512%20512&#39;%20preserveAspectRatio=&#39;xMidYMid%20meet&#39;%3e%3cg%20transform=&#39;translate(0.8%200.9)&#39;%3e%3cg%20transform=&#39;translate(0%2032)&#39;%3e%3cpath%20d=&#39;m246.3%20328.1-17.8%2041.2c-6.4%2014.8-26.9%2014.8-33.3%200l-17.8-41.2c-14.9-34.2-41.8-61.4-75.3-76.3l-48.8-21.6c-14.7-6.5-14.7-27.9%200-34.4l47.2-21c34.4-15.3%2061.7-43.5%2076.4-78.8l18-43.7c6.3-15.2%2027.3-15.2%2033.6%200l18%2043.7c14.7%2035.3%2042%2063.6%2076.4%2078.8l47.2%2021c14.7%206.5%2014.7%2027.9%200%2034.4l-48.8%2021.6c-33.5%2014.8-60.4%2042.1-75.3%2076.2z&#39;%20fill=&#39;%232f86bd&#39;%20transform=&#39;translate(0%2035)&#39;%20/%3e%3cpath%20d=&#39;m402.2%20449.3-5.3%2012.2c-3.5%207.9-14.4%207.9-17.9%200l-5.3-12.2c-8.4-19.3-23.6-34.6-42.4-43l-15.4-6.9c-7.9-3.5-7.9-14.9%200-18.4l14.5-6.5c19.4-8.6%2034.8-24.5%2043.1-44.5l5.4-13.1c3.4-8.1%2014.6-8.1%2018%200l5.4%2013.1c8.3%2019.9%2023.7%2035.8%2043.1%2044.5l14.5%206.5c7.9%203.5%207.9%2014.9%200%2018.4l-15.4%206.9c-19%208.3-34.1%2023.7-42.5%2043z&#39;%20fill=&#39;%232f86bd&#39;%20transform=&#39;matrix(0.95%200%200%200.95%2022%20-278)&#39;%20/%3e%3c/g%3e%3c/g%3e%3c/svg%3e" alt="AstrBotCloud" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">AstrBotCloud</h3>
+                <p class="card-desc" title="AstrBotCloud/Florance, all Astrbot plugins made by Florance.">AstrBotCloud/Florance, all Astrbot plugins made by Florance.</p>
+            </div>
+            </a>
+
+        
+            
+            
+            <a href="https://map.florance.top" target="_blank" class="card">
+            <div class="card-header">
+                <img src="https://map.florance.top/logo.png" alt="安师生活地图" onerror="this.src='/images/avatar.jpg'">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">安师生活地图</h3>
+                <p class="card-desc" title="这是一个由学长分享校园周边美食、好店的地图。">这是一个由学长分享校园周边美食、好店的地图。</p>
+            </div>
+            </a>
+
+        
+        </div>
+    
+    </div>
+
+    <div class="content" v-pre>
+        <h3 id="友链申请格式"><a href="#友链申请格式" class="headerlink" title="友链申请格式"></a>友链申请格式</h3><pre><code class="language-yml">Florance:
+    name: Florance
+    url: https://Florance.top
+    ava: https://Florance.top/images/avatar.jpg
+    des: It&#39;s Florance!
+</code></pre>
+
+    </div>
+
+    
+    
+    
+    
+    <div id="comment">
+        <div id="waline-container"></div>
+    </div>
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top/",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>

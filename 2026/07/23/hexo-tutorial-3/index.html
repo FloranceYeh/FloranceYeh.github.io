@@ -1,0 +1,672 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>HEXO-教程-3|文章小技巧 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <span class="seed-container">
+            <span class="seed-text">SEED</span>
+            <span class="expandable-form">
+                <input class="seed-input" type="number" inputmode="numeric" step="1">
+                <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </span>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <span class="seed-container">
+                    <span class="seed-text">SEED</span>
+                    <span class="expandable-form">
+                        <input class="seed-input" type="number" inputmode="numeric" step="1">
+                        <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </span>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>HEXO-教程-3|文章小技巧</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/7/23
+            </span>
+            
+            <span class="category">
+                <a href="/categories/Tutorial/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    Tutorial
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/HEXO/" style="color: #c48a82">
+                        HEXO
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>教你从零开始搭建个人博客<br>—-以HEXO的Particlexf主题为例<br><code>Part III</code></p>
+</div>
+</div>
+
+<p>本文将要介绍 HEXO 博客的一些文章小技巧，以及 ParticleXF 主题的一些特色功能。</p>
+<blockquote>
+<p>转自<a target="_blank" rel="noopener" href="https://particlexf-demo.florance.top/2026/07/23/hexo-tutorial-3/">ParticleXF-demo</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h1><p>在博客目录下，使用以下命令创建文章：</p>
+<pre><code class="language-bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>当然，你也可以手动创建一个 Markdown 文件，并将其放在 <code>source/_posts/</code> 目录下。</p>
+<div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p>命令接受的是一个字符串参数，作为文章的标题。你可以使用中文、英文或其他语言的字符。<br>引号是不必须的，但是当标题中包含空格或特殊字符时，建议加上引号以防止解析错误。<br>标题如果包含了空格或特殊字符，Hexo 会将其转换为 <code>-</code>，作为文章的文件名。</p>
+</div>
+</div>
+
+<p>此时，<code>source/_posts/</code> 目录下会生成一个名为 <code>my-new-post.md</code> 的文件。</p>
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p>命令生成的文件是以 <code>scaffolds</code> 模板生成的，里面包含了文章的 front-matter 和一些默认内容。<br>如果你想自定义文章模板，可以在博客目录下的 <code>scaffolds</code> 目录中找到 <code>post.md</code> 文件，并进行修改。</p>
+</div>
+</div>
+
+<h1 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h1><p>由于 Markdown 是非常基础的知识，这里不再赘述。你可以上网搜索相关的 Markdown 教程。</p>
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p>HEXO 的 Markdown 是支持内嵌 HTML 语法的，这意味着你可以在 Markdown 中直接使用 HTML 标签。</p>
+</div>
+</div>
+
+<h1 id="Tag-与-Category"><a href="#Tag-与-Category" class="headerlink" title="Tag 与 Category"></a>Tag 与 Category</h1><p>在文章的 front-matter 中添加 <code>tags</code> 和 <code>categories</code> 字段，用于设置文章的标签和分类。</p>
+<p>其中 <code>tags</code> 和 <code>categories</code> 字段都可以设置多个值，格式如下：</p>
+<pre><code class="language-yaml">---
+tags:
+    - hexo
+    - tutorial
+categories:
+    - Tutorial
+---
+</code></pre>
+<h1 id="文章描述-缩略"><a href="#文章描述-缩略" class="headerlink" title="文章描述&#x2F;缩略"></a>文章描述&#x2F;缩略</h1><p>其实 ParticleXF 主题是没有自动缩略的，也就是说，如果你没有加额外的限制，那么首页的文章列表将会显示整篇文章的内容。</p>
+<p>添加描述&#x2F;缩略有两种方式：</p>
+<h2 id="description-字段"><a href="#description-字段" class="headerlink" title="description 字段"></a>description 字段</h2><p>在文章的 front-matter 中添加 <code>description</code> 字段，用于设置文章的描述。内容支持 Markdown 格式的内容。</p>
+<pre><code class="language-yaml">---
+description: 这是一篇关于 HEXO 博客的一些文章小技巧，以及 ParticleXF 主题的一些特色功能的教程。
+---
+</code></pre>
+<div class="note note-warning" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span>
+    <span class="note-title-text">注意</span>
+  </div>
+  <div class="note-body"><p>description字段内如果要使用Markdown，有以下注意事项：</p>
+<ol>
+<li>不要使用 <code>---</code>，否则会被 Hexo 解析为 front-matter 的结束标记</li>
+<li>最好不要写多行内容</li>
+<li>如果开头是代码块，要在<code>description:</code> 后面写 <code>|</code>，否则会报错</li>
+</ol>
+<pre><code class="language-yaml">---
+description: |
+    这是一篇关于 `HEXO` 博客的一些文章小技巧，以及 ParticleXF 主题的一些特色功能的教程。
+---
+</code></pre>
+</div>
+</div>
+
+<h2 id="more-标签"><a href="#more-标签" class="headerlink" title="more 标签"></a>more 标签</h2><p><code>&lt;!-- more --&gt;</code> 可以让文章在首页只显示 <code>&lt;!-- more --&gt;</code> 之前的内容，<code>&lt;!-- more --&gt;</code> 之后的内容将会在文章详情页显示。</p>
+<h1 id="文章置顶"><a href="#文章置顶" class="headerlink" title="文章置顶"></a>文章置顶</h1><p>在 <code>front-matter</code> 中添加 <code>pinned</code> 字段，值为整数，用于设置文章的置顶顺序，值越大，文章越靠前。</p>
+<pre><code class="language-yaml">---
+pinned: 1
+---
+</code></pre>
+<h1 id="评论与TOC"><a href="#评论与TOC" class="headerlink" title="评论与TOC"></a>评论与TOC</h1><p>在 ParticleXF 主题中，文章页最右侧有一个目录区域，这就是 <code>TOC(Table of Contents)</code>。</p>
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p>TOC 底部的 <code>评论</code> 按钮在评论未启用时会变成 <code>底部</code> 按钮</p>
+</div>
+</div>
+
+<p>文章的评论和 TOC 是可以单独设置的。</p>
+<p>在 <code>front-matter</code> 中添加 <code>toc</code> 和 <code>comments</code> 字段，用于设置文章是否显示目录和评论。</p>
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p><code>comments</code> 字段在 about 页面也是可用的。</p>
+</div>
+</div>
+
+<pre><code class="language-yaml">---
+toc: false
+comments: false
+---
+</code></pre>
+<h1 id="Note-提示框"><a href="#Note-提示框" class="headerlink" title="Note 提示框"></a>Note 提示框</h1><p>Note 提示框是 ParticleXF 主题提供的一个特色功能，可以在文章中添加一些提示信息。</p>
+<h3 id="写法"><a href="#写法" class="headerlink" title="写法"></a>写法</h3><pre><code class="language-markdown">&#123;% note tip %&#125;
+正文，支持 **Markdown**。
+&#123;% endnote %&#125;
+
+&#123;% note warning 自定义标题 %&#125;
+……
+&#123;% endnote %&#125;
+
+&#123;% note danger no-icon %&#125;
+不显示图标。
+&#123;% endnote %&#125;
+</code></pre>
+<h3 id="类型一览"><a href="#类型一览" class="headerlink" title="类型一览"></a>类型一览</h3><div class="note note-note" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-pen"></i></span>
+    <span class="note-title-text">说明</span>
+  </div>
+  <div class="note-body"><p>默认 &#x2F; <code>note</code>：一般说明。</p>
+</div>
+</div>
+
+<div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p><code>info</code>：补充信息。</p>
+</div>
+</div>
+
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p><code>tip</code>：技巧与建议。</p>
+</div>
+</div>
+
+<div class="note note-success" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+    <span class="note-title-text">成功</span>
+  </div>
+  <div class="note-body"><p><code>success</code>：完成、正确路径。</p>
+</div>
+</div>
+
+<div class="note note-warning" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span>
+    <span class="note-title-text">警告</span>
+  </div>
+  <div class="note-body"><p><code>warning</code>：需要注意的点。</p>
+</div>
+</div>
+
+<div class="note note-danger" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-xmark"></i></span>
+    <span class="note-title-text">危险</span>
+  </div>
+  <div class="note-body"><p><code>danger</code>：风险、错误、破坏性操作。</p>
+</div>
+</div>
+
+<div class="note note-quote" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
+    <span class="note-title-text">引用</span>
+  </div>
+  <div class="note-body"><p><code>quote</code>：引用式强调。</p>
+</div>
+</div>
+
+<div class="note note-tip" role="note">
+  <div class="note-title">
+
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p><code>no-icon</code>：不显示左侧图标（任意类型都可加）。</p>
+</div>
+</div>
+
+
+<p>上一篇教程：<a href="/2026/07/23/hexo-tutorial-2/">HEXO-教程-2|主题与页面</a><br>下一篇教程：<a href="/2026/07/25/hexo-tutorial-4/">HEXO-教程-4|部署</a></p>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="Close table of contents">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">创建文章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown"><span class="toc-number">2.</span> <span class="toc-text">Markdown</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tag-%E4%B8%8E-Category"><span class="toc-number">3.</span> <span class="toc-text">Tag 与 Category</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E6%8F%8F%E8%BF%B0-%E7%BC%A9%E7%95%A5"><span class="toc-number">4.</span> <span class="toc-text">文章描述&#x2F;缩略</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#description-%E5%AD%97%E6%AE%B5"><span class="toc-number">4.1.</span> <span class="toc-text">description 字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#more-%E6%A0%87%E7%AD%BE"><span class="toc-number">4.2.</span> <span class="toc-text">more 标签</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E7%BD%AE%E9%A1%B6"><span class="toc-number">5.</span> <span class="toc-text">文章置顶</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E4%B8%8ETOC"><span class="toc-number">6.</span> <span class="toc-text">评论与TOC</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Note-%E6%8F%90%E7%A4%BA%E6%A1%86"><span class="toc-number">7.</span> <span class="toc-text">Note 提示框</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%B3%95"><span class="toc-number">7.1.</span> <span class="toc-text">写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E4%B8%80%E8%A7%88"><span class="toc-number">7.2.</span> <span class="toc-text">类型一览</span></a></li></ol></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="Open table of contents" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top/",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>

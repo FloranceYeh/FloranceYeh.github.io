@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>HEXO-教程-5|定制化 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <span class="seed-container">
+            <span class="seed-text">SEED</span>
+            <span class="expandable-form">
+                <input class="seed-input" type="number" inputmode="numeric" step="1">
+                <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </span>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <span class="seed-container">
+                    <span class="seed-text">SEED</span>
+                    <span class="expandable-form">
+                        <input class="seed-input" type="number" inputmode="numeric" step="1">
+                        <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </span>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>HEXO-教程-5|定制化</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/7/25
+            </span>
+            
+            <span class="category">
+                <a href="/categories/Tutorial/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    Tutorial
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/EJS/" style="color: #c48a82">
+                        EJS
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/HEXO/" style="color: #5a9aa8">
+                        HEXO
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>教你从零开始搭建个人博客<br>—-以HEXO的Particlexf主题为例<br><code>Part V</code></p>
+</div>
+</div>
+
+<p>本文将要介绍如何简单定制 ParticleXF 主题，主要讲 <code>EJS</code>、如何添加自己的 <code>JS</code> 和 <code>CSS</code>、如何修改模板。</p>
+<blockquote>
+<p>转自<a target="_blank" rel="noopener" href="https://particlexf-demo.florance.top/2026/07/25/hexo-tutorial-5/">ParticleXF-demo</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="先认识主题结构"><a href="#先认识主题结构" class="headerlink" title="先认识主题结构"></a>先认识主题结构</h1><p>ParticleXF 的主要文件结构大致如下：</p>
+<ul>
+<li><code>layout/</code>：页面模板，主要是 EJS 文件</li>
+<li><code>source/js/</code>：前端脚本，生成后会输出到站点的 <code>/js/</code></li>
+<li><code>source/css/</code>：样式文件，生成后会输出到站点的 <code>/css/</code></li>
+<li><code>scripts/</code>：Hexo 运行时脚本</li>
+</ul>
+<p>如果只是做小范围定制，通常不需要重写整个主题，只要改模板、加一份自己的 JS 或 CSS 就够了。</p>
+<h1 id="EJS-是什么"><a href="#EJS-是什么" class="headerlink" title="EJS 是什么"></a>EJS 是什么</h1><p>ParticleXF 的模板大多是 EJS 文件，比如 <code>themes/particlexf/layout/layout.ejs</code>、<code>menu.ejs</code>、<code>post.ejs</code> 这些。</p>
+<p>EJS 可以理解成“带有 JavaScript 逻辑的 HTML 模板”。常见写法有三种：</p>
+<div class="note note-warning" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span>
+    <span class="note-title-text">注意</span>
+  </div>
+  <div class="note-body"><p>由于 <code>highlight.js</code> 没有对 EJS 语法的高亮支持，下面的代码块都用 <code>js</code> 来标记。</p>
+</div>
+</div>
+
+<pre><code class="language-js">&lt;%= title %&gt;
+&lt;%- partial(&quot;menu&quot;) %&gt;
+&lt;% if (theme.preview.enable) &#123; %&gt;
+    &lt;script src=&quot;&lt;%- url_for(&quot;/js/lib/preview.js&quot;) %&gt;&quot;&gt;&lt;/script&gt;
+&lt;% &#125; %&gt;
+</code></pre>
+<p>它们分别表示：</p>
+<ul>
+<li><code>&lt;%= ... %&gt;</code>：输出变量内容，会自动转义</li>
+<li><code>&lt;%- ... %&gt;</code>：输出原始内容，不做转义</li>
+<li><code>&lt;% ... %&gt;</code>：只执行逻辑，不直接输出</li>
+</ul>
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p>如果你只是想把变量显示到页面上，优先用 <code>&lt;%= ... %&gt;</code>。只有在你明确知道内容安全、并且确实需要输出 HTML 时，才考虑 <code>&lt;%- ... %&gt;</code>。</p>
+</div>
+</div>
+
+<h1 id="添加自己的-JS"><a href="#添加自己的-JS" class="headerlink" title="添加自己的 JS"></a>添加自己的 JS</h1><p>最简单的方式是把自己的脚本放到主题的 <code>source/js/</code> 目录下。</p>
+<p>比如你新建一个 <code>themes/particlexf/source/js/custom.js</code>，Hexo 生成后它会出现在站点的 <code>/js/custom.js</code>。</p>
+<h2 id="写自己的脚本"><a href="#写自己的脚本" class="headerlink" title="写自己的脚本"></a>写自己的脚本</h2><p>例如你可以先写一个最简单的测试脚本：</p>
+<pre><code class="language-javascript">window.addEventListener(&quot;DOMContentLoaded&quot;, () =&gt; &#123;
+    console.log(&quot;Custom script loaded&quot;);
+&#125;);
+</code></pre>
+<h2 id="在模板里引入"><a href="#在模板里引入" class="headerlink" title="在模板里引入"></a>在模板里引入</h2><p>如果你希望它在所有页面都生效，可以在 <code>themes/particlexf/layout/layout.ejs</code> 里加一行：</p>
+<pre><code class="language-js">&lt;script src=&quot;&lt;%- url_for(&quot;/js/custom.js&quot;) %&gt;&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>通常可以放在现有的 <code>main.js</code> 和 <code>theme.js</code> 后面。</p>
+<h2 id="只在特定页面加载"><a href="#只在特定页面加载" class="headerlink" title="只在特定页面加载"></a>只在特定页面加载</h2><p>你也可以在 EJS 中写条件判断，只让脚本在某些页面加载：</p>
+<pre><code class="language-js">&lt;% if (is_post()) &#123; %&gt;
+&lt;script src=&quot;&lt;%- url_for(&quot;/js/custom-post.js&quot;) %&gt;&quot;&gt;&lt;/script&gt;
+&lt;% &#125; %&gt;
+</code></pre>
+<p>这样就不会在首页、分类页也加载同一个脚本。</p>
+<h1 id="添加自己的-CSS"><a href="#添加自己的-CSS" class="headerlink" title="添加自己的 CSS"></a>添加自己的 CSS</h1><p>ParticleXF 的主样式文件在 <code>themes/particlexf/source/css/main.css</code>。</p>
+<p>如果你只是想改几个颜色、间距、字体，直接往这里加样式就可以。</p>
+<h2 id="直接写样式"><a href="#直接写样式" class="headerlink" title="直接写样式"></a>直接写样式</h2><p>例如你想让文章标题更明显，可以加一段类似这样的规则：</p>
+<pre><code class="language-css">.article h1,
+.article h2,
+.article h3 &#123;
+    letter-spacing: 0.02em;
+&#125;
+</code></pre>
+<h2 id="新建独立样式文件"><a href="#新建独立样式文件" class="headerlink" title="新建独立样式文件"></a>新建独立样式文件</h2><p>如果你不想把所有自定义内容都塞进 <code>main.css</code>，也可以新建一个 <code>custom.css</code>。</p>
+<p>然后在 <code>layout.ejs</code> 或 <code>import.ejs</code> 里引用它：</p>
+<pre><code class="language-js">&lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- url_for(&quot;/css/custom.css&quot;) %&gt;&quot; /&gt;
+</code></pre>
+<p>这种方式更适合长期维护，因为你自己的样式和主题原样式分开了。</p>
+<h2 id="常见做法"><a href="#常见做法" class="headerlink" title="常见做法"></a>常见做法</h2><p>通常建议这样处理：</p>
+<ul>
+<li>小改动：直接写进 <code>main.css</code></li>
+<li>大改动：单独建 <code>custom.css</code></li>
+<li>调试时：先在浏览器开发者工具里确认选择器是否生效</li>
+</ul>
+<h1 id="修改模板"><a href="#修改模板" class="headerlink" title="修改模板"></a>修改模板</h1><p>如果你要改页面结构，比如加按钮、换布局、插入自定义模块，就需要改 EJS 模板。</p>
+<p>ParticleXF 的模板都在 <code>themes/particlexf/layout/</code> 下。</p>
+<h2 id="找到对应模板"><a href="#找到对应模板" class="headerlink" title="找到对应模板"></a>找到对应模板</h2><p>常见的模板文件有：</p>
+<ul>
+<li><code>layout.ejs</code>：整体页面骨架</li>
+<li><code>menu.ejs</code>：顶部菜单</li>
+<li><code>post.ejs</code>：文章页</li>
+<li><code>footer.ejs</code>：底部区域</li>
+<li><code>index.ejs</code>：首页</li>
+</ul>
+<p>比如你想在每个页面底部加一段提示，可以先看 <code>footer.ejs</code>。</p>
+<h2 id="使用-partial-拆分模板"><a href="#使用-partial-拆分模板" class="headerlink" title="使用 partial 拆分模板"></a>使用 partial 拆分模板</h2><p>ParticleXF 已经把很多区域拆成了 partial，比如：</p>
+<pre><code class="language-js">&lt;%- partial(&quot;menu&quot;) %&gt;
+&lt;%- partial(&quot;footer&quot;) %&gt;
+</code></pre>
+<p>如果你要加自己的模块，也可以新建一个模板片段，再用 partial 引入，这样会更清晰。</p>
+<h2 id="一个简单示例"><a href="#一个简单示例" class="headerlink" title="一个简单示例"></a>一个简单示例</h2><p>假设你想在文章页标题下方显示一段自定义提示，可以在对应模板里写：</p>
+<pre><code class="language-js">&lt;% if (is_post()) &#123; %&gt;
+    &lt;div class=&quot;post-tip&quot;&gt;这是一段自定义提示&lt;/div&gt;
+&lt;% &#125; %&gt;
+</code></pre>
+<p>然后在 CSS 里补样式：</p>
+<pre><code class="language-css">.post-tip &#123;
+    margin: 20px 0;
+    padding: 12px 16px;
+    border-left: 4px solid var(--accent);
+    background: var(--bg-surface-elevated);
+&#125;
+</code></pre>
+<h1 id="推荐的修改顺序"><a href="#推荐的修改顺序" class="headerlink" title="推荐的修改顺序"></a>推荐的修改顺序</h1><p>如果你刚开始改主题，我建议按这个顺序来：</p>
+<ol>
+<li>先用 EJS 找到你要改的页面结构</li>
+<li>再加 JS 处理交互</li>
+<li>最后补 CSS 调整外观</li>
+</ol>
+<p>这样最不容易改乱，也方便你回头定位问题。</p>
+<div class="note note-warning" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span>
+    <span class="note-title-text">警告</span>
+  </div>
+  <div class="note-body"><p>如果你直接改主题源码，更新主题时可能会被覆盖。比较稳妥的做法是先备份自己的修改，或者把常用自定义内容单独抽出来管理。</p>
+</div>
+</div>
+
+<p>上一篇教程：<a href="/2026/07/25/hexo-tutorial-4/">HEXO-教程-4|部署</a></p>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="Close table of contents">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%88%E8%AE%A4%E8%AF%86%E4%B8%BB%E9%A2%98%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">先认识主题结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EJS-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">EJS 是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%B7%B1%E7%9A%84-JS"><span class="toc-number">3.</span> <span class="toc-text">添加自己的 JS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84%E8%84%9A%E6%9C%AC"><span class="toc-number">3.1.</span> <span class="toc-text">写自己的脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%A8%A1%E6%9D%BF%E9%87%8C%E5%BC%95%E5%85%A5"><span class="toc-number">3.2.</span> <span class="toc-text">在模板里引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AA%E5%9C%A8%E7%89%B9%E5%AE%9A%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD"><span class="toc-number">3.3.</span> <span class="toc-text">只在特定页面加载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%B7%B1%E7%9A%84-CSS"><span class="toc-number">4.</span> <span class="toc-text">添加自己的 CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%86%99%E6%A0%B7%E5%BC%8F"><span class="toc-number">4.1.</span> <span class="toc-text">直接写样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E7%8B%AC%E7%AB%8B%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">新建独立样式文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%81%9A%E6%B3%95"><span class="toc-number">4.3.</span> <span class="toc-text">常见做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%A8%A1%E6%9D%BF"><span class="toc-number">5.</span> <span class="toc-text">修改模板</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E5%AF%B9%E5%BA%94%E6%A8%A1%E6%9D%BF"><span class="toc-number">5.1.</span> <span class="toc-text">找到对应模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-partial-%E6%8B%86%E5%88%86%E6%A8%A1%E6%9D%BF"><span class="toc-number">5.2.</span> <span class="toc-text">使用 partial 拆分模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">5.3.</span> <span class="toc-text">一个简单示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E7%9A%84%E4%BF%AE%E6%94%B9%E9%A1%BA%E5%BA%8F"><span class="toc-number">6.</span> <span class="toc-text">推荐的修改顺序</span></a></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="Open table of contents" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top/",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>

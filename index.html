@@ -1,0 +1,1085 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <span class="seed-container">
+            <span class="seed-text">SEED</span>
+            <span class="expandable-form">
+                <input class="seed-input" type="number" inputmode="numeric" step="1">
+                <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </span>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <span class="seed-container">
+                    <span class="seed-text">SEED</span>
+                    <span class="expandable-form">
+                        <input class="seed-input" type="number" inputmode="numeric" step="1">
+                        <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </span>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Florance&#39;s Blog</h1>
+                <h3></h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        <div class="mobile-card">
+    <div class="avatar">
+        <img src="/images/avatar.jpg" alt="avatar" />
+    </div>
+    <div class="name">Florance</div>
+    <div class="description">
+        <p>It’s Florance!<br>It’s Florance’s Blog!</p>
+
+    </div>
+    
+    <div class="icon-links">
+        
+        <span class="icon-link">
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh">
+                <i
+                    class="fa-brands fa-github fa-fw"
+                ></i>
+            </a>
+        </span>
+        
+        <span class="icon-link">
+            <a href="mailto:Florance_Sunrise@outlook.com">
+                <i
+                    class="fa-solid fa-envelope fa-fw"
+                ></i>
+            </a>
+        </span>
+        
+        <span class="icon-link">
+            <a href="mailto:Florance_Yeh@outlook.com">
+                <i
+                    class="fa-regular fa-envelope fa-fw"
+                ></i>
+            </a>
+        </span>
+        
+        <span class="icon-link">
+            <a target="_blank" rel="noopener" href="https://qm.qq.com/q/XPPBWobnIm">
+                <i
+                    class="fa-brands fa-qq fa-fw"
+                ></i>
+            </a>
+        </span>
+        
+    </div>
+    
+</div>
+
+
+<div class="post">
+    <a href="/2026/08/09/ahnu-share-map-2/">
+        <h2 class="post-title">赭山-安师生活地图</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                开发记录
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/8/9
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="安师生活地图"><a href="#安师生活地图" class="headerlink" title="安师生活地图"></a>安师生活地图</h2><p>把赭山生活地图更名为“安师生活地图”</p>
+<p>现在网站支持在安师大三个校区循环切换</p>
+<p>还有了表情响应功能</p>
+<p>其他内容还在开发中、敬请期待</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Web/" style="color: #8f9a5c">Web</a>
+        </span>
+        
+    </div>
+    <a href="/2026/08/09/ahnu-share-map-2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/08/06/ahnu-share-map/">
+        <h2 class="post-title">赭山生活地图</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                开发记录
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/8/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="从一张地图开始：赭山生活地图的开发记录"><a href="#从一张地图开始：赭山生活地图的开发记录" class="headerlink" title="从一张地图开始：赭山生活地图的开发记录"></a>从一张地图开始：赭山生活地图的开发记录</h1><p>线上地址：<a target="_blank" rel="noopener" href="https://map.florance.top/">https://map.florance.top</a></p>
+<div class="note note-quote" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
+    <span class="note-title-text">引用</span>
+  </div>
+  <div class="note-body"><p>这不是一个试图覆盖所有城市的点评产品，而是一份由同学共同维护的校园生活档案。</p>
+</div>
+</div>
+
+<p>安徽师范大学赭山校区周边有不少值得去的店，但这些信息通常散落在聊天记录、朋友圈和学长学姐的口头推荐里。于是我做了一个小型的校园生活地图，希望把“哪里值得去”这件事变得更直观，也让后来的同学可以继续补充内容。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Web/" style="color: #5a9a8a">Web</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Frontend/" style="color: #5a9aa8">Frontend</a>
+        </span>
+        
+    </div>
+    <a href="/2026/08/06/ahnu-share-map/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/08/02/astrbot-plugin-qmessageq/">
+        <h2 class="post-title">QmessageQ 插件开发记录</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                开发记录
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/8/2
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><img src="https://socialify.git.ci/FloranceYeh/astrbot_plugin_qmessageq/image?language=1&logo=https://github.com/FloranceYeh/astrbot_plugin_qmessageq/blob/main/logo.png?raw=true&name=1&owner=1&stargazers=1&theme=Auto" alt="astrbot_plugin_qmessageq"></p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Python/" style="color: #5a9aa8">Python</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Astrbot/" style="color: #6a8fb0">Astrbot</a>
+        </span>
+        
+    </div>
+    <a href="/2026/08/02/astrbot-plugin-qmessageq/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/07/30/astrbot-plugin-decorator-debugger/">
+        <h2 class="post-title">Astrbot Message Decorator Debugger 插件开发记录</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                开发记录
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/30
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><img src="https://socialify.git.ci/FloranceYeh/astrbot_plugin_decorator_debugger/image?custom_description=%E7%94%A8%E4%BA%8E%E8%B0%83%E8%AF%95+AstrBot+%E6%B6%88%E6%81%AF%E8%AF%B7%E6%B1%82%E4%B8%8E%E7%BB%93%E6%9E%9C%E8%A3%85%E9%A5%B0%E9%93%BE%E7%9A%84%E5%BC%80%E5%8F%91%E8%80%85%E6%8F%92%E4%BB%B6&description=1&language=1&name=1&owner=1&stargazers=1&theme=Auto" alt="astrbot_plugin_decorator_debugger"></p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Python/" style="color: #5a9a8a">Python</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Astrbot/" style="color: #8f9a5c">Astrbot</a>
+        </span>
+        
+    </div>
+    <a href="/2026/07/30/astrbot-plugin-decorator-debugger/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/07/29/astrbot-plugin-personal-network/">
+        <h2 class="post-title">Personal Network 插件开发记录</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                开发记录
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/29
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><img src="https://socialify.git.ci/FloranceYeh/astrbot_plugin_personal_network/image?custom_description=%E6%8C%89%E4%BA%BA%E6%A0%BC%E7%AE%A1%E7%90%86%E8%99%9A%E6%8B%9F%E7%9A%84%E4%BA%BA%E9%99%85%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E4%BA%BA%E7%89%A9%E3%80%81%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%85%B1%E5%90%8C%E7%BB%8F%E5%8E%86I%E3%80%82&description=1&language=1&logo=https://github.com/FloranceYeh/astrbot_plugin_personal_network/raw/main/logo-large.png&name=1&owner=1&pattern=Overlapping+Hexagons&stargazers=1&theme=Dark" alt="astrbot_plugin_personal_network"></p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Python/" style="color: #6a8fb0">Python</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Astrbot/" style="color: #5a9aa8">Astrbot</a>
+        </span>
+        
+    </div>
+    <a href="/2026/07/29/astrbot-plugin-personal-network/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/07/25/pass-it-on/">
+        <h2 class="post-title">Pass It On</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/25
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <blockquote>
+<p>HEXO tutorial 系列结语</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Web/" style="color: #6a8fb0">Web</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/HEXO/" style="color: #c48a82">HEXO</a>
+        </span>
+        
+    </div>
+    <a href="/2026/07/25/pass-it-on/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/07/25/hexo-tutorial-5/">
+        <h2 class="post-title">HEXO-教程-5|定制化</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Tutorial/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/25
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>教你从零开始搭建个人博客<br>—-以HEXO的Particlexf主题为例<br><code>Part V</code></p>
+</div>
+</div>
+
+<p>本文将要介绍如何简单定制 ParticleXF 主题，主要讲 <code>EJS</code>、如何添加自己的 <code>JS</code> 和 <code>CSS</code>、如何修改模板。</p>
+<blockquote>
+<p>转自<a target="_blank" rel="noopener" href="https://particlexf-demo.florance.top/2026/07/25/hexo-tutorial-5/">ParticleXF-demo</a></p>
+</blockquote>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/EJS/" style="color: #6a8fb0">EJS</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/HEXO/" style="color: #8f9a5c">HEXO</a>
+        </span>
+        
+    </div>
+    <a href="/2026/07/25/hexo-tutorial-5/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/07/25/hexo-tutorial-4/">
+        <h2 class="post-title">HEXO-教程-4|部署</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Tutorial/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/25
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>教你从零开始搭建个人博客<br>—-以HEXO的Particlexf主题为例<br><code>Part IV</code></p>
+</div>
+</div>
+
+<p>本文将要介绍如何将你的 HEXO 博客部署到远程服务器上，使其可以被访问。</p>
+<blockquote>
+<p>转自<a target="_blank" rel="noopener" href="https://particlexf-demo.florance.top/2026/07/25/hexo-tutorial-4/">ParticleXF-demo</a></p>
+</blockquote>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/HEXO/" style="color: #6a8fb0">HEXO</a>
+        </span>
+        
+    </div>
+    <a href="/2026/07/25/hexo-tutorial-4/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/07/23/hexo-tutorial-3/">
+        <h2 class="post-title">HEXO-教程-3|文章小技巧</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Tutorial/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/23
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>教你从零开始搭建个人博客<br>—-以HEXO的Particlexf主题为例<br><code>Part III</code></p>
+</div>
+</div>
+
+<p>本文将要介绍 HEXO 博客的一些文章小技巧，以及 ParticleXF 主题的一些特色功能。</p>
+<blockquote>
+<p>转自<a target="_blank" rel="noopener" href="https://particlexf-demo.florance.top/2026/07/23/hexo-tutorial-3/">ParticleXF-demo</a></p>
+</blockquote>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/HEXO/" style="color: #5a9a8a">HEXO</a>
+        </span>
+        
+    </div>
+    <a href="/2026/07/23/hexo-tutorial-3/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/07/23/hexo-tutorial-2/">
+        <h2 class="post-title">HEXO-教程-2|主题与页面</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Tutorial/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/23
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>教你从零开始搭建个人博客<br>—-以HEXO的Particlexf主题为例<br><code>Part II</code></p>
+</div>
+</div>
+
+<p>本文将要介绍如何安装主题、进行一些基本的配置和创建页面。</p>
+<blockquote>
+<p>转自<a target="_blank" rel="noopener" href="https://particlexf-demo.florance.top/2026/07/23/hexo-tutorial-2/">ParticleXF-demo</a></p>
+</blockquote>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/HEXO/" style="color: #6a8fb0">HEXO</a>
+        </span>
+        
+    </div>
+    <a href="/2026/07/23/hexo-tutorial-2/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <span class="current">1</span>
+    
+    <a class="page-num" href="/page/2">
+        2
+    </a>
+    
+    
+    <a class="page-num" href="/page/3">
+        3
+    </a>
+    
+    
+    <span class="page-omit">...</span>
+    <a class="page-num" href="/page/4">4</a>
+    
+    
+    <a class="page-num" href="/page/2/">
+        <i class="fa-solid fa-caret-right fa-fw"></i>
+    </a>
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">Florance</div>
+        <div class="description">
+            <p>It’s Florance!<br>It’s Florance’s Blog!</p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:Florance_Sunrise@outlook.com">
+                    <i
+                        class="fa-solid fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:Florance_Yeh@outlook.com">
+                    <i
+                        class="fa-regular fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://qm.qq.com/q/XPPBWobnIm">
+                    <i
+                        class="fa-brands fa-qq fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a href="/">Home</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="/about">About</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="/links">Links</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="/F/ASTR-CA">QQgroup</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+</body>
+</html>

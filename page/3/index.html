@@ -1,0 +1,1119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <span class="seed-container">
+            <span class="seed-text">SEED</span>
+            <span class="expandable-form">
+                <input class="seed-input" type="number" inputmode="numeric" step="1">
+                <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </span>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <span class="seed-container">
+                    <span class="seed-text">SEED</span>
+                    <span class="expandable-form">
+                        <input class="seed-input" type="number" inputmode="numeric" step="1">
+                        <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </span>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Florance&#39;s Blog</h1>
+                <h3></h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        <div class="mobile-card">
+    <div class="avatar">
+        <img src="/images/avatar.jpg" alt="avatar" />
+    </div>
+    <div class="name">Florance</div>
+    <div class="description">
+        <p>It’s Florance!<br>It’s Florance’s Blog!</p>
+
+    </div>
+    
+    <div class="icon-links">
+        
+        <span class="icon-link">
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh">
+                <i
+                    class="fa-brands fa-github fa-fw"
+                ></i>
+            </a>
+        </span>
+        
+        <span class="icon-link">
+            <a href="mailto:Florance_Sunrise@outlook.com">
+                <i
+                    class="fa-solid fa-envelope fa-fw"
+                ></i>
+            </a>
+        </span>
+        
+        <span class="icon-link">
+            <a href="mailto:Florance_Yeh@outlook.com">
+                <i
+                    class="fa-regular fa-envelope fa-fw"
+                ></i>
+            </a>
+        </span>
+        
+        <span class="icon-link">
+            <a target="_blank" rel="noopener" href="https://qm.qq.com/q/XPPBWobnIm">
+                <i
+                    class="fa-brands fa-qq fa-fw"
+                ></i>
+            </a>
+        </span>
+        
+    </div>
+    
+</div>
+
+
+<div class="post">
+    <a href="/2026/03/25/Plan2603/">
+        <h2 class="post-title">26年3月后中期计划</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/3/25
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <blockquote>
+<p>因为之前一直在搞小挑，导致付出了太多精力<br>现在没什么动力做任何事情了<br>于是决定逼自己一把，现做出<code>26年3月后中期计划</code></p>
+</blockquote>
+<h3 id="Plan2603-A"><a href="#Plan2603-A" class="headerlink" title="Plan2603.A"></a>Plan2603.A</h3><ol>
+<li>将<code>Floblog</code>移植到<code>Astro</code></li>
+<li>优化<code>Floblog</code>，估计要重构绝大部分内容</li>
+<li>给<code>Floblog</code>做后端，是时候考验自己的全栈能力了</li>
+</ol>
+<h3 id="Plan2603-B"><a href="#Plan2603-B" class="headerlink" title="Plan2603.B"></a>Plan2603.B</h3><p>3.28|3.29是计算机二级Python考试<br>虽然应该不难，但还是有点害怕，这几天也抓紧时间复习吧</p>
+<h3 id="Plan2603-C"><a href="#Plan2603-C" class="headerlink" title="Plan2603.C"></a>Plan2603.C</h3><p>好好学习吧，期末拿个好成绩…<br><small><small><small><del>这个学期文科少了，成绩总不能再惨不忍睹了吧…</del></small></small></small></p>
+<h3 id="Plan2603-D"><a href="#Plan2603-D" class="headerlink" title="Plan2603.D"></a>Plan2603.D</h3><p>其实…<br>我的个人成长集做的太敷衍太简陋了，一直想找个时间重做…<br>初步构想是用“我的工作环境的变迁”作主题<br>同步做一个网页，用three.js</p>
+<blockquote>
+<p>其实这个博客我用腻了，我确实是一个喜新厌旧的人，还有许多大大小小的BUG都懒得修了，直接抛弃吧…</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Web/" style="color: #5a9a8a">Web</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Life/" style="color: #c48a82">Life</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Astro/" style="color: #6a8fb0">Astro</a>
+        </span>
+        
+    </div>
+    <a href="/2026/03/25/Plan2603/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/01/16/im-lucky/">
+        <h2 class="post-title">我真幸运</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/1/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="我真幸运！"><a href="#我真幸运！" class="headerlink" title="我真幸运！"></a>我真幸运！</h1><h3 id="TERRARIA-1-4-5-WILL-RELEASE-ON-JANUARY-27TH"><a href="#TERRARIA-1-4-5-WILL-RELEASE-ON-JANUARY-27TH" class="headerlink" title="TERRARIA 1.4.5 WILL RELEASE ON JANUARY 27TH!"></a>TERRARIA 1.4.5 WILL RELEASE ON JANUARY 27TH!</h3><blockquote>
+<p>2026年还有丝之歌新DLC，无限机兵新DLC，嗜血代码新作</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/01/16/im-lucky/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/28/my-hexo-theme-4/">
+        <h2 class="post-title">HEXO主题开发4</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Floblog/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Floblog
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/28
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="我的主题开发日志-4"><a href="#我的主题开发日志-4" class="headerlink" title="我的主题开发日志 4"></a>我的主题开发日志 4</h2><p><a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-floblog">项目Github</a><br><a target="_blank" rel="noopener" href="https://floblogdemo.florance.top/">主题演示DEMO</a></p>
+<blockquote>
+<p>目前为止，主题开发已经基本上完成了<br>（反正完成度比ParticleX高）<br>所有必须的功能都实现了<br>剩下的就是些修修补补和添加新功能<br>进度比我想得快得多</p>
+</blockquote>
+<p>已经实现的功能</p>
+<ol>
+<li>主界面，文章页，关于页，categories，tags，links页</li>
+<li>可高度自定义的菜单（位置，内容，内容排列）</li>
+<li>可自定义的主页文章排版，侧边卡片</li>
+<li>文章页侧栏</li>
+<li>主题色切换，亮暗模式切换</li>
+<li>评论系统</li>
+<li>移动端适配</li>
+</ol>
+<p>待实现的功能</p>
+<ol>
+<li>更多侧边卡片组件</li>
+</ol>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Web/" style="color: #5a9aa8">Web</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/EJS/" style="color: #c48a82">EJS</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/HEXO/" style="color: #5a9a8a">HEXO</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/28/my-hexo-theme-4/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/23/my-hexo-theme-3/">
+        <h2 class="post-title">HEXO主题开发3</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Floblog/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Floblog
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/23
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="我的主题开发日志-3"><a href="#我的主题开发日志-3" class="headerlink" title="我的主题开发日志 3"></a>我的主题开发日志 3</h2><p><a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-floblog">项目Github</a></p>
+<blockquote>
+<p>这几天来写的东西还真不少<br>其实整个项目雏形已经完成了<br>剩下的就是细化内容，添加功能，优化样式了<br>不过由于我的美术功底不太行，页面样式要改好看还有一段路要走</p>
+</blockquote>
+<p>已经实现的功能</p>
+<ol>
+<li>主界面，文章页，关于页，categories，tags，links页</li>
+<li>可高度自定义的菜单（位置，内容，内容排列）</li>
+<li>可自定义的主页文章排版，侧边卡片</li>
+<li>文章页侧栏</li>
+<li>移动端适配</li>
+</ol>
+<p>待实现的功能</p>
+<ol>
+<li>更多侧边卡片组件</li>
+<li>主题色切换，亮暗模式切换</li>
+<li>评论系统</li>
+</ol>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Web/" style="color: #5a9aa8">Web</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/EJS/" style="color: #6a8fb0">EJS</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/HEXO/" style="color: #8f9a5c">HEXO</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/23/my-hexo-theme-3/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/21/my-hexo-theme-2/">
+        <h2 class="post-title">HEXO主题开发2</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Floblog/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Floblog
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/21
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="我的主题开发日志-2"><a href="#我的主题开发日志-2" class="headerlink" title="我的主题开发日志 2"></a>我的主题开发日志 2</h2><p><a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-floblog">项目Github</a><br>整个主题的框架已经搭好了，现在的任务就是完善具体的模块</p>
+<p>已经实现的功能</p>
+<ol>
+<li>主界面，文章页，关于页（其实就是文章页）</li>
+<li>可自定义的主页文章排版，侧边卡片</li>
+<li>文章页侧栏</li>
+</ol>
+<p>待实现的功能</p>
+<ol>
+<li>菜单淡入淡出</li>
+<li>菜单位置自定义</li>
+<li>更多侧边卡片组件</li>
+<li>categories, tags页（这两个简单，基本上套模板，改样式就行）</li>
+<li>links页，这个之前写过了，搬以前的就行</li>
+<li>主题色切换，亮暗模式切换</li>
+<li>评论</li>
+</ol>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Web/" style="color: #5a9aa8">Web</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/EJS/" style="color: #6a8fb0">EJS</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/HEXO/" style="color: #c48a82">HEXO</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/21/my-hexo-theme-2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/20/my-hexo-theme-1/">
+        <h2 class="post-title">HEXO主题开发1</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Floblog/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Floblog
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/20
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="我的主题开发日志-1"><a href="#我的主题开发日志-1" class="headerlink" title="我的主题开发日志 1"></a>我的主题开发日志 1</h2><p>因为ParticlX的功能实在太少了，逛遍了HEXO的themes市场也没找到中意的</p>
+<p>想着与其把ParticlX改得面目全非，不如自己从头开始写一个（前期开发还是得仿照ParticleX）</p>
+<p>这是我的寒假企划，预期一个月完成</p>
+<p>既是给自己写一个心仪的主题，也是对自己能力的磨练</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Web/" style="color: #6a8fb0">Web</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/EJS/" style="color: #8f9a5c">EJS</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/HEXO/" style="color: #c48a82">HEXO</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/20/my-hexo-theme-1/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/18/Markdown-Tutorial/">
+        <h2 class="post-title">Markdown教学</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Tutorial/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/18
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>写文章时，你是否被Word各式各样的标题、正文、引用样式搞得晕头转向？</p>
+<p>你是否在不断地调整样式，修改大纲中感到疲惫厌倦？</p>
+<p>想快速便捷地写一篇排版清晰的文章吗？</p>
+<p>那就快来试试<code>Markdown</code>！</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Markdown/" style="color: #5a9aa8">Markdown</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Tutorial/" style="color: #c48a82">Tutorial</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/18/Markdown-Tutorial/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/18/update-12-18/">
+        <h2 class="post-title">12月17-18日累计更新</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Update/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Update
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/18
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="Updates"><a href="#Updates" class="headerlink" title="Updates"></a>Updates</h2><ol>
+<li>Light Mode</li>
+<li>TOC文章目录</li>
+<li>快捷顶部底部按钮</li>
+<li>一些小调整</li>
+</ol>
+<h2 id="To-Be-Updated"><a href="#To-Be-Updated" class="headerlink" title="To Be Updated"></a>To Be Updated</h2><ol>
+<li>Seed Changer <del>（话说这个怎么还没做）</del></li>
+<li>之前逛Hexo插件市场的时候看到几个有意思的，想着能不能加几个</li>
+<li>一些别的内容，初步想法是复现我以前的文章</li>
+</ol>
+<blockquote>
+<p>ParticleX少的可怜的内置功能，全是自己写的:(<br>现在ParticleX的layout文件几乎都被我改过一遍了</p>
+</blockquote>
+<p><code>这两天的coding时长超过了10小时你敢信…………</code><br><code>接下来又要辛勤工作了，期末考也快到了…………</code></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/update/" style="color: #8f9a5c">update</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/18/update-12-18/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/18/EJS-and-TOC/">
+        <h2 class="post-title">用EJS写自定义TOC</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Web/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Web
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/18
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><code>ParticleX</code>主题依旧是什么都没有:(</p>
+<p>又得自己动手写<code>TOC</code></p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Web/" style="color: #6a8fb0">Web</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/EJS/" style="color: #8f9a5c">EJS</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/HEXO/" style="color: #5a9aa8">HEXO</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/18/EJS-and-TOC/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/17/Cosmic-Negative/">
+        <h2 class="post-title">Cosmic Negative</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/17
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="写好了网页的Light-Mode"><a href="#写好了网页的Light-Mode" class="headerlink" title="写好了网页的Light Mode"></a>写好了网页的Light Mode</h3><h3 id="这种事为什么要单独开一篇文章来讲呢？"><a href="#这种事为什么要单独开一篇文章来讲呢？" class="headerlink" title="这种事为什么要单独开一篇文章来讲呢？"></a>这种事为什么要单独开一篇文章来讲呢？</h3>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Web/" style="color: #6a8fb0">Web</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/17/Cosmic-Negative/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/page/2/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">3</span>
+    
+    <a class="page-num" href="/page/4">
+        4
+    </a>
+    
+    
+    
+    
+    <a class="page-num" href="/page/4/">
+        <i class="fa-solid fa-caret-right fa-fw"></i>
+    </a>
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">Florance</div>
+        <div class="description">
+            <p>It’s Florance!<br>It’s Florance’s Blog!</p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:Florance_Sunrise@outlook.com">
+                    <i
+                        class="fa-solid fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:Florance_Yeh@outlook.com">
+                    <i
+                        class="fa-regular fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://qm.qq.com/q/XPPBWobnIm">
+                    <i
+                        class="fa-brands fa-qq fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a href="/">Home</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="/about">About</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="/links">Links</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="/F/ASTR-CA">QQgroup</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+</body>
+</html>

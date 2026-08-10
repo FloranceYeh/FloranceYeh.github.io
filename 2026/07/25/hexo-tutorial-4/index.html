@@ -1,0 +1,663 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>HEXO-教程-4|部署 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <span class="seed-container">
+            <span class="seed-text">SEED</span>
+            <span class="expandable-form">
+                <input class="seed-input" type="number" inputmode="numeric" step="1">
+                <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </span>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <span class="seed-container">
+                    <span class="seed-text">SEED</span>
+                    <span class="expandable-form">
+                        <input class="seed-input" type="number" inputmode="numeric" step="1">
+                        <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </span>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>HEXO-教程-4|部署</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/7/25
+            </span>
+            
+            <span class="category">
+                <a href="/categories/Tutorial/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    Tutorial
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/HEXO/" style="color: #6a8fb0">
+                        HEXO
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>教你从零开始搭建个人博客<br>—-以HEXO的Particlexf主题为例<br><code>Part IV</code></p>
+</div>
+</div>
+
+<p>本文将要介绍如何将你的 HEXO 博客部署到远程服务器上，使其可以被访问。</p>
+<blockquote>
+<p>转自<a target="_blank" rel="noopener" href="https://particlexf-demo.florance.top/2026/07/25/hexo-tutorial-4/">ParticleXF-demo</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h1><p>在正式部署之前，先确认本地博客可以正常生成静态文件：</p>
+<pre><code class="language-bash">hexo clean
+hexo g
+hexo s
+</code></pre>
+<p>如果本地预览没有问题，再继续后面的部署步骤。</p>
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p>部署的本质其实就是把 Hexo 生成出来的 <code>public</code> 目录发布到一个可以被外网访问的静态站点上。</p>
+</div>
+</div>
+
+<h1 id="hexo-d-部署到-GitHub-Pages"><a href="#hexo-d-部署到-GitHub-Pages" class="headerlink" title="hexo d 部署到 GitHub Pages"></a>hexo d 部署到 GitHub Pages</h1><p>这是最经典的 Hexo 部署方式。你只需要在本地执行一次命令，就能把生成后的静态文件推送到 GitHub Pages。</p>
+<h2 id="安装部署插件"><a href="#安装部署插件" class="headerlink" title="安装部署插件"></a>安装部署插件</h2><p>首先安装 Hexo 的 Git 部署插件：</p>
+<pre><code class="language-bash">npm install hexo-deployer-git --save
+</code></pre>
+<h2 id="配置站点的-deploy-信息"><a href="#配置站点的-deploy-信息" class="headerlink" title="配置站点的 deploy 信息"></a>配置站点的 deploy 信息</h2><p>在站点根目录的 <code>_config.yml</code> 中加入或修改以下内容：</p>
+<pre><code class="language-yaml">url: https://username.github.io
+deploy:
+    type: git
+    repo: https://github.com/username/username.github.io.git
+    branch: gh-pages
+</code></pre>
+<div class="note note-warning" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span>
+    <span class="note-title-text">注意</span>
+  </div>
+  <div class="note-body"><p>这里的 <code>username</code> 要替换成你的 GitHub 用户名。</p>
+<p>如果你的仓库名不是 <code>username.github.io</code>，而是普通项目仓库，那么 <code>url</code> 也要改成对应的项目地址，例如 <code>https://username.github.io/project-name/</code>。</p>
+</div>
+</div>
+
+<h2 id="执行部署"><a href="#执行部署" class="headerlink" title="执行部署"></a>执行部署</h2><p>完成配置后，执行以下命令：</p>
+<pre><code class="language-bash">hexo clean
+hexo g
+hexo d
+</code></pre>
+<p>第一次执行时，可能会提示输入 GitHub 用户名、邮箱，或者需要你登录授权。完成后，Hexo 会把生成的静态文件推送到 <code>gh-pages</code> 分支。</p>
+<h2 id="在-GitHub-Pages-中开启站点"><a href="#在-GitHub-Pages-中开启站点" class="headerlink" title="在 GitHub Pages 中开启站点"></a>在 GitHub Pages 中开启站点</h2><p>打开 GitHub 仓库的设置页面，找到 Pages 相关配置，把发布源改为：</p>
+<ul>
+<li>Branch: <code>gh-pages</code></li>
+<li>Folder: <code>/ (root)</code></li>
+</ul>
+<p>保存后，GitHub 会自动生成一个可访问的站点地址。</p>
+<div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>如果你使用的是用户主页仓库，也就是 <code>username.github.io</code> 这种命名方式，站点地址通常就是 <code>https://username.github.io</code>。</p>
+</div>
+</div>
+
+<h1 id="使用-GitHub-Actions-自动部署"><a href="#使用-GitHub-Actions-自动部署" class="headerlink" title="使用 GitHub Actions 自动部署"></a>使用 GitHub Actions 自动部署</h1><p>如果你不想每次都在本地执行 <code>hexo d</code>，可以把部署流程交给 GitHub Actions。这样只要你把文章推送到仓库，GitHub 就会自动构建并发布站点。</p>
+<h2 id="准备仓库"><a href="#准备仓库" class="headerlink" title="准备仓库"></a>准备仓库</h2><p>通常做法是：</p>
+<ul>
+<li><code>main</code> 分支保存 Hexo 源码</li>
+<li><code>gh-pages</code> 分支保存生成后的静态站点</li>
+</ul>
+<p>这样源码和发布结果分开管理，结构会更清晰。</p>
+<h2 id="添加工作流文件"><a href="#添加工作流文件" class="headerlink" title="添加工作流文件"></a>添加工作流文件</h2><p>在仓库中创建 <code>.github/workflows/pages.yml</code>，内容可以参考下面的示例：</p>
+<pre><code class="language-yaml">name: Deploy
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+                uses: actions/checkout@v4
+                with:
+                    submodules: recursive
+
+            - name: Setup Node.js
+                uses: actions/setup-node@v4
+                with:
+                    node-version: 20
+                    cache: npm
+
+            - name: Install dependencies
+                run: npm ci
+
+            - name: Build site
+                run: npm run build
+
+            - name: Deploy to GitHub Pages
+                uses: peaceiris/actions-gh-pages@v4
+                with:
+                    github_token: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;
+                    publish_dir: ./public
+                    publish_branch: gh-pages
+</code></pre>
+<div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>如果你使用的是 pnpm 或 yarn，只需要把安装命令改成对应的包管理器命令即可。</p>
+</div>
+</div>
+
+<h2 id="配置-GitHub-Pages"><a href="#配置-GitHub-Pages" class="headerlink" title="配置 GitHub Pages"></a>配置 GitHub Pages</h2><p>进入仓库的 Settings -&gt; Pages，把发布来源设置为 <code>gh-pages</code> 分支。</p>
+<p>之后每次你向 <code>main</code> 分支提交内容，GitHub Actions 就会自动完成构建和部署。</p>
+<h2 id="这种方式的优点"><a href="#这种方式的优点" class="headerlink" title="这种方式的优点"></a>这种方式的优点</h2><p>GitHub Actions 的优点很明显：</p>
+<ul>
+<li>不依赖本地环境</li>
+<li>提交代码即可自动部署</li>
+<li>适合团队协作</li>
+<li>出问题时更容易追踪构建日志</li>
+</ul>
+<h1 id="部署到-Netlify"><a href="#部署到-Netlify" class="headerlink" title="部署到 Netlify"></a>部署到 Netlify</h1><p>Netlify 是部署 Hexo 静态站点的另一个常用选择，配置很简单，而且自带预览环境和持续部署能力。</p>
+<h2 id="连接仓库"><a href="#连接仓库" class="headerlink" title="连接仓库"></a>连接仓库</h2><p>登录 Netlify 后，选择从 Git 仓库导入项目，连接你的 GitHub 仓库。</p>
+<div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>一般来说，之后只要一直点继续就可以完成导入和部署。<br>如果没有成功，那么可以按照接下来的步骤手动设置。</p>
+</div>
+</div>
+
+<h2 id="设置构建参数"><a href="#设置构建参数" class="headerlink" title="设置构建参数"></a>设置构建参数</h2><p>对于 Hexo 项目，一般填写如下：</p>
+<ul>
+<li>Build command: <code>npm run build</code></li>
+<li>Publish directory: <code>public</code></li>
+</ul>
+<h2 id="适合什么场景"><a href="#适合什么场景" class="headerlink" title="适合什么场景"></a>适合什么场景</h2><p>Netlify 比较适合以下情况：</p>
+<ul>
+<li>想快速上线静态博客</li>
+<li>希望自动生成预览链接</li>
+<li>不想手动管理 GitHub Pages 的发布分支</li>
+</ul>
+<div class="note note-warning" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span>
+    <span class="note-title-text">警告</span>
+  </div>
+  <div class="note-body"><p>如果你的网站依赖非常特殊的自定义重写规则，记得在 Netlify 里额外配置重定向文件；不过 Hexo 博客通常不需要复杂配置。</p>
+</div>
+</div>
+
+<h1 id="部署到-Vercel"><a href="#部署到-Vercel" class="headerlink" title="部署到 Vercel"></a>部署到 Vercel</h1><p>Vercel 也可以很好地托管 Hexo 站点。对于静态博客来说，它的配置同样非常直接。</p>
+<h2 id="导入仓库"><a href="#导入仓库" class="headerlink" title="导入仓库"></a>导入仓库</h2><p>在 Vercel 中选择 Import Project，然后连接 GitHub 仓库。</p>
+<div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>一般来说，之后只要一直点继续就可以完成导入和部署。<br>如果没有成功，那么可以按照接下来的步骤手动设置。</p>
+</div>
+</div>
+
+<h2 id="设置构建命令和输出目录"><a href="#设置构建命令和输出目录" class="headerlink" title="设置构建命令和输出目录"></a>设置构建命令和输出目录</h2><p>建议填写：</p>
+<ul>
+<li>Build Command: <code>npm run build</code></li>
+<li>Output Directory: <code>public</code></li>
+</ul>
+<p>如果 Vercel 没有自动识别项目类型，也可以手动选择 Other。</p>
+<h2 id="这种方式的优点-1"><a href="#这种方式的优点-1" class="headerlink" title="这种方式的优点"></a>这种方式的优点</h2><p>Vercel 的优点主要是：</p>
+<ul>
+<li>部署速度快</li>
+<li>自动预览分支提交</li>
+<li>控制台界面清晰</li>
+<li>适合个人博客和静态展示站</li>
+</ul>
+<p>上一篇教程：<a href="/2026/07/23/hexo-tutorial-3/">HEXO-教程-3|文章小技巧</a><br>下一篇教程：<a href="/2026/07/25/hexo-tutorial-5/">HEXO-教程-5|定制化</a></p>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="Close table of contents">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">部署前准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-d-%E9%83%A8%E7%BD%B2%E5%88%B0-GitHub-Pages"><span class="toc-number">2.</span> <span class="toc-text">hexo d 部署到 GitHub Pages</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E6%8F%92%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">安装部署插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%AB%99%E7%82%B9%E7%9A%84-deploy-%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">配置站点的 deploy 信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%83%A8%E7%BD%B2"><span class="toc-number">2.3.</span> <span class="toc-text">执行部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-GitHub-Pages-%E4%B8%AD%E5%BC%80%E5%90%AF%E7%AB%99%E7%82%B9"><span class="toc-number">2.4.</span> <span class="toc-text">在 GitHub Pages 中开启站点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-GitHub-Actions-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">3.</span> <span class="toc-text">使用 GitHub Actions 自动部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E4%BB%93%E5%BA%93"><span class="toc-number">3.1.</span> <span class="toc-text">准备仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%96%87%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">添加工作流文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-GitHub-Pages"><span class="toc-number">3.3.</span> <span class="toc-text">配置 GitHub Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E7%A7%8D%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">3.4.</span> <span class="toc-text">这种方式的优点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0-Netlify"><span class="toc-number">4.</span> <span class="toc-text">部署到 Netlify</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E4%BB%93%E5%BA%93"><span class="toc-number">4.1.</span> <span class="toc-text">连接仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E5%8F%82%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text">设置构建参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%82%E5%90%88%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF"><span class="toc-number">4.3.</span> <span class="toc-text">适合什么场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0-Vercel"><span class="toc-number">5.</span> <span class="toc-text">部署到 Vercel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E4%BB%93%E5%BA%93"><span class="toc-number">5.1.</span> <span class="toc-text">导入仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E5%91%BD%E4%BB%A4%E5%92%8C%E8%BE%93%E5%87%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">5.2.</span> <span class="toc-text">设置构建命令和输出目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E7%A7%8D%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9-1"><span class="toc-number">5.3.</span> <span class="toc-text">这种方式的优点</span></a></li></ol></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="Open table of contents" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top/",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>

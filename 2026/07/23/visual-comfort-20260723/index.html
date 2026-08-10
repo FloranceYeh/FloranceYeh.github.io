@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>2026-07-23 视觉与交互更新 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <span class="seed-container">
+            <span class="seed-text">SEED</span>
+            <span class="expandable-form">
+                <input class="seed-input" type="number" inputmode="numeric" step="1">
+                <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </span>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <span class="seed-container">
+                    <span class="seed-text">SEED</span>
+                    <span class="expandable-form">
+                        <input class="seed-input" type="number" inputmode="numeric" step="1">
+                        <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </span>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>2026-07-23 视觉与交互更新</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/7/23
+            </span>
+            
+            <span class="category">
+                <a href="/categories/Update/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    Update
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Web/" style="color: #8f9a5c">
+                        Web
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/update/" style="color: #5a9a8a">
+                        update
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Beautify/" style="color: #8f9a5c">
+                        Beautify
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <p>今天对 ParticleX 主题做了一轮「可读性 + 明暗主题 + 交互」改造。这篇用来记录改了什么，并顺带演示新的 <strong>Note</strong> 组件。</p>
+<p>并且由于 ParticleX 主题在我手里已经改了无数版了，于是我决定把我的 ParticleX 独立作为一个新主题，改名为 <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf"><strong>ParticleXF</strong></a></p>
+<div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">hexo-theme-ParticleXF 发布</span>
+  </div>
+  <div class="note-body"><p>这才是给人看的博客（</p>
+</div>
+</div>
+
+<span id="more"></span>
+
+<h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">今日重点</span>
+  </div>
+  <div class="note-body"><ul>
+<li>柔和深色配色与字体</li>
+<li>真正的浅&#x2F;深双主题（不再靠反色滤镜）</li>
+<li>TOC、代码块、首页卡片等交互与样式</li>
+<li>评论区与星空背景跟随主题</li>
+<li>新增多种样式的 Note 提示框</li>
+</ul>
+</div>
+</div>
+
+<hr>
+<h2 id="视觉：柔和深色-护眼排版"><a href="#视觉：柔和深色-护眼排版" class="headerlink" title="视觉：柔和深色 + 护眼排版"></a>视觉：柔和深色 + 护眼排版</h2><p>页面底色从纯黑改为暖调墨绿灰，正文对比度适中，卡片用弱阴影而不是刺眼亮边。</p>
+<ul>
+<li>正文字体：<strong>Noto Sans SC（思源黑体）</strong></li>
+<li>代码字体：Fira Code</li>
+<li>字号约 16–17px，行高约 1.8</li>
+</ul>
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">为什么不是纯黑？</span>
+  </div>
+  <div class="note-body"><p>纯黑 <code>#000</code> + 高对比文字长时间阅读更容易疲劳。柔和深色底能保留「夜间友好」，又比反色滤镜自然。</p>
+</div>
+</div>
+
+<hr>
+<h2 id="明暗主题切换"><a href="#明暗主题切换" class="headerlink" title="明暗主题切换"></a>明暗主题切换</h2><p>去掉 <code>darkmode-js</code> 的全局反色，改为 CSS 变量双主题：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>观感</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>深色（默认）</td>
+<td>柔和墨绿深色</td>
+</tr>
+<tr>
+<td>浅色</td>
+<td>暖米色「纸感」</td>
+</tr>
+</tbody></table>
+<ul>
+<li>顶栏最右侧 ☀ &#x2F; ☾ 切换</li>
+<li>选择写入 <code>localStorage.theme</code></li>
+<li>首屏有防闪脚本，减少白屏&#x2F;错主题一闪</li>
+</ul>
+<div class="note note-success" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+    <span class="note-title-text">成功</span>
+  </div>
+  <div class="note-body"><p>切换主题后，<strong>代码高亮</strong>、<strong>星空背景</strong>、<strong>Waline 评论</strong> 都会一起变。</p>
+</div>
+</div>
+
+<h3 id="星空背景"><a href="#星空背景" class="headerlink" title="星空背景"></a>星空背景</h3><ul>
+<li>深色：黑底动态星空（原效果）</li>
+<li>浅色：暖米色底 + 淡色星点&#x2F;星云，避免浅色 UI 底下仍是整屏黑</li>
+</ul>
+<hr>
+<h2 id="目录（TOC）"><a href="#目录（TOC）" class="headerlink" title="目录（TOC）"></a>目录（TOC）</h2><ul>
+<li>滚动高亮更稳，点击平滑滚动并避开顶栏</li>
+<li>当前项会滚进目录可视区</li>
+<li>窄屏（≤1200px）：右下角「目录」FAB → 侧滑抽屉</li>
+<li>标号与标题样式区分（标号更淡、等宽）</li>
+<li>滚动条内缩，避免圆角被直角滚动条切坏</li>
+</ul>
+<hr>
+<h2 id="文章与代码块"><a href="#文章与代码块" class="headerlink" title="文章与代码块"></a>文章与代码块</h2><ul>
+<li>段落&#x2F;标题&#x2F;链接&#x2F;图片间距更舒服</li>
+<li>代码块：深色 <code>atom-one-dark-reasonable</code> &#x2F; 浅色 <code>atom-one-light</code></li>
+<li>长代码可配置自动折叠（默认超过 20 行）</li>
+</ul>
+<p>配置示例（<code>themes/particlex/_config.yml</code>）：</p>
+<pre><code class="language-yaml">highlight:
+  wrap: true
+  collapse:
+    enable: true
+    lines: 20
+</code></pre>
+<p>下面是一段略长的示例代码（用于看折叠&#x2F;换行）：</p>
+<pre><code class="language-javascript">// demo: long-ish snippet for collapse
+function greet(name = &quot;Florance&quot;) &#123;
+  const message = [
+    &quot;Hello,&quot;,
+    name,
+    &quot;! Welcome to the updated ParticleX theme.&quot;,
+  ].join(&quot; &quot;);
+  console.log(message);
+  return &#123;
+    ok: true,
+    message,
+    meta: &#123;
+      theme: &quot;soft-dark / soft-light&quot;,
+      features: [&quot;toc&quot;, &quot;notes&quot;, &quot;waline&quot;, &quot;starfield&quot;],
+    &#125;,
+  &#125;;
+&#125;
+
+for (let i = 0; i &lt; 8; i++) &#123;
+  greet(`Reader-$&#123;i&#125;`);
+&#125;
+
+// more lines to exceed collapse threshold...
+const lines = Array.from(&#123; length: 12 &#125;, (_, i) =&gt; `line $&#123;i + 1&#125;`);
+console.log(lines.join(&quot;\n&quot;));
+</code></pre>
+<hr>
+<h2 id="首页与其它细节"><a href="#首页与其它细节" class="headerlink" title="首页与其它细节"></a>首页与其它细节</h2><ul>
+<li>首屏 loop 色调改为薄荷绿&#x2F;雾蓝系</li>
+<li>主题切换按钮固定在顶栏右侧</li>
+</ul>
+<hr>
+<h2 id="Waline-评论"><a href="#Waline-评论" class="headerlink" title="Waline 评论"></a>Waline 评论</h2><ul>
+<li><code>dark</code> 改为跟随 <code>html[data-theme=&quot;dark&quot;]</code></li>
+<li>颜色变量映射到站点 token（背景、文字、强调色）</li>
+</ul>
+<div class="note note-quote" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
+    <span class="note-title-text">引用</span>
+  </div>
+  <div class="note-body"><p>评论区终于可以和正文一起「开灯 &#x2F; 关灯」了。</p>
+</div>
+</div>
+
+<hr>
+<h2 id="新组件：Note-提示框"><a href="#新组件：Note-提示框" class="headerlink" title="新组件：Note 提示框"></a>新组件：Note 提示框</h2><p>Note 已作为 <strong>主题脚本</strong> 内置：<code>themes/particlex/scripts/note.js</code>。</p>
+<h3 id="写法"><a href="#写法" class="headerlink" title="写法"></a>写法</h3><pre><code class="language-markdown">&#123;% note tip %&#125;
+正文，支持 **Markdown**。
+&#123;% endnote %&#125;
+
+&#123;% note warning 自定义标题 %&#125;
+……
+&#123;% endnote %&#125;
+
+&#123;% note danger no-icon %&#125;
+不显示图标。
+&#123;% endnote %&#125;
+</code></pre>
+<h3 id="类型一览"><a href="#类型一览" class="headerlink" title="类型一览"></a>类型一览</h3><div class="note note-note" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-pen"></i></span>
+    <span class="note-title-text">说明</span>
+  </div>
+  <div class="note-body"><p>默认 &#x2F; <code>note</code>：一般说明。</p>
+</div>
+</div>
+
+<div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p><code>info</code>：补充信息。</p>
+</div>
+</div>
+
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p><code>tip</code>：技巧与建议。</p>
+</div>
+</div>
+
+<div class="note note-success" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+    <span class="note-title-text">成功</span>
+  </div>
+  <div class="note-body"><p><code>success</code>：完成、正确路径。</p>
+</div>
+</div>
+
+<div class="note note-warning" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span>
+    <span class="note-title-text">警告</span>
+  </div>
+  <div class="note-body"><p><code>warning</code>：需要注意的点。</p>
+</div>
+</div>
+
+<div class="note note-danger" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-xmark"></i></span>
+    <span class="note-title-text">危险</span>
+  </div>
+  <div class="note-body"><p><code>danger</code>：风险、错误、破坏性操作。</p>
+</div>
+</div>
+
+<div class="note note-quote" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
+    <span class="note-title-text">引用</span>
+  </div>
+  <div class="note-body"><p><code>quote</code>：引用式强调。</p>
+</div>
+</div>
+
+<div class="note note-tip" role="note">
+  <div class="note-title">
+
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p><code>no-icon</code>：不显示左侧图标（任意类型都可加）。</p>
+</div>
+</div>
+
+<hr>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="Close table of contents">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-number">1.</span> <span class="toc-text">总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E8%A7%89%EF%BC%9A%E6%9F%94%E5%92%8C%E6%B7%B1%E8%89%B2-%E6%8A%A4%E7%9C%BC%E6%8E%92%E7%89%88"><span class="toc-number">2.</span> <span class="toc-text">视觉：柔和深色 + 护眼排版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">明暗主题切换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%9F%E7%A9%BA%E8%83%8C%E6%99%AF"><span class="toc-number">3.1.</span> <span class="toc-text">星空背景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%EF%BC%88TOC%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">目录（TOC）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-number">5.</span> <span class="toc-text">文章与代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5%E4%B8%8E%E5%85%B6%E5%AE%83%E7%BB%86%E8%8A%82"><span class="toc-number">6.</span> <span class="toc-text">首页与其它细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Waline-%E8%AF%84%E8%AE%BA"><span class="toc-number">7.</span> <span class="toc-text">Waline 评论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E7%BB%84%E4%BB%B6%EF%BC%9ANote-%E6%8F%90%E7%A4%BA%E6%A1%86"><span class="toc-number">8.</span> <span class="toc-text">新组件：Note 提示框</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%B3%95"><span class="toc-number">8.1.</span> <span class="toc-text">写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E4%B8%80%E8%A7%88"><span class="toc-number">8.2.</span> <span class="toc-text">类型一览</span></a></li></ol></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="Open table of contents" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top/",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>

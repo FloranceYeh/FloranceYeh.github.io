@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>用EJS写自定义Links页 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <span class="seed-container">
+            <span class="seed-text">SEED</span>
+            <span class="expandable-form">
+                <input class="seed-input" type="number" inputmode="numeric" step="1">
+                <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </span>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <span class="seed-container">
+                    <span class="seed-text">SEED</span>
+                    <span class="expandable-form">
+                        <input class="seed-input" type="number" inputmode="numeric" step="1">
+                        <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </span>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>用EJS写自定义Links页</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2025/12/17
+            </span>
+            
+            <span class="category">
+                <a href="/categories/Web/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    Web
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Web/" style="color: #5a9a8a">
+                        Web
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/EJS/" style="color: #c48a82">
+                        EJS
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/HEXO/" style="color: #5a9a8a">
+                        HEXO
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <p>由于ParticleX主题没有内置的Links页面，而是把友链整合到了主页的Card里，我个人不是很喜欢，而且Card能写的友链太少了，于是决定自己写一个Links页</p>
+<span id="more"></span>
+
+<blockquote>
+<p>Particlex主题就是EJS写的，所以用EJS是首选</p>
+</blockquote>
+<h2 id="什么是EJS"><a href="#什么是EJS" class="headerlink" title="什么是EJS"></a>什么是EJS</h2><p><code>EJS（Embedded JavaScript）</code>是一个流行的 <code>JavaScript</code> 模板引擎，具有简单、灵活的模板语法，广泛应用于动态生成 <code>HTML</code> 内容</p>
+<p><code>简单来说，EJS是能嵌入JS的HTML</code></p>
+<p>所以语法也很简单，看看<a target="_blank" rel="noopener" href="https://ejs.co/">EJS官网</a>就大概能知道了</p>
+<h2 id="如何在自己的网站使用EJS"><a href="#如何在自己的网站使用EJS" class="headerlink" title="如何在自己的网站使用EJS"></a>如何在自己的网站使用EJS</h2><p>由于前人给我们栽了树，搭好了框架，我们可以直接在<code>themes\layout</code>目录写<code>EJS</code></p>
+<p>对于HEXO其他主题的用户，你需要安装 <code>Hexo</code> 支持 <code>EJS</code> 模板引擎的插件</p>
+<pre><code class="language-bash">npm install hexo-renderer-ejs --save
+</code></pre>
+<h2 id="具体实现方法"><a href="#具体实现方法" class="headerlink" title="具体实现方法"></a>具体实现方法</h2><p>(用Particlex实现，其他主题可以参考思路)</p>
+<h3 id="新建link页"><a href="#新建link页" class="headerlink" title="新建link页"></a>新建link页</h3><pre><code class="language-bash">hexo new page &quot;links&quot;
+</code></pre>
+<h3 id="添加EJS模板"><a href="#添加EJS模板" class="headerlink" title="添加EJS模板"></a>添加EJS模板</h3><pre><code class="language-tree">your-theme/
+├── layout/
+│   ├── links.ejs  # 新增：友链页面模板
+│   └── layout.ejs
+</code></pre>
+<h3 id="修改themes-particlex-config-yml"><a href="#修改themes-particlex-config-yml" class="headerlink" title="修改themes\particlex\_config.yml"></a>修改<code>themes\particlex\_config.yml</code></h3><pre><code class="language-yml">menu:
+    Home:
+        name: house
+        theme: solid
+        link: /
+    About:
+        name: id-card
+        theme: solid
+        link: /about
+    Archives:
+        name: box-archive
+        theme: solid
+        link: /archives
+    Categories:
+        name: bookmark
+        theme: solid
+        link: /categories
+    Tags:
+        name: tags
+        theme: solid
+        link: /tags
+    Links:
+        name: link
+        theme: solid
+        link: /links
+</code></pre>
+<h3 id="修改layout-ejs使其能用links-ejs渲染links页"><a href="#修改layout-ejs使其能用links-ejs渲染links页" class="headerlink" title="修改layout.ejs使其能用links.ejs渲染links页"></a>修改<code>layout.ejs</code>使其能用<code>links.ejs</code>渲染links页</h3><blockquote>
+<p><code>Highlight.js</code>没有内置<code>ejs</code>语法高亮，只好用<code>js</code>的高亮<br>!! 但是本文除特殊说明外所有<code>js</code>代码块都应是<code>ejs</code> !!</p>
+</blockquote>
+<pre><code class="language-js">&lt;!-- 这是Particlex主题的EJS，不同主题写法可能不一样，但是原理相同 --&gt;
+&lt;% 
+    // is_xxxx()是HEXO内置的辅助函数，用于判断当前页面是否为目标
+    // 而HEXO内置的只有home, home_first_page, post, page, archive, year, month, category, tag这几种
+    // 要自定义page就用is_current(path, [strict])函数
+    let type = &quot;post&quot;;
+    if (is_home()) type = &quot;index&quot;;
+    if (is_post() || is_page()) type = &quot;post&quot;;
+    if (is_category() || page.type === &quot;categories&quot;) type = &quot;categories&quot;;
+    if (is_tag() || page.type === &quot;tags&quot;) type = &quot;tags&quot;;
+    if (is_archive()) type = &quot;archives&quot;;
+    if (is_current(&quot;links&quot;)) type = &quot;links&quot;;  // 添加links页
+    // 这是渲染标题
+    let title = page.title + &quot; | &quot; + config.title;
+    if (is_home()) title = config.title;
+    if (is_post() || is_page()) title = page.title + &quot; | &quot; + config.title;
+    if (is_category()) title = &quot;Categories: &quot; + page.category + &quot; | &quot; + config.title;
+    if (is_tag()) title = &quot;Tags: &quot; + page.tag + &quot; | &quot; + config.title;
+    if (is_archive()) title = &quot;Archives | &quot; + config.title;
+    if (is_current(&quot;links&quot;)) title = &quot;Links | &quot; + config.title; // links页标题
+    ...
+    &lt;%- partial(&quot;import&quot;, { type }) %&gt; // 使用 {type}.ejs 渲染页面
+    ...
+%&gt;
+...
+</code></pre>
+<p>完成之后在<code>themes\particlex\layout\links.ejs</code>随便写点东西就能看到页面正确渲染了:)</p>
+<h3 id="links-ejs内容示例，实现读取友链列表"><a href="#links-ejs内容示例，实现读取友链列表" class="headerlink" title="links.ejs内容示例，实现读取友链列表"></a><code>links.ejs</code>内容示例，实现读取友链列表</h3><p>我的想法是读取一个包含友链格式的<code>yml</code>文件，<br>(其实本来是想用<code>json</code>的，但是<code>HEXO</code>好像比较喜欢<code>yml</code>)<br>创建文件<code>source\_data\links.yml</code>，样例如下</p>
+<pre><code class="language-yml">Friends:
+    Florance1:
+        name: Florance1
+        url: https://Florance.top
+        ava: https://Florance.top/images/avatar.jpg
+        des: It&#39;s Florance!
+    Florance2:
+        name: Florance2
+        url: https://Florance.top
+        ava: https://Florance.top/images/avatar.jpg
+        des: It&#39;s Florance!!
+
+Tools:
+    Florance3:
+        name: Florance3
+        url: https://Florance.top
+        ava: https://Florance.top/images/avatar.jpg
+        des: It&#39;s Florance?
+    Florance4:
+        name: Florance4
+        url: https://Florance.top
+        ava: https://Florance.top/images/avatar.jpg
+        des: It&#39;s Florance??
+</code></pre>
+<p>然后根据这个样例写<code>links.ejs</code></p>
+<pre><code class="language-js">&lt;div id=&quot;archives&quot;&gt;
+    &lt;div class=&quot;links-content&quot;&gt;
+
+    &lt;% const linkData = site.data.links || {}; %&gt;
+
+    &lt;% Object.keys(linkData).forEach(function(category) { %&gt;
+        // 分类标题
+        &lt;h2 class=&quot;link-category-title&quot;&gt;
+        &lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt; // FontAwesome的图标
+        &lt;%= category %&gt;
+        &lt;/h2&gt;
+
+        &lt;div class=&quot;link-navigation&quot;&gt;
+        // 遍历每个条目
+        &lt;% const items = linkData[category]; %&gt;
+        &lt;% Object.keys(items).forEach(function(key) { %&gt;
+            &lt;% const item = items[key]; %&gt;
+            
+            &lt;a href=&quot;&lt;%= item.url %&gt;&quot; target=&quot;_blank&quot; class=&quot;card&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                // 增加onerror处理，防止头像加载失败
+                &lt;img src=&quot;&lt;%= item.ava %&gt;&quot; alt=&quot;&lt;%= item.name %&gt;&quot; onerror=&quot;this.src=&#39;/images/avatar.jpg&#39;&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;h3 class=&quot;card-title&quot;&gt;&lt;%= item.name %&gt;&lt;/h3&gt;
+                &lt;p class=&quot;card-desc&quot; title=&quot;&lt;%= item.des %&gt;&quot;&gt;&lt;%= item.des %&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;/a&gt;
+
+        &lt;% }); %&gt;
+        &lt;/div&gt;
+    &lt;% }); %&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="当然，css可是The-Key"><a href="#当然，css可是The-Key" class="headerlink" title="当然，css可是The Key!"></a>当然，<code>css</code>可是<code>The Key</code>!</h3><pre><code class="language-css">.link-category-title {
+    font-size: 1.5em;
+    margin: 30px 0 15px 0;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+.link-category-title i {
+    margin-right: 10px;
+}
+
+.links-content {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.link-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; 
+    margin: 0 auto;
+}
+
+.card {
+    width: 300px; 
+    max-width: 100%; 
+    background-color: var(--card-bg, #92ac9b);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.315);
+    padding: 15px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card-header {
+    margin-right: 15px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.card-header img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #eee;
+    background: #fff;
+}
+
+.card-body {
+    flex: 1;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.card-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: var(--text-color, #466753);
+}
+
+.card-desc {
+    font-size: 0.85em;
+    color: #5d6e62;
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+}
+</code></pre>
+<blockquote>
+<p>什么？你想看具体效果？点击菜单的Links就好了 :)</p>
+</blockquote>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="Close table of contents">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFEJS"><span class="toc-number">1.</span> <span class="toc-text">什么是EJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E7%BD%91%E7%AB%99%E4%BD%BF%E7%94%A8EJS"><span class="toc-number">2.</span> <span class="toc-text">如何在自己的网站使用EJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">具体实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BAlink%E9%A1%B5"><span class="toc-number">3.1.</span> <span class="toc-text">新建link页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0EJS%E6%A8%A1%E6%9D%BF"><span class="toc-number">3.2.</span> <span class="toc-text">添加EJS模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9themes-particlex-config-yml"><span class="toc-number">3.3.</span> <span class="toc-text">修改themes\particlex\_config.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9layout-ejs%E4%BD%BF%E5%85%B6%E8%83%BD%E7%94%A8links-ejs%E6%B8%B2%E6%9F%93links%E9%A1%B5"><span class="toc-number">3.4.</span> <span class="toc-text">修改layout.ejs使其能用links.ejs渲染links页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#links-ejs%E5%86%85%E5%AE%B9%E7%A4%BA%E4%BE%8B%EF%BC%8C%E5%AE%9E%E7%8E%B0%E8%AF%BB%E5%8F%96%E5%8F%8B%E9%93%BE%E5%88%97%E8%A1%A8"><span class="toc-number">3.5.</span> <span class="toc-text">links.ejs内容示例，实现读取友链列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E7%84%B6%EF%BC%8Ccss%E5%8F%AF%E6%98%AFThe-Key"><span class="toc-number">3.6.</span> <span class="toc-text">当然，css可是The Key!</span></a></li></ol></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="Open table of contents" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top/",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>

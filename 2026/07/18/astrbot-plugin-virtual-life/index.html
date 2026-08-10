@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>Virtual Life 插件开发记录 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <span class="seed-container">
+            <span class="seed-text">SEED</span>
+            <span class="expandable-form">
+                <input class="seed-input" type="number" inputmode="numeric" step="1">
+                <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </span>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <span class="seed-container">
+                    <span class="seed-text">SEED</span>
+                    <span class="expandable-form">
+                        <input class="seed-input" type="number" inputmode="numeric" step="1">
+                        <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </span>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>Virtual Life 插件开发记录</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/7/18
+            </span>
+            
+            <span class="category">
+                <a href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    开发记录
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Python/" style="color: #5a9aa8">
+                        Python
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Astrbot/" style="color: #6a8fb0">
+                        Astrbot
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <p><img src="https://socialify.git.ci/FloranceYeh/astrbot_plugin_virtual_life/image?description=1&language=1&logo=https://github.com/FloranceYeh/astrbot_plugin_virtual_life/blob/main/logo-large.png?raw=true&name=1&owner=1&pattern=Circuit+Board&stargazers=1&theme=Dark" alt="astrbot_plugin_virtual_life"></p>
+<span id="more"></span>
+
+<h1 id="从“主动虚拟日程”到“虚拟人生”：一个-AstrBot-插件的开发历程"><a href="#从“主动虚拟日程”到“虚拟人生”：一个-AstrBot-插件的开发历程" class="headerlink" title="从“主动虚拟日程”到“虚拟人生”：一个 AstrBot 插件的开发历程"></a>从“主动虚拟日程”到“虚拟人生”：一个 AstrBot 插件的开发历程</h1><blockquote>
+<p>我曾对 Caranlaf 说过，我要给她完整的人生</p>
+</blockquote>
+<p>几天前，我只是想给机器人补上一点“正在生活”的感觉。</p>
+<p>普通聊天机器人通常只在收到消息后响应。即使人格设定写得很完整，它也像一直站在原地等待：没有今天要做的事，不知道自己此刻是在上课、通勤还是休息，也很难自然地解释为什么现在不方便回复、为什么突然想分享一张照片。</p>
+<p>于是，我开始开发一个 AstrBot 插件。它最初叫“主动虚拟日程”，目标很直接：按当前人格生成一天的日程，再结合时间和会话状态主动发送消息。</p>
+<p>随着开发推进，这个问题逐渐暴露出更大的边界。一天的日程不能凭空出现，它应该受到学期、假期、考试周、项目周期和节日影响；主动消息也不能只是定时触发，还要考虑当前活动、可打扰程度、用户是否回应，以及消息发送后能否被后续对话记住。</p>
+<p>最终，插件更名为“虚拟人生”。截至 2026 年 7 月 18 日，它已经迭代到 <code>v1.9.1</code>。</p>
+<p>这篇文章记录它如何从一个日程生成器，逐步演变成一套管理长期阶段、每日状态、上下文注入和主动消息的系统。</p>
+<h2 id="起点：让人格拥有“今天”"><a href="#起点：让人格拥有“今天”" class="headerlink" title="起点：让人格拥有“今天”"></a>起点：让人格拥有“今天”</h2><p><code>v1.0.0</code> 的核心只有一个问题：<strong>当前人格今天在做什么？</strong></p>
+<p>插件会按 <code>persona_id</code> 生成结构化日程。同一人格即使出现在不同会话，也共享同一份生活状态，而不是每个群聊、私聊都各自过一套互相矛盾的生活。</p>
+<p>一份日程包含：</p>
+<ul>
+<li>今日主题和心情；</li>
+<li>穿搭描述；</li>
+<li>从 <code>00:00</code> 连续覆盖到 <code>24:00</code> 的活动时间线；</li>
+<li>每个活动的状态与可打扰程度；</li>
+<li>适合主动分享的消息窗口；</li>
+<li>私聊和群聊的主动消息预算。</li>
+</ul>
+<p>主动发送并不是“每隔几小时随机说一句话”。插件会结合忙碌、专注、睡眠、会话沉默时间和连续未回复次数做判断。连续多次主动消息无人回应后，它会暂停；收到用户的新消息后再恢复。睡眠期间则只保留很低概率的梦醒、失眠或起夜式消息。</p>
+<p>这一版还加入了持久化回访任务。只有当用户明确提出“晚点提醒我”“到时候问我结果”时，模型才能创建一次性任务。时间不明确时必须先追问，而不是自作主张猜一个时间。</p>
+<p>最初版本很快能跑起来，但也马上遇到 LLM 结构化输出最常见的问题：时间线缺口、重叠、跨午夜时间，以及不完整 JSON。</p>
+<p>我的处理方式不是继续堆提示词，而是把校验放进模型层：</p>
+<ul>
+<li>第一项必须从 <code>00:00</code> 开始；</li>
+<li>最后一项必须在 <code>24:00</code> 结束；</li>
+<li>相邻活动首尾时间必须完全相等；</li>
+<li>时间格式、状态枚举、窗口引用必须合法；</li>
+<li>输出无效时携带具体错误重新生成。</li>
+</ul>
+<p>这成为后续所有功能的基础：<strong>LLM 负责提出内容，程序负责决定内容是否能进入系统。</strong></p>
+<h2 id="第二层时间：从每日安排到长期阶段"><a href="#第二层时间：从每日安排到长期阶段" class="headerlink" title="第二层时间：从每日安排到长期阶段"></a>第二层时间：从每日安排到长期阶段</h2><p>只有每日时间线仍然不够。</p>
+<p>如果角色是学生，今天的安排应该受到学期、课程、考试周和寒暑假的影响；如果角色在工作，日程应该围绕项目周期、冲刺阶段、发布日期和固定会议展开。单靠每天随机选择“学习日”或“工作日”，很容易让生活缺乏连续性。</p>
+<p>因此，<code>v1.1.0</code> 引入了“大时间表”。</p>
+<p>大时间表用于描述跨度更长的阶段，例如：</p>
+<ul>
+<li>秋季学期；</li>
+<li>寒假；</li>
+<li>项目开发期；</li>
+<li>发布冲刺；</li>
+<li>旅行或恢复期。</li>
+</ul>
+<p>阶段中可以保存每周固定安排、特殊日期、特殊时期、里程碑、地点、参与人和一般约束。生成某一天的日程时，插件先解析当天生效的阶段，再把必须保留的课程、会议或特殊事件交给日程生成器。</p>
+<p>为了避免 LLM 直接改坏长期状态，大时间表采用了“草稿—批准”流程：</p>
+<ol>
+<li>根据自然语言要求生成结构化草稿；</li>
+<li>管理员查看阶段内容；</li>
+<li>批准后才写入正式时间表；</li>
+<li>当前最后阶段即将结束时，自动生成连续的后续阶段并通知管理员。</li>
+</ol>
+<p>重叠阶段也不能简单地“最后写入者获胜”。系统会综合优先级、阶段范围和录入顺序选择当前阶段；如果固定事件存在无法消解的冲突，则直接阻止日程生成。</p>
+<p>从这一版开始，插件实际上有了两条时间轴：</p>
+<ul>
+<li><strong>大时间表</strong>负责回答“最近这段人生处于什么阶段”；</li>
+<li><strong>每日日程</strong>负责回答“今天具体在做什么”。</li>
+</ul>
+<p>这个分层一直保留到现在，也是插件从“日程工具”走向“虚拟人生”的关键一步。</p>
+<h2 id="把结构化数据变成能看的图片"><a href="#把结构化数据变成能看的图片" class="headerlink" title="把结构化数据变成能看的图片"></a>把结构化数据变成能看的图片</h2><p>结构化 JSON 适合程序处理，却不适合用户每天查看。</p>
+<p><code>v1.2.0</code> 加入了 HTML 模板图片渲染器。每日日程被画成 24 小时时间轴，当前活动高亮；大时间表则拥有阶段列表、阶段详情和待批准草稿视图。</p>
+<p>渲染层支持深色、浅色主题、图片宽度和自定义字体。图片生成失败时，命令不会直接报错，而是自动回退到文字内容。</p>
+<p>我刻意保留了这层降级能力。图片渲染依赖浏览器和运行环境，而日程查询属于核心功能。视觉效果可以失败，但信息不能因此消失。</p>
+<p>后来为了方便脱离 AstrBot 调试模板，我又补充了独立 PNG 预览脚本。它复用正式的 <code>ScheduleImageRenderer</code>，使用内置示例数据，通过 Jinja2 和 Playwright 生成时间轴、穿搭、阶段列表和阶段详情图片。这样修改模板后，不需要启动机器人、创建会话再发送命令，只需运行一条脚本就能检查最终结果。</p>
+<h2 id="穿搭不能只是一句话"><a href="#穿搭不能只是一句话" class="headerlink" title="穿搭不能只是一句话"></a>穿搭不能只是一句话</h2><p>早期穿搭只是一个字符串，例如“白衬衫和长裙”。这对于聊天摘要足够，却无法稳定渲染，也不能明确区分发型、内衣、上装、下装、鞋履和配饰。</p>
+<p><code>v1.3.0</code> 将穿搭改为结构化对象，包含整体描述与分类单品。系统开始校验必要分类和服装组合：必须有发型、内衣、鞋履和主体服装，没有连衣裙时必须有下装。</p>
+<p>之后，穿搭继续演化出独立的 <code>style</code> 字段。生成前从创意池选择的“复古文艺风”“极简都市风”等风格，不再只存在于提示词中，而是被正式保存到日程数据。</p>
+<p>到 <code>v1.8.2</code>，日程和穿搭查询被彻底拆分：</p>
+<ul>
+<li><code>/虚拟日程 查看</code> 专注于时间轴；</li>
+<li><code>/虚拟日程 穿搭</code> 展示穿搭风格、今日主题、心情、造型概述和单品明细。</li>
+</ul>
+<p>拆分的原因并不只是图片太长，而是两种查询代表不同意图。询问今天做什么，与询问今天穿什么，不应该强制返回同一份信息。</p>
+<h2 id="上下文注入：不是塞得越多越好"><a href="#上下文注入：不是塞得越多越好" class="headerlink" title="上下文注入：不是塞得越多越好"></a>上下文注入：不是塞得越多越好</h2><p>让机器人知道当前状态，最直接的做法是把完整日程放进每次对话上下文。但这会快速增加 Token，占用注意力，还可能让模型在用户根本没问日程时反复提及日程。</p>
+<p><code>v1.4.0</code> 引入了本地关键词驱动的智能状态注入。它不调用额外 LLM，而是根据用户消息选择需要的模块：</p>
+<ul>
+<li>询问穿搭时注入外显穿搭；</li>
+<li>明确提到内衣、打底或贴身衣物时，才加入相关信息；</li>
+<li>询问日程时注入当前时间、活动、地点、状态、可打扰程度和下一项活动；</li>
+<li>提到考试、课程、项目或工期时，加入当前长期阶段和里程碑；</li>
+<li>请求完整日程或完整大时间表时，只提示模型调用工具，不把完整 JSON 塞入上下文。</li>
+</ul>
+<p>后续版本又增加了 <code>base_module_enable</code>。默认情况下，普通聊天不会始终携带基础状态，只有关键词命中时才加入对应模块。</p>
+<p>这里的经验是：<strong>上下文工程不只是提供更多信息，更重要的是在正确的时候提供刚好够用的信息。</strong></p>
+<p>为了验证这一点，我还专门记录了不同模块的 Token 预算。智能注入没有额外模型请求，但它仍然会成为普通聊天输入的一部分，因此字符上限、模块去重和按需触发都很重要。</p>
+<h2 id="节日和随机偏移：让安排少一点机械感"><a href="#节日和随机偏移：让安排少一点机械感" class="headerlink" title="节日和随机偏移：让安排少一点机械感"></a>节日和随机偏移：让安排少一点机械感</h2><p><code>v1.5.0</code> 将中国法定节假日和传统节日接入大时间表。春节、元宵、端午、七夕、中秋、重阳、腊八和除夕等日期，会影响当天的日程生成和图片展示。</p>
+<p>与此同时，主动消息窗口加入确定性随机偏移。假设日程计划在 <code>16:00</code> 分享照片，实际执行时间可以在前后若干分钟内变化，但不会超出对应活动时段。</p>
+<p>这里使用“确定性随机”而不是每次启动重新抽取。相同人格、日期和窗口会得到相同结果，既减少机械感，也避免插件重启后计划时间不停变化。</p>
+<h2 id="主动消息是一套调度系统"><a href="#主动消息是一套调度系统" class="headerlink" title="主动消息是一套调度系统"></a>主动消息是一套调度系统</h2><p>随着主动能力变复杂，单纯的定时任务已经不够。</p>
+<p><code>v1.6.0</code> 增加会话订阅命令，管理员可以直接在当前私聊或群聊中启用主动消息。插件自动识别会话类型、保存白名单，并立即安排当天窗口。</p>
+<p><code>v1.7.0</code> 加入主动消息分段器。短消息可以按中英文标点、换行、自定义关键词或正则表达式拆成多条发送；发送间隔既可以随机，也可以按中英文字数计算。长文本超过阈值时则保持整条发送，避免过度切碎。</p>
+<p>后续几个修复进一步暴露了主动消息调度的真实复杂度：</p>
+<ul>
+<li>窗口必须引用存在的日程活动；</li>
+<li>窗口时间必须位于来源活动范围内；</li>
+<li>普通主动消息根据可打扰程度以不同概率触发；</li>
+<li>未命中概率或遇到睡眠时，消息延迟到下一可打扰时段；</li>
+<li>延迟发送时要说明原定日程已经结束，避免内容与当前时间错位。</li>
+</ul>
+<p>到 <code>v1.9.0</code>，主动消息相关命令统一进入 <code>/主动消息</code> 命令组，并新增执行时间查询。用户可以看到当前会话的日程窗口、延迟窗口、沉默主动、睡眠异常和回访任务究竟会在什么时候执行。</p>
+<p>这让主动行为从“后台可能会发生的事情”变成了可观察、可解释、可管理的调度系统。</p>
+<h2 id="一个容易忽略的问题：机器人要记得自己主动说过什么"><a href="#一个容易忽略的问题：机器人要记得自己主动说过什么" class="headerlink" title="一个容易忽略的问题：机器人要记得自己主动说过什么"></a>一个容易忽略的问题：机器人要记得自己主动说过什么</h2><p><code>v1.9.1</code> 修复了一个很关键的问题。</p>
+<p>插件成功发送主动消息后，如果这条内容没有写入 AstrBot 的对话历史，下一次用户回复时，模型可能根本不知道自己刚才主动说过什么。对用户而言，对话明明是连续的；对模型而言，却像突然收到了一句没有上文的回答。</p>
+<p>现在，主动消息发送成功后会写入当前会话历史。如果会话还没有对话记录，插件会自动创建对话，并用标准的 user-assistant 消息对记录系统触发说明和主动消息正文。</p>
+<p>这项修复看起来不像大功能，却直接决定了主动消息能否真正成为对话的一部分。</p>
+<h2 id="开发过程中最重要的几个取舍"><a href="#开发过程中最重要的几个取舍" class="headerlink" title="开发过程中最重要的几个取舍"></a>开发过程中最重要的几个取舍</h2><p>回顾整个开发过程，我认为下面几个决定最有价值。</p>
+<h3 id="1-人格状态与会话状态分离"><a href="#1-人格状态与会话状态分离" class="headerlink" title="1. 人格状态与会话状态分离"></a>1. 人格状态与会话状态分离</h3><p>日程和长期阶段属于人格，同一人格在多个会话中应该保持一致；主动预算、连续未回复、沉默计时和回访任务则属于具体会话。</p>
+<p>如果不做这层分离，同一个人格可能在私聊中上课、在群聊中旅行，或者因为一个群没人回复而停止所有私聊主动消息。</p>
+<h3 id="2-LLM-输出必须经过严格模型校验"><a href="#2-LLM-输出必须经过严格模型校验" class="headerlink" title="2. LLM 输出必须经过严格模型校验"></a>2. LLM 输出必须经过严格模型校验</h3><p>提示词只能提高正确率，不能提供可靠性保证。时间线连续性、枚举值、穿搭组合、阶段冲突和窗口引用最终都必须由代码检查。</p>
+<h3 id="3-长期阶段和每日活动使用不同模型"><a href="#3-长期阶段和每日活动使用不同模型" class="headerlink" title="3. 长期阶段和每日活动使用不同模型"></a>3. 长期阶段和每日活动使用不同模型</h3><p>大时间表描述人生阶段，每日日程描述当天细节。把两者揉成一个巨大 JSON，不仅难生成、难修改，也会让任何局部变化都影响整个结构。</p>
+<h3 id="4-所有视觉能力都要有文字回退"><a href="#4-所有视觉能力都要有文字回退" class="headerlink" title="4. 所有视觉能力都要有文字回退"></a>4. 所有视觉能力都要有文字回退</h3><p>图片适合查看，但不应该成为信息的唯一出口。浏览器环境、字体或渲染服务出现问题时，用户仍然能获得完整的文字结果。</p>
+<h3 id="5-主动行为必须可解释"><a href="#5-主动行为必须可解释" class="headerlink" title="5. 主动行为必须可解释"></a>5. 主动行为必须可解释</h3><p>为什么此刻发送、为什么延迟、为什么暂停、下一次什么时候执行，这些问题都应该能够通过状态和命令回答。否则“主动”很容易变成不可预测的打扰。</p>
+<h2 id="测试如何跟上快速迭代"><a href="#测试如何跟上快速迭代" class="headerlink" title="测试如何跟上快速迭代"></a>测试如何跟上快速迭代</h2><p>插件的版本推进很快，但功能越接近时间、调度和持久化，越不能只依赖手动试用。</p>
+<p>目前测试覆盖的重点包括：</p>
+<ul>
+<li>全天时间线连续性与当前活动解析；</li>
+<li>结构化穿搭完整性；</li>
+<li>大时间表验证、阶段选择、草稿批准和持久化；</li>
+<li>节日日历和特殊时期展开；</li>
+<li>主动窗口随机偏移与来源时间校验；</li>
+<li>智能上下文模块匹配、去重和敏感穿搭过滤；</li>
+<li>消息分段和发送间隔；</li>
+<li>图片渲染数据与模板视图；</li>
+<li>命令组契约和导航行为。</li>
+</ul>
+<p>图片功能还额外使用独立预览脚本做真实浏览器渲染。单元测试负责确认数据，预览图负责确认最终视觉，两者解决的是不同问题。</p>
+<h2 id="从一个功能点到一套“生活状态”"><a href="#从一个功能点到一套“生活状态”" class="headerlink" title="从一个功能点到一套“生活状态”"></a>从一个功能点到一套“生活状态”</h2><p>这个插件的开发始于一个很小的想法：让机器人知道自己今天在做什么。</p>
+<p>后来，它逐渐拥有长期阶段、节日、穿搭、当前活动、主动窗口、会话状态、回访任务和对话记忆。它仍然不是一个真正的人生模拟器，但已经不再只是给聊天模型附加一段随机背景。</p>
+<p>现在的“虚拟人生”更像一套状态基础设施：</p>
+<ul>
+<li>长期时间表提供连续的人生背景；</li>
+<li>每日日程将背景落实为具体活动；</li>
+<li>智能注入把相关状态送入对话；</li>
+<li>主动调度根据状态决定是否、何时以及如何联系用户；</li>
+<li>对话持久化保证主动内容能够进入后续交流。</li>
+</ul>
+<p>未来还可以继续改进天气、地点移动、跨日事件、更细致的关系状态，以及更加直观的调度管理界面。但无论功能如何增加，我希望继续保持当前的原则：状态要结构化，行为要可验证，主动要克制，失败要能够降级。</p>
+<p>从“主动虚拟日程”到“虚拟人生”，名称的变化其实也对应着目标的变化。</p>
+<p>我不再只是想让机器人拥有一张日程表，而是希望它在每次对话之外，也有一条能够延续下去的时间线。</p>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="Close table of contents">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E2%80%9C%E4%B8%BB%E5%8A%A8%E8%99%9A%E6%8B%9F%E6%97%A5%E7%A8%8B%E2%80%9D%E5%88%B0%E2%80%9C%E8%99%9A%E6%8B%9F%E4%BA%BA%E7%94%9F%E2%80%9D%EF%BC%9A%E4%B8%80%E4%B8%AA-AstrBot-%E6%8F%92%E4%BB%B6%E7%9A%84%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">从“主动虚拟日程”到“虚拟人生”：一个 AstrBot 插件的开发历程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%B7%E7%82%B9%EF%BC%9A%E8%AE%A9%E4%BA%BA%E6%A0%BC%E6%8B%A5%E6%9C%89%E2%80%9C%E4%BB%8A%E5%A4%A9%E2%80%9D"><span class="toc-number">1.1.</span> <span class="toc-text">起点：让人格拥有“今天”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%82%E6%97%B6%E9%97%B4%EF%BC%9A%E4%BB%8E%E6%AF%8F%E6%97%A5%E5%AE%89%E6%8E%92%E5%88%B0%E9%95%BF%E6%9C%9F%E9%98%B6%E6%AE%B5"><span class="toc-number">1.2.</span> <span class="toc-text">第二层时间：从每日安排到长期阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE%E5%8F%98%E6%88%90%E8%83%BD%E7%9C%8B%E7%9A%84%E5%9B%BE%E7%89%87"><span class="toc-number">1.3.</span> <span class="toc-text">把结构化数据变成能看的图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BF%E6%90%AD%E4%B8%8D%E8%83%BD%E5%8F%AA%E6%98%AF%E4%B8%80%E5%8F%A5%E8%AF%9D"><span class="toc-number">1.4.</span> <span class="toc-text">穿搭不能只是一句话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E6%B3%A8%E5%85%A5%EF%BC%9A%E4%B8%8D%E6%98%AF%E5%A1%9E%E5%BE%97%E8%B6%8A%E5%A4%9A%E8%B6%8A%E5%A5%BD"><span class="toc-number">1.5.</span> <span class="toc-text">上下文注入：不是塞得越多越好</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E6%97%A5%E5%92%8C%E9%9A%8F%E6%9C%BA%E5%81%8F%E7%A7%BB%EF%BC%9A%E8%AE%A9%E5%AE%89%E6%8E%92%E5%B0%91%E4%B8%80%E7%82%B9%E6%9C%BA%E6%A2%B0%E6%84%9F"><span class="toc-number">1.6.</span> <span class="toc-text">节日和随机偏移：让安排少一点机械感</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E5%8A%A8%E6%B6%88%E6%81%AF%E6%98%AF%E4%B8%80%E5%A5%97%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.7.</span> <span class="toc-text">主动消息是一套调度系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%A6%81%E8%AE%B0%E5%BE%97%E8%87%AA%E5%B7%B1%E4%B8%BB%E5%8A%A8%E8%AF%B4%E8%BF%87%E4%BB%80%E4%B9%88"><span class="toc-number">1.8.</span> <span class="toc-text">一个容易忽略的问题：机器人要记得自己主动说过什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E5%87%A0%E4%B8%AA%E5%8F%96%E8%88%8D"><span class="toc-number">1.9.</span> <span class="toc-text">开发过程中最重要的几个取舍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%BA%E6%A0%BC%E7%8A%B6%E6%80%81%E4%B8%8E%E4%BC%9A%E8%AF%9D%E7%8A%B6%E6%80%81%E5%88%86%E7%A6%BB"><span class="toc-number">1.9.1.</span> <span class="toc-text">1. 人格状态与会话状态分离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LLM-%E8%BE%93%E5%87%BA%E5%BF%85%E9%A1%BB%E7%BB%8F%E8%BF%87%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%A0%A1%E9%AA%8C"><span class="toc-number">1.9.2.</span> <span class="toc-text">2. LLM 输出必须经过严格模型校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%95%BF%E6%9C%9F%E9%98%B6%E6%AE%B5%E5%92%8C%E6%AF%8F%E6%97%A5%E6%B4%BB%E5%8A%A8%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.9.3.</span> <span class="toc-text">3. 长期阶段和每日活动使用不同模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%89%80%E6%9C%89%E8%A7%86%E8%A7%89%E8%83%BD%E5%8A%9B%E9%83%BD%E8%A6%81%E6%9C%89%E6%96%87%E5%AD%97%E5%9B%9E%E9%80%80"><span class="toc-number">1.9.4.</span> <span class="toc-text">4. 所有视觉能力都要有文字回退</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%B8%BB%E5%8A%A8%E8%A1%8C%E4%B8%BA%E5%BF%85%E9%A1%BB%E5%8F%AF%E8%A7%A3%E9%87%8A"><span class="toc-number">1.9.5.</span> <span class="toc-text">5. 主动行为必须可解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%A6%82%E4%BD%95%E8%B7%9F%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%AD%E4%BB%A3"><span class="toc-number">1.10.</span> <span class="toc-text">测试如何跟上快速迭代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E4%B8%80%E4%B8%AA%E5%8A%9F%E8%83%BD%E7%82%B9%E5%88%B0%E4%B8%80%E5%A5%97%E2%80%9C%E7%94%9F%E6%B4%BB%E7%8A%B6%E6%80%81%E2%80%9D"><span class="toc-number">1.11.</span> <span class="toc-text">从一个功能点到一套“生活状态”</span></a></li></ol></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="Open table of contents" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top/",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>
