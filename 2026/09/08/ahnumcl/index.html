@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>AHNUMCL 开发记录 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <form class="seed-container" onsubmit="updateGalaxy(event)">
+            <label class="seed-text" for="desktop-seed-input">SEED</label>
+            <span class="expandable-form">
+                <input id="desktop-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </form>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <form class="seed-container" onsubmit="updateGalaxy(event)">
+                    <label class="seed-text" for="mobile-seed-input">SEED</label>
+                    <span class="expandable-form">
+                        <input id="mobile-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                        <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </form>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>AHNUMCL 开发记录</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/9/8
+            </span>
+            
+            <span class="category">
+                <a href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    开发记录
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Frontend/" style="color: #6a8fb0">
+                        Frontend
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Minecraft/" style="color: #c48a82">
+                        Minecraft
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Tauri/" style="color: #8f9a5c">
+                        Tauri
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Rust/" style="color: #c48a82">
+                        Rust
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <h1 id="AHNUMCL-开发记录"><a href="#AHNUMCL-开发记录" class="headerlink" title="AHNUMCL 开发记录"></a>AHNUMCL 开发记录</h1><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/ahnumc/AHNUMCL">https://github.com/ahnumc/AHNUMCL</a></p>
+<div class="note note-quote" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
+    <span class="note-title-text">引用</span>
+  </div>
+  <div class="note-body"><p>AHNUMCL 不是重新发明一个 Minecraft 启动器，而是在成熟的上游项目基础上，逐步建立自己的品牌、服务和发行节奏。</p>
+</div>
+</div>
+
+<p>暑假，我加入了 AHNUMC 社群。AHNUMC 是一个由安徽师范大学学生自发组建的 Minecraft 社群，大家因为游戏聚在一起，也尝试为社群成员提供服务器、账号、整合包和交流内容。AHNUMCL 正是在这样的背景下开始开发的：它不是为了单纯制作一个启动器，而是希望把社群已有的服务更方便地交给玩家使用，降低进入服务器、安装客户端和获取相关信息的门槛。</p>
+<p>因此，项目中的 AHNUMC 登录、服务器列表、客户端整合包、新闻接口和多人联机功能，都不是孤立的演示功能，而是围绕社群玩家的实际需求逐步加入的。启动器既是一个桌面软件，也是 AHNUMC 社群服务玩家的一部分。</p>
+<p>这段开发过程最有意思的地方，不是某一个单独的页面，而是一个分支项目怎样从“改几个名称”逐渐变成可以独立发布、独立维护的桌面应用。</p>
+<span id="more"></span>
+
+<h2 id="技术栈与整体架构"><a href="#技术栈与整体架构" class="headerlink" title="技术栈与整体架构"></a>技术栈与整体架构</h2><p>AHNUMCL 使用 Tauri 作为桌面容器，前端是 Next.js、React、TypeScript 和 Chakra UI，后端则由 Rust 实现。前端负责页面、表单、列表和交互状态，Rust 负责文件系统、网络请求、游戏启动、下载任务和系统集成。</p>
+<p>项目大致可以分成几层：</p>
+<ul>
+<li><code>src/pages</code> 和相关前端服务负责启动器页面与用户交互。</li>
+<li><code>src-tauri/src</code> 负责 Tauri command、实例管理、账号、下载、启动和配置。</li>
+<li>CLI 和 MCP 服务提供与外部程序、网页或 Agent 协作的入口。</li>
+<li>GitHub Actions 负责 Windows、macOS 和 Linux 的构建与发行。</li>
+</ul>
+<p>开发环境使用 pnpm，启动桌面开发版本只需要：</p>
+<pre><code class="language-bash">pnpm install
+pnpm tauri dev
+</code></pre>
+<p>这种架构的好处是边界比较清楚：前端可以专注于操作体验，涉及本地文件和系统能力的逻辑则放在 Rust 中处理。代价是同一个功能经常需要同时修改 TypeScript 页面、服务层、Tauri command 和 Rust 的领域模块。</p>
+<h2 id="从上游分叉到独立品牌"><a href="#从上游分叉到独立品牌" class="headerlink" title="从上游分叉到独立品牌"></a>从上游分叉到独立品牌</h2><p>最早需要解决的问题不是功能，而是身份。项目经历了从 ANUMCL 到 AHNUMCL 的命名整理，应用名、CLI 名称、MCP 服务名、User-Agent、Yggdrasil 元数据、安装包名称和 CI 脚本都必须保持一致。</p>
+<p>2026 年 8 月 14 日发布的 1.0.0 是一个重要节点。随后提交 <a target="_blank" rel="noopener" href="https://github.com/ahnumc/AHNUMCL/commit/f4c437bc9b992e661ca19a6d1dfa7e0da478b858"><code>f4c437b</code></a> 对 46 个文件进行了大范围重命名，把残留的旧品牌从代码、配置、文案和发布流程中清理出去。这个工作看起来像机械替换，实际却很容易漏掉深层配置：桌面应用标识、更新器、脚本产物名和服务端识别字段都可能在用户看不到的地方继续保留旧名称。</p>
+<p>同时，发布工作流也做了相应调整。macOS 签名相关的流程允许在缺少签名密钥时继续生成未签名产物，避免一次可选的签名失败阻断整个构建。品牌迁移的目标因此不只是“界面上看起来不一样”，而是让源码、构建产物和发行渠道都真正成为同一个项目。</p>
+<h2 id="接入-AHNUMC-服务"><a href="#接入-AHNUMC-服务" class="headerlink" title="接入 AHNUMC 服务"></a>接入 AHNUMC 服务</h2><p>品牌独立之后，启动器需要有自己的服务内容。首先接入的是 AHNUMC 的 Yggdrasil 认证服务：</p>
+<pre><code class="language-text">https://skin.ahnumc.org/api/yggdrasil
+</code></pre>
+<p>这让用户可以在启动器中使用 AHNUMC 的账号体系，并在账号模型中识别对应的认证服务器。相关提交还使用了 Yggdrasil Connect 的登录流程，减少对旧式登录入口的依赖。</p>
+<p>接着是 AHNUMC 服务器和客户端整合包。启动器增加了服务器清单模型、服务器页面和整合包安装任务，可以从远程 JSON 获取服务器信息，再把对应的客户端资源导入到本地实例中。安装流程不是简单下载一个压缩包：它还要处理整合包覆盖文件、实例目录、导入状态和安装完成后的页面跳转。</p>
+<p>早期实现中，AHNUMC 服务器整合包安装后的自动导入曾经出现回归，后来在 <a target="_blank" rel="noopener" href="https://github.com/ahnumc/AHNUMCL/commit/f907ebc15244912e8fd73f74255ca58ac32a2cb7"><code>f907ebc</code></a> 中恢复。任务上下文根据 <code>ahnumc-server</code> 任务组打开导入弹窗，让安装和导入重新连成完整流程。</p>
+<p>这里还有一个需要谨慎处理的边界：远程 JSON 是外部输入，不能只因为它来自自己的服务就完全信任。获取远程清单时需要限制 URL scheme，并把网络请求、解析和本地写入分开处理，避免服务器配置直接变成任意本地操作。</p>
+<h2 id="下载和安装体验"><a href="#下载和安装体验" class="headerlink" title="下载和安装体验"></a>下载和安装体验</h2><p>启动器最容易被用户感知的性能问题，往往发生在下载和安装阶段。AHNUMCL 后续对这部分做了几次针对性调整。</p>
+<div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">下载链路</span>
+  </div>
+  <div class="note-body"><p>下载体验不只取决于带宽，还包括镜像选择、任务调度、文件解压和进度反馈。任何一个环节阻塞，都可能让用户感觉整个启动器变慢。</p>
+</div>
+</div>
+
+<p>首先是 GitHub 镜像选择。下载任务可以并发测速多个镜像，使用 <code>FuturesUnordered</code> 管理并发请求，从可用镜像中选择响应更快的地址。这样做比固定使用一个下载源更适合网络环境差异明显的用户，但也需要处理超时、全部失败和下载地址切换等情况。</p>
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p>并发测速可以减少对单一下载源的依赖，但需要为超时、全部失败和地址切换准备明确的回退路径。</p>
+</div>
+</div>
+
+<p>其次是把阻塞操作从 Tokio 异步运行时中移开。整合包 override 解压属于 CPU 和文件系统密集型工作，直接放进异步任务会阻塞其他任务。提交 <a target="_blank" rel="noopener" href="https://github.com/ahnumc/AHNUMCL/commit/206a4509c1ba17b7e76a143951e6f265964494b9"><code>206a450</code></a> 使用 <code>spawn_blocking</code> 处理这类操作，让版本列表和实例安装流程不再互相卡住。</p>
+<div class="note note-warning" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span>
+    <span class="note-title-text">警告</span>
+  </div>
+  <div class="note-body"><p>异步函数不代表其中的所有操作都是非阻塞的。压缩包解压和大量文件读写仍然可能占用线程，应该交给专门的阻塞任务处理。</p>
+</div>
+</div>
+
+<p>下载速度显示也做了平滑处理。分块下载的瞬时速度经常会出现尖峰，如果直接显示最近一次采样，界面上的数字会不断跳动。提交 <a target="_blank" rel="noopener" href="https://github.com/ahnumc/AHNUMCL/commit/12956360cb70647ad6ba1bed23a206d2ca28ad34"><code>1295636</code></a> 使用历史速度和当前采样的加权结果，降低短时间采样带来的抖动，让速度和剩余时间更接近用户的直觉。</p>
+<div class="note note-success" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+    <span class="note-title-text">成功</span>
+  </div>
+  <div class="note-body"><p>对速度和剩余时间做平滑，不会让下载本身变快，但能让反馈更稳定，也更接近用户对当前进度的判断。</p>
+</div>
+</div>
+
+<p>资源页面的嵌套依赖弹窗也进行过优化。原本大量条件渲染会让依赖查看流程变得复杂，后来改为通过 key 查找共享弹窗组件，减少重复渲染，同时保留连续查看依赖的操作路径。</p>
+<h2 id="账号、实例和排障"><a href="#账号、实例和排障" class="headerlink" title="账号、实例和排障"></a>账号、实例和排障</h2><p>启动器真正出问题时，用户通常不会先打开开发者工具，而是会问“为什么没有启动”。因此设置页面增加了实例最新日志查看入口，方便快速判断 Java 参数、模组加载或资源文件是否存在问题。</p>
+<div class="note note-quote" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
+    <span class="note-title-text">引用</span>
+  </div>
+  <div class="note-body"><p>启动器的体验不只是“成功启动游戏”，也包括失败时能不能告诉用户发生了什么。</p>
+</div>
+</div>
+
+<p>账号侧则补充了 Authlib-Injector 的下载回退，并移除了不再适合当前服务策略的 LittleSkin 登录入口。登录流程的改动不能只看 UI：认证服务器列表、账号类型判断、下载失败后的备用来源和错误提示都要一起调整，否则用户看到的只是一个看似正常、实际无法完成的登录按钮。</p>
+<div class="note note-danger" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-xmark"></i></span>
+    <span class="note-title-text">危险</span>
+  </div>
+  <div class="note-body"><p>登录入口、认证服务器和账号类型是一个完整链路。只修改页面按钮而不同时更新后端判断，容易产生“看得到但用不了”的登录流程。</p>
+</div>
+</div>
+
+<p>这些功能让我更加意识到，启动器的核心体验不只是“成功启动游戏”，还包括失败时能不能告诉用户发生了什么，以及用户能不能自己恢复问题。</p>
+<h2 id="让启动器拥有自己的外观"><a href="#让启动器拥有自己的外观" class="headerlink" title="让启动器拥有自己的外观"></a>让启动器拥有自己的外观</h2><p>在功能逐渐稳定后，界面开始加入 AHNU 的视觉元素。外观系统支持自定义主题色、字体、界面背景透明度和明暗主题壁纸，先后加入了 AHNU Flowy 和 AHNU Blocky 两组壁纸资源。</p>
+<p>相关改动并不是把一张图片替换到背景上这么简单。壁纸需要进入默认配置和多语言设置，明暗主题要分别选择资源，透明度滑块需要在实时调整时保持平滑，窗口失去焦点时还要正确隐藏标题栏控制按钮，避免透明窗口下的控件互相遮挡。</p>
+<p>提交 <a target="_blank" rel="noopener" href="https://github.com/ahnumc/AHNUMCL/commit/9b13538365f6374af43f247798489b2cc755b40d"><code>9b13538</code></a> 加入了 AHNU Blocky 壁纸，之后 1.0.6 版本也把这组视觉资源纳入发布内容。对启动器来说，外观不是功能之外的装饰，它会影响用户对“这是哪个发行版”的第一印象。</p>
+<div class="note note-tip" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+    <span class="note-title-text">提示</span>
+  </div>
+  <div class="note-body"><p>壁纸、主题色、字体和窗口透明度共同构成发行版的识别度。它们需要进入默认配置、主题逻辑和发布资源，而不只是替换一张背景图片。</p>
+</div>
+</div>
+
+<h2 id="Terracotta-多人联机"><a href="#Terracotta-多人联机" class="headerlink" title="Terracotta 多人联机"></a>Terracotta 多人联机</h2><p>8 月 28 日加入的 Terracotta 是这一阶段规模最大的功能之一。它同时涉及 Rust 后端模块、Tauri command、前端服务、状态模型、多人页面、公共节点配置、首页入口和多语言文案。</p>
+<p>从用户角度看，它提供了一个进入多人联机服务的入口；从实现角度看，客户端需要处理节点配置、连接状态、房间信息、下载进度和错误反馈。这类功能不能只把一个网页嵌进启动器，否则账号、任务和实例之间的状态会割裂。把它纳入启动器自己的任务和状态体系，才能让多人服务与下载、启动流程协同起来。</p>
+<p>Terracotta 的加入也体现了 AHNUMCL 与上游项目的关系：上游提供了可扩展的桌面应用基础，而分支项目可以根据自己的社区和服务，继续增加垂直功能。</p>
+<div class="note note-info" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+    <span class="note-title-text">信息</span>
+  </div>
+  <div class="note-body"><p>Terracotta 不是一个孤立的网页入口，而是被接入了启动器自己的账号、任务和实例状态体系，因此可以与下载和启动流程协同工作。</p>
+</div>
+</div>
+
+<h2 id="发布工程"><a href="#发布工程" class="headerlink" title="发布工程"></a>发布工程</h2><p>AHNUMCL 当前支持 Windows、macOS 和 Linux，并通过 GitHub Actions 生成对应的安装包、便携版本或压缩包。发布时需要同时更新前端 <code>package.json</code>、Cargo workspace、Tauri 配置、版本说明和构建工作流。</p>
+<p>1.0.0、1.0.1 到 1.0.6 的连续发布让我体会到，版本号不是最后才修改的字符串。它还关联着应用标识、更新器、构建产物、变更日志和用户下载到的实际文件。发布提交的价值，就是把这些容易分散的状态集中确认一次。</p>
+<p>项目基于 SJMCL，并遵守 GPLv3 以及上游附加条款。因此独立品牌并不意味着可以忽略来源，README、软件关于页面和发行文档都需要明确项目基础与许可证要求。</p>
+<div class="note note-warning" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></span>
+    <span class="note-title-text">许可证与来源</span>
+  </div>
+  <div class="note-body"><p>独立品牌不等于切断上游关系。项目发布时仍然需要遵守 GPLv3 和上游附加条款，并在相关文档中说明项目来源。</p>
+</div>
+</div>
+
+<h2 id="这段开发经历带来的经验"><a href="#这段开发经历带来的经验" class="headerlink" title="这段开发经历带来的经验"></a>这段开发经历带来的经验</h2><p>第一，分叉项目最先要整理的往往是边界。哪些能力继承自上游，哪些服务属于自己的发行版，哪些修复应该回馈上游，最好在改代码之前就分清楚。</p>
+<p>第二，桌面应用的功能链通常比页面看起来更长。一个“安装整合包”按钮，背后可能经过远程清单、Rust 服务、异步任务、文件解压、状态更新和前端导入；只改最后一层很容易留下半完成状态。</p>
+<p>第三，异步代码中要区分等待和阻塞。网络请求适合异步等待，压缩包解压和大量文件操作则应该交给专门的阻塞线程，否则一个安装任务就可能影响整个启动器的响应。</p>
+<p>第四，发行版的个性既来自功能，也来自细节。认证服务、服务器内容、壁纸、主题色和发布名称共同构成用户对 AHNUMCL 的认识，任何一处还显示旧品牌，都会让独立发行显得不完整。</p>
+<div class="note note-quote" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
+    <span class="note-title-text">引用</span>
+  </div>
+  <div class="note-body"><p>一个分支项目真正独立下来，靠的不是一次性改名，而是持续维护自己的用户、服务和发行流程。</p>
+</div>
+</div>
+
+<div class="note note-success" role="note">
+  <div class="note-title">
+<span class="note-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+    <span class="note-title-text">成功</span>
+  </div>
+  <div class="note-body"><p>AHNUMCL 的开发并不是把上游项目复制一份再改名，而是围绕自己的用户、服务和发行流程，逐步建立一套能够独立运行的启动器体验。</p>
+</div>
+</div>
+
+<p>后续还可以继续完善扩展生态、MCP 自动化、多人服务和跨平台发布流程。对我来说，这个项目最有价值的地方，是它把前端交互、Rust 系统能力、异步任务和开源项目协作放进了同一个真实产品里。</p>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="Close table of contents">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AHNUMCL-%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">AHNUMCL 开发记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88%E4%B8%8E%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">技术栈与整体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E4%B8%8A%E6%B8%B8%E5%88%86%E5%8F%89%E5%88%B0%E7%8B%AC%E7%AB%8B%E5%93%81%E7%89%8C"><span class="toc-number">1.2.</span> <span class="toc-text">从上游分叉到独立品牌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5-AHNUMC-%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.3.</span> <span class="toc-text">接入 AHNUMC 服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%92%8C%E5%AE%89%E8%A3%85%E4%BD%93%E9%AA%8C"><span class="toc-number">1.4.</span> <span class="toc-text">下载和安装体验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%A6%E5%8F%B7%E3%80%81%E5%AE%9E%E4%BE%8B%E5%92%8C%E6%8E%92%E9%9A%9C"><span class="toc-number">1.5.</span> <span class="toc-text">账号、实例和排障</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A9%E5%90%AF%E5%8A%A8%E5%99%A8%E6%8B%A5%E6%9C%89%E8%87%AA%E5%B7%B1%E7%9A%84%E5%A4%96%E8%A7%82"><span class="toc-number">1.6.</span> <span class="toc-text">让启动器拥有自己的外观</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Terracotta-%E5%A4%9A%E4%BA%BA%E8%81%94%E6%9C%BA"><span class="toc-number">1.7.</span> <span class="toc-text">Terracotta 多人联机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%B7%A5%E7%A8%8B"><span class="toc-number">1.8.</span> <span class="toc-text">发布工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E6%AE%B5%E5%BC%80%E5%8F%91%E7%BB%8F%E5%8E%86%E5%B8%A6%E6%9D%A5%E7%9A%84%E7%BB%8F%E9%AA%8C"><span class="toc-number">1.9.</span> <span class="toc-text">这段开发经历带来的经验</span></a></li></ol></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="Open table of contents" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>

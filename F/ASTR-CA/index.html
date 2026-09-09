@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="logo.jpg" type="image/x-icon">
+<title>ASTR-CA Lab</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  scrollbar-width: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@200;300;400;500;700;900&family=Inter:wght@200;300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #f4efe6;
+  color: #3d3a36;
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.8;
+  cursor: default;
+}
+
+/* ===== Canvas Particle Background ===== */
+#particleCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ===== Parallax Background Layers ===== */
+.parallax-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(ellipse 70% 55% at 20% 25%, rgba(107, 142, 85, 0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 45% at 80% 75%, rgba(74, 99, 58, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 35% at 50% 10%, rgba(139, 169, 115, 0.06) 0%, transparent 50%);
+  will-change: transform;
+}
+
+/* ===== Mouse Glow ===== */
+.mouse-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.mouse-glow::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(107, 142, 85, 0.08) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+  pointer-events: none;
+}
+
+/* ===== Content ===== */
+.scroll-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.hero {
+  max-width: 580px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ===== Badge ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 20px;
+  border-radius: 100px;
+  background: rgba(74, 99, 58, 0.08);
+  color: #4a633a;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(74, 99, 58, 0.12);
+  backdrop-filter: blur(4px);
+  text-transform: uppercase;
+}
+
+.badge-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6b8e55;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* ===== Title ===== */
+.title-block {
+  margin-bottom: 32px;
+}
+
+h1 {
+  font-size: clamp(34px, 8vw, 60px);
+  font-weight: 900;
+  color: #2d3828;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+h1 .accent {
+  color: #4a633a;
+  position: relative;
+  display: inline-block;
+}
+
+h1 .accent::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 8px;
+  background: rgba(74, 99, 58, 0.12);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+/* ===== Typewriter Subtitle ===== */
+.typewriter-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 28px;
+  margin-top: 6px;
+}
+
+.typewriter-text {
+  font-size: clamp(15px, 3vw, 18px);
+  font-weight: 300;
+  color: #7a756e;
+  letter-spacing: 3px;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 18px;
+  background: #4a633a;
+  animation: blink 0.9s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ===== Divider ===== */
+.divider-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.divider-line {
+  flex: 0 0 60px;
+  height: 1px;
+  background: rgba(74, 99, 58, 0.15);
+}
+
+.divider-diamond {
+  width: 6px;
+  height: 6px;
+  background: #4a633a;
+  transform: rotate(45deg);
+  opacity: 0.3;
+}
+
+/* ===== Content Card ===== */
+.content-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.50);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 36px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  text-align: left;
+  margin-bottom: 36px;
+  box-shadow: 0 8px 48px rgba(74, 99, 58, 0.05);
+  transition: box-shadow 0.4s ease;
+}
+
+.content-card:hover {
+  box-shadow: 0 12px 56px rgba(74, 99, 58, 0.08);
+}
+
+.card-logo {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 96px;
+  height: 96px;
+  border-radius: 16px;
+  background: white;
+  padding: 6px;
+  box-shadow: 0 4px 16px rgba(74, 99, 58, 0.10);
+  border: 1px solid rgba(74, 99, 58, 0.06);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  z-index: 2;
+}
+
+.card-logo:hover {
+  transform: scale(1.08) rotate(-3deg);
+  box-shadow: 0 8px 28px rgba(74, 99, 58, 0.18);
+}
+
+.card-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+.card-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.card-line:nth-child(1) { animation-delay: 0.1s; }
+.card-line:nth-child(2) { animation-delay: 0.3s; }
+.card-line:nth-child(3) { animation-delay: 0.5s; }
+.card-line:nth-child(4) { animation-delay: 0.7s; }
+
+.card-line:last-child {
+  margin-bottom: 0;
+}
+
+.card-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a633a;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.card-line p {
+  font-size: clamp(14px, 2vw, 15px);
+  font-weight: 400;
+  color: #3d3a36;
+  letter-spacing: 0.3px;
+}
+
+.card-line .hl {
+  color: #4a633a;
+  font-weight: 600;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Tags ===== */
+.tag-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(74, 99, 58, 0.08);
+}
+
+.tag-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #a09b94;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 100px;
+  background: rgba(74, 99, 58, 0.06);
+  color: #4a633a;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  border: 1px solid rgba(74, 99, 58, 0.06);
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.tag:hover {
+  background: rgba(74, 99, 58, 0.12);
+  border-color: rgba(74, 99, 58, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ===== QR + CTA ===== */
+.qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.qr-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.qr-wrapper {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border-radius: 18px;
+  background: white;
+  padding: 8px;
+  box-shadow: 0 4px 24px rgba(74, 99, 58, 0.08);
+  border: 1px solid rgba(74, 99, 58, 0.06);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+
+.qr-wrapper:hover {
+  transform: scale(1.06) rotate(-1deg);
+  box-shadow: 0 12px 40px rgba(74, 99, 58, 0.15);
+}
+
+.qr-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+.qr-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(74, 99, 58, 0.08), transparent 50%, rgba(107, 142, 85, 0.06));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.qr-wrapper:hover .qr-glow {
+  opacity: 1;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.join-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 40px;
+  border-radius: 100px;
+  background: #4a633a;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 16px rgba(74, 99, 58, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.join-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 50%);
+  pointer-events: none;
+}
+
+.join-btn:hover {
+  background: #3d5230;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(74, 99, 58, 0.25);
+}
+
+.join-btn:active {
+  transform: translateY(-1px) scale(1.01);
+}
+
+.join-btn .arrow-icon {
+  display: inline-flex;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.join-btn:hover .arrow-icon {
+  transform: translateX(5px) scale(1.15);
+}
+
+.btn-hint {
+  font-size: 12px;
+  color: #a09b94;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+}
+
+/* ===== Footer ===== */
+.footer-bar {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 12px;
+  color: #b5b0a8;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+.footer-bar .sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #c5c0b8;
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 640px) {
+  .content-card {
+    padding: 44px 40px;
+  }
+
+  .card-logo {
+    width: 96px;
+    height: 96px;
+    top: -18px;
+    right: -18px;
+  }
+
+  .qr-row {
+    gap: 32px;
+  }
+
+  .btn-group {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .content-card {
+    padding: 28px 20px;
+    border-radius: 20px;
+  }
+
+  .card-logo {
+    width: 48px;
+    height: 48px;
+    top: -12px;
+    right: -12px;
+  }
+
+  .qr-wrapper {
+    width: 110px;
+    height: 110px;
+  }
+
+  .qr-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Canvas Particles -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- Parallax Background -->
+<div class="parallax-bg">
+  <div class="bg-layer" id="bgLayer"></div>
+</div>
+
+<!-- Mouse Glow -->
+<div class="mouse-glow" id="mouseGlow"></div>
+
+<!-- Content -->
+<div class="scroll-content">
+  <div class="hero">
+
+    <div class="badge">
+      <span class="badge-dot"></span>
+      互助学习 · 技术交流
+    </div>
+
+    <div class="title-block">
+      <h1><span class="accent">ASTR</span> - <span class="accent">CA</span> Lab</h1>
+      <div class="typewriter-wrapper">
+        <span class="typewriter-text" id="typewriter"></span>
+        <span class="typewriter-cursor"></span>
+      </div>
+    </div>
+
+    <div class="divider-wrap">
+      <span class="divider-line"></span>
+      <span class="divider-diamond"></span>
+      <span class="divider-line"></span>
+    </div>
+
+    <div class="content-card">
+      <div class="card-logo">
+        <img src="logo.jpg" alt="logo">
+      </div>
+      <div class="card-line">
+        <span class="card-icon">✦</span>
+        <p><span class="hl">AI 聊天机器人</span> 随便调戏，零基础也能上车</p>
+      </div>
+      <div class="card-line">
+        <span class="card-icon">✦</span>
+        <p>聊聊天吹吹水，<span class="hl">轻松氛围</span>，顺便还能学知识</p>
+      </div>
+      <div class="card-line">
+        <span class="card-icon">✦</span>
+        <p>编程踩坑、技术盲区、方向迷茫 —— <span class="hl">丢进来聊聊</span></p>
+      </div>
+      <div class="card-line">
+        <span class="card-icon">✦</span>
+        <p>公益 <span class="hl">AI 中转站</span>，入群解锁更多免费额度</p>
+      </div>
+      <div class="card-line">
+        <span class="card-icon">✦</span>
+        <p>LLM · Agent · RAG · AstrBot · Prompt · 前后端 · 算法</p>
+      </div>
+
+      <div class="tag-section">
+        <div class="tag-cloud">
+          <span class="tag">AI 人工智能</span>
+          <span class="tag">LLM 推理优化</span>
+          <span class="tag">Agent 工作流</span>
+          <span class="tag">RAG 落地</span>
+          <span class="tag">AstrBot 插件</span>
+          <span class="tag">Prompt 工程</span>
+          <span class="tag">前后端</span>
+          <span class="tag">算法</span>
+          <span class="tag">计算机网络</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="qr-section">
+      <div class="qr-row">
+        <div class="qr-wrapper">
+          <img src="QRcode.png" alt="群二维码">
+          <div class="qr-glow"></div>
+        </div>
+        <div class="btn-group">
+          <a class="join-btn" href="https://qun.qq.com/universal-share/share?ac=1&authKey=iZ3EBWAtTWVN1uVCvbb0nbGMphFk6HZ5nktiPiRPSIoM7XGz8r%2Fu2xxVnSbc%2FrrN&busi_data=eyJncm91cENvZGUiOiIxMDk0OTkwNTgyIiwidG9rZW4iOiJoR2lHTCtINWN4TEdhV1YvSVc1Q0Z3TnhkUUtjZUh4K25meDVjTUlGcFpKMjhUT1F1QXpGRlZWN3BTVTMxMWFjIiwidWluIjoiMzM5MzMxNDk4OSJ9&data=kWBAMjTu9D9FhWcUAUhiOfe_xcoP2CKQ-WHRUolod_Y2K2F_mIf3w0n6hNfzQUvEYDZInMOaez4WFKasvZDflw&svctype=4&tempid=h5_group_info" target="_blank">
+            加入群聊
+            <span class="arrow-icon">→</span>
+          </a>
+          <span class="btn-hint">扫码或点击按钮，期待你的到来</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span>ASTR-CA Lab</span>
+      <span class="sep"></span>
+      <span>不止于代码</span>
+      <span class="sep"></span>
+      <span>欢迎你来</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ===== Typerwriter =====
+(function() {
+  const phrases = ['聊 AI · 写代码 · 交朋友', '零基础友好', '一起搞点好玩的'];
+  let idx = 0;
+  let charIdx = 0;
+  let isDeleting = false;
+  const el = document.getElementById('typewriter');
+
+  function type() {
+    const current = phrases[idx];
+
+    if (!isDeleting) {
+      el.textContent = current.substring(0, charIdx + 1);
+      charIdx++;
+      if (charIdx === current.length) {
+        isDeleting = true;
+        setTimeout(type, 2200);
+        return;
+      }
+      setTimeout(type, 80 + Math.random() * 40);
+    } else {
+      el.textContent = current.substring(0, charIdx);
+      charIdx--;
+      if (charIdx < 0) {
+        isDeleting = false;
+        charIdx = 0;
+        idx = (idx + 1) % phrases.length;
+        setTimeout(type, 400);
+        return;
+      }
+      setTimeout(type, 40 + Math.random() * 30);
+    }
+  }
+
+  setTimeout(type, 600);
+})();
+
+// ===== Mouse Glow =====
+(function() {
+  const glow = document.getElementById('mouseGlow');
+  const dot = glow.querySelector('::before');
+  let mx = -200, my = -200;
+
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX;
+    my = e.clientY;
+    glow.style.opacity = '1';
+    glow.style.setProperty('--mx', mx + 'px');
+    glow.style.setProperty('--my', my + 'px');
+    glow.style.cssText += ';';
+  });
+
+  document.addEventListener('mouseleave', function() {
+    glow.style.opacity = '0';
+  });
+
+  // Use CSS custom properties approach
+  const style = document.createElement('style');
+  style.textContent = `
+    .mouse-glow::before {
+      left: var(--mx, -200px);
+      top: var(--my, -200px);
+    }
+  `;
+  document.head.appendChild(style);
+})();
+
+// ===== Particles =====
+(function() {
+  const canvas = document.getElementById('particleCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let w, h;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.r = Math.random() * 2.5 + 1;
+      this.dx = (Math.random() - 0.5) * 0.2;
+      this.dy = (Math.random() - 0.5) * 0.2 - 0.06;
+      this.alpha = Math.random() * 0.35 + 0.08;
+      this.phase = Math.random() * Math.PI * 2;
+    }
+    update(t) {
+      this.x += this.dx + Math.sin(t * 0.0005 + this.phase) * 0.08;
+      this.y += this.dy + Math.cos(t * 0.0006 + this.phase) * 0.06;
+      if (this.x < -20 || this.x > w + 20 || this.y < -20 || this.y > h + 20) {
+        this.reset();
+        if (Math.random() > 0.5) this.x = Math.random() > 0.5 ? -10 : w + 10;
+        else this.y = Math.random() > 0.5 ? -10 : h + 10;
+      }
+    }
+    draw(ctx) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(107, 142, 85, ${this.alpha})`;
+      ctx.fill();
+    }
+  }
+
+  function init() {
+    resize();
+    const count = Math.min(Math.floor(w * h / 1200), 100);
+    particles = Array.from({ length: count }, () => new Particle());
+  }
+
+  function animate(t) {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.update(t);
+      p.draw(ctx);
+    });
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  requestAnimationFrame(animate);
+})();
+
+// ===== Parallax =====
+(function() {
+  const bg = document.getElementById('bgLayer');
+  let ticking = false;
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        const scrollY = window.scrollY;
+        const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+        const progress = Math.min(scrollY / maxScroll, 1);
+        bg.style.transform = 'translateY(' + (progress * 40) + 'px)';
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
