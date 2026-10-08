@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#173c2b" />
+    <meta name="description" content="安师生活地图 H5 宣传动画" />
+    <link rel="icon" type="image/png" href="./logo.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>安师生活地图</title>
+  </head>
+  <body>
+    <main class="promo" aria-live="polite">
+      <div class="stage" id="stage">
+        <header class="topbar">
+          <a class="brand" href="https://map.florance.top" aria-label="打开安师生活地图">
+            <img src="./logo.png" alt="" />
+            <span>安师生活地图</span>
+          </a>
+          <button class="motion-toggle" id="motionToggle" type="button" aria-label="暂停动画" title="暂停动画">
+            <span aria-hidden="true">Ⅱ</span>
+          </button>
+        </header>
+
+        <div class="timeline" aria-hidden="true">
+          <span id="timelineFill"></span>
+        </div>
+
+        <section class="scene scene-intro is-active" data-scene="0" aria-label="安师生活地图">
+          <div class="intro-grid" aria-hidden="true"></div>
+          <div class="intro-route" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="intro-copy">
+            <img class="hero-logo" src="./logo.png" alt="安师生活地图 Logo" />
+            <p class="kicker">AHNU SHARE MAP</p>
+            <h1>安师生活<br />地图</h1>
+            <p class="lead">校园很大，好去处不该难找。</p>
+          </div>
+          <div class="campus-stamp">赭山 · 花津 · 天门山</div>
+        </section>
+
+        <section class="scene scene-campus" data-scene="1" aria-label="三个校区">
+          <div class="scene-heading campus-heading">
+            <p class="kicker">THREE CAMPUSES</p>
+            <h2>三个校区<br />一张地图</h2>
+          </div>
+          <div class="campus-map" id="campusMap" aria-hidden="true">
+            <div class="map-tiles" id="mapTiles"></div>
+            <div class="campus-pin pin-zheshan" data-lat="31.3378" data-lng="118.3697"><i></i><b>赭山</b></div>
+            <div class="campus-pin pin-huajin" data-lat="31.287148" data-lng="118.373242"><i></i><b>花津</b></div>
+            <div class="campus-pin pin-tianmen" data-lat="31.441666" data-lng="118.399542"><i></i><b>天门山</b></div>
+            <span class="decorative-pin pin-cafe" data-lat="31.3318" data-lng="118.3616" aria-hidden="true">咖</span>
+            <span class="decorative-pin pin-store" data-lat="31.3442" data-lng="118.3762" aria-hidden="true">店</span>
+            <span class="decorative-pin pin-park" data-lat="31.3369" data-lng="118.3516" aria-hidden="true">公</span>
+            <span class="decorative-pin pin-gate" data-lat="31.3505" data-lng="118.3655" aria-hidden="true">吃</span>
+            <div class="map-attribution">© OpenStreetMap contributors</div>
+          </div>
+          <div class="campus-switcher">
+            <span class="is-current">赭山校区</span><span>花津校区</span><span>天门山校区</span>
+          </div>
+        </section>
+
+        <section class="scene scene-discover" data-scene="2" aria-label="发现校园好去处">
+          <div class="scene-heading">
+            <p class="kicker">LOCAL PICKS</p>
+            <h2>下一站<br />去哪里？</h2>
+          </div>
+          <div class="category-strip" aria-label="地点分类">
+            <span class="food">吃喝</span><span class="study">学习</span><span class="fun">娱乐</span><span class="sport">运动</span>
+          </div>
+          <div class="place-stack" aria-hidden="true">
+            <article class="place-row row-one"><img src="https://keiujhukznlrqcsrbeuf.supabase.co/storage/v1/object/public/place-images/338966b9-9155-4275-8b1e-1466012a1753/637bff60-938e-41cf-8f7c-fe5cd5a543ef-_____20260807122147_2264_10.webp" alt="赭山图书馆" /><div><b>赭山图书馆</b><small>赭山校区 · 学习</small></div><em class="reaction-count">👍 2</em></article>
+            <article class="place-row row-two"><img src="https://keiujhukznlrqcsrbeuf.supabase.co/storage/v1/object/public/place-images/b45e89ca-bda5-47c1-be06-2832ab8b496d/60b80fd8-2257-462a-9fe6-d2baff70f6bc-IMG_9064.jpeg" alt="十足便利店" /><div><b>十足便利店</b><small>赭山校区 · 吃喝</small></div><em class="reaction-count is-zero">👀 0</em></article>
+            <article class="place-row row-three"><img src="https://keiujhukznlrqcsrbeuf.supabase.co/storage/v1/object/public/place-images/9a47dc88-71a8-47f1-b140-74c0c5deecaf/39e660cc-69b5-4c57-8f4c-987842a203fc-d780c1db8a1664b9c38d8037af528586.webp" alt="芜湖inPARK" /><div><b>芜湖inPARK</b><small>赭山附近 · 娱乐</small></div><em class="reaction-count is-zero">❤️ 0</em></article>
+          </div>
+        </section>
+
+        <section class="scene scene-route" data-scene="3" aria-label="一键导航">
+          <div class="route-map" aria-hidden="true">
+            <div class="route-grid"></div>
+            <svg viewBox="0 0 360 520" role="presentation">
+              <path class="route-shadow" d="M55 430 C 90 340, 70 275, 150 248 S 270 190, 298 85" />
+              <path class="route-line" d="M55 430 C 90 340, 70 275, 150 248 S 270 190, 298 85" />
+            </svg>
+            <span class="route-origin">我</span>
+            <span class="route-target">去</span>
+          </div>
+          <div class="route-copy">
+            <p class="kicker">ONE TAP AWAY</p>
+            <h2>找到以后<br />直接出发</h2>
+            <div class="nav-options"><span>高德</span><span>腾讯</span><span>百度</span><span>苹果</span></div>
+          </div>
+        </section>
+
+        <section class="scene scene-share" data-scene="4" aria-label="分享地点">
+          <div class="scene-heading">
+            <p class="kicker">BUILT BY STUDENTS</p>
+            <h2>你的私藏<br />也能被看见</h2>
+          </div>
+          <div class="share-form" aria-hidden="true">
+            <div><small>地点</small><b>我常去的那一家</b></div>
+            <div><small>推荐理由</small><b>真的好吃，排队也值得</b></div>
+            <button type="button" tabindex="-1">提交审核</button>
+          </div>
+          <div class="approval-track" aria-hidden="true">
+            <span class="done">投稿</span><i></i><span class="done">审核</span><i></i><span class="done">上图</span>
+          </div>
+        </section>
+
+        <section class="scene scene-final" data-scene="5" aria-label="打开安师生活地图">
+          <div class="final-sun" aria-hidden="true"></div>
+          <div class="final-copy">
+            <img class="final-logo" src="./logo.png" alt="" />
+            <p class="kicker">MAP.FLORANCE.TOP</p>
+            <h2>从这里<br />重新认识安师</h2>
+            <a class="primary-action" href="https://map.florance.top">打开地图 <span aria-hidden="true">↗</span></a>
+            <button class="copy-link" id="copyLink" type="button">复制网址</button>
+          </div>
+          <p class="signature">学长分享 · 同学共建</p>
+        </section>
+
+        <nav class="scene-dots" aria-label="动画分镜">
+          <button class="is-active" type="button" data-go="0" aria-label="第 1 幕"></button>
+          <button type="button" data-go="1" aria-label="第 2 幕"></button>
+          <button type="button" data-go="2" aria-label="第 3 幕"></button>
+          <button type="button" data-go="3" aria-label="第 4 幕"></button>
+          <button type="button" data-go="4" aria-label="第 5 幕"></button>
+          <button type="button" data-go="5" aria-label="第 6 幕"></button>
+        </nav>
+      </div>
+    </main>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

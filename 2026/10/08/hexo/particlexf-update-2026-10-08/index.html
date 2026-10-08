@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>ParticleXF 更新：聊天记录、首页卡片与国际化 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script>
+    const mixins = {};
+    window.__PARTICLEX_I18N__ = {
+        codeExpand: "展开全部 (undefined 行)",
+        codeCollapse: "收起",
+        copyCode: "复制代码",
+        copiedCode: "已复制"
+    };
+</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <form class="seed-container" onsubmit="updateGalaxy(event)">
+            <label class="seed-text" for="desktop-seed-input">SEED</label>
+            <span class="expandable-form">
+                <input id="desktop-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </form>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw" :class="{ 'is-open': showMenuItems }"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <form class="seed-container" onsubmit="updateGalaxy(event)">
+                    <label class="seed-text" for="mobile-seed-input">SEED</label>
+                    <span class="expandable-form">
+                        <input id="mobile-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                        <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </form>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>ParticleXF 更新：聊天记录、首页卡片与国际化</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/10/8
+            </span>
+            
+            <span class="category">
+                <a href="/categories/Tutorial/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    Tutorial
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/update/" style="color: #c48a82">
+                        update
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/ParticleXF/" style="color: #6a8fb0">
+                        ParticleXF
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/hexo/" style="color: #5a9a8a">
+                        hexo
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <p>从 <code>2c8e193</code> 之后到 <code>d235dfe</code>，ParticleXF 主题共完成了五次提交。最直观的变化是新加入的聊天记录标签；写文章时还可以单独调整首页卡片样式，主题界面的默认文案也开始跟随站点语言设置。</p>
+<span id="more"></span>
+
+<h2 id="首页文章卡片可以单独定制"><a href="#首页文章卡片可以单独定制" class="headerlink" title="首页文章卡片可以单独定制"></a>首页文章卡片可以单独定制</h2><p>以前首页文章卡片统一使用主题样式。现在可以在单篇文章的 Front Matter 中设置卡片容器、标题、摘要和按钮的行内 CSS：</p>
+<pre><code class="language-yaml">---
+title: 一篇示例文章
+card_style: &quot;border-color: #7eb89a;&quot;
+card_title_style: &quot;color: #7eb89a;&quot;
+card_description_style: &quot;font-size: 0.95rem;&quot;
+card_button_style: &quot;background: #345f48; border-radius: 4px;&quot;
+---
+</code></pre>
+<p>这四个字段只作用于当前文章的首页卡片，不改变文章正文。标题还支持旧字段 <code>title_style</code>，摘要支持 <code>description_style</code>，按钮支持 <code>button_style</code> 和 <code>go_post_style</code>。主题会对这些字段做 HTML 属性转义，但行内 CSS 仍应由可信的文章作者维护。</p>
+<h2 id="主题文案支持中英文"><a href="#主题文案支持中英文" class="headerlink" title="主题文案支持中英文"></a>主题文案支持中英文</h2><p>在站点根目录的 <code>_config.yml</code> 中设置语言：</p>
+<pre><code class="language-yaml">language: zh-CN
+</code></pre>
+<p>目前提供 <code>zh-CN</code> 和 <code>en</code>。首页“阅读全文”、加载提示、归档搜索、文章加密输入框、目录控件、页脚备案文字，以及代码块的展开、收起和复制提示，都会使用对应语言文件。Note 的默认标题、Tabs 自动生成的标签名，以及 Chat 的默认标题、空记录提示和图片替代文字也一并接入了这套机制。</p>
+<p>语言文件位于主题的 <code>languages/zh-CN.yml</code> 和 <code>languages/default.yml</code>。文章作者在标签中明确写出的标题、发言内容不会自动翻译。</p>
+<h2 id="用-Chat-标签写模拟聊天记录"><a href="#用-Chat-标签写模拟聊天记录" class="headerlink" title="用 Chat 标签写模拟聊天记录"></a>用 Chat 标签写模拟聊天记录</h2><p>新增的 <code>&#123;% chat %&#125;</code> 支持 <code>wechat</code>、<code>qq</code> 和 <code>telegram</code> 三种外观。每行消息使用 <code>角色|时间|内容</code>，时间可以省略。<code>me</code>、<code>self</code>、<code>我</code>、<code>right</code> 会显示在右侧，其余角色默认显示在左侧。</p>
+<p>下面是一段实际渲染的示例：</p>
+<section class="chat-widget chat-wechat" id="chat-1" aria-label="项目群">
+  <button class="chat-header" type="button" aria-expanded="true" aria-controls="chat-1-messages">
+    <span class="chat-brand-icon" aria-hidden="true"><i class="fa-brands fa-weixin"></i></span>
+    <span class="chat-header-copy"><strong>项目群</strong><small>发布讨论</small></span>
+    <span class="chat-status" aria-hidden="true"></span>
+  </button>
+  <div class="chat-messages" id="chat-1-messages"><div class="chat-message"><div class="chat-avatar" aria-hidden="true"><img src="/images/erina.png" alt="" loading="lazy"></div><div class="chat-message-body"><time>10:24</time><div class="chat-speaker">Erina</div><div class="chat-bubble">这次更新的聊天标签可以显示图片吗？</div></div></div>
+<div class="chat-message chat-message-right"><div class="chat-avatar" aria-hidden="true"><img src="/images/avatar.jpg" alt="" loading="lazy"></div><div class="chat-message-body"><time>10:25</time><div class="chat-speaker">Florance</div><div class="chat-bubble">可以，还能点击顶部折叠聊天记录。</div></div></div>
+<div class="chat-message chat-message-right"><div class="chat-avatar" aria-hidden="true"><img src="/images/avatar.jpg" alt="" loading="lazy"></div><div class="chat-message-body"><time>10:26</time><div class="chat-speaker">Florance</div><div class="chat-bubble"><img class="chat-image" src="/images/background.jpg" alt="background" loading="lazy"></div></div></div></div>
+</section>
+
+<p>发言人通过 <code>A:John,/images/avatar.jpg</code> 定义一次，后面的消息直接写 <code>A</code> 即可复用姓名和头像。头像及消息图片都支持本地路径，也支持完整的图片 URL。图片消息可写为 <code>[image:地址 说明]</code>，或使用 Markdown 图片语法。</p>
+<p>顶部图标默认使用平台 Logo；添加 <code>logo=&quot;/images/ParticleXF.png&quot;</code> 可以改用图片。聊天记录默认展开，设置 <code>expanded=false</code> 或添加 <code>collapsed</code> 即可默认收起，读者仍可点击顶部栏切换。聊天背景、文字和气泡会跟随主题的亮暗模式变化。</p>
+<h2 id="资源与代码整理"><a href="#资源与代码整理" class="headerlink" title="资源与代码整理"></a>资源与代码整理</h2><p>页面加载遮罩改在 <code>DOMContentLoaded</code> 后关闭，减少等待其他外部资源时的停留。<code>chat.js</code>、<code>note.js</code>、<code>tabs.js</code>、<code>video.js</code> 的代码格式和顶部说明也已统一，并补齐了中英文 README 中的配置示例。</p>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="目录">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="关闭目录">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E5%8D%A1%E7%89%87%E5%8F%AF%E4%BB%A5%E5%8D%95%E7%8B%AC%E5%AE%9A%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">首页文章卡片可以单独定制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%88%E6%94%AF%E6%8C%81%E4%B8%AD%E8%8B%B1%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">主题文案支持中英文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8-Chat-%E6%A0%87%E7%AD%BE%E5%86%99%E6%A8%A1%E6%8B%9F%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95"><span class="toc-number">3.</span> <span class="toc-text">用 Chat 标签写模拟聊天记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%95%B4%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">资源与代码整理</span></a></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 回到顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="打开目录" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>
