@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>给带后端的 Web 项目套上 Tauri 外壳 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script>
+    const mixins = {};
+    window.__PARTICLEX_I18N__ = {
+        codeExpand: "展开全部 (undefined 行)",
+        codeCollapse: "收起",
+        copyCode: "复制代码",
+        copiedCode: "已复制"
+    };
+</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <form class="seed-container" onsubmit="updateGalaxy(event)">
+            <label class="seed-text" for="desktop-seed-input">SEED</label>
+            <span class="expandable-form">
+                <input id="desktop-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </form>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw" :class="{ 'is-open': showMenuItems }"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <form class="seed-container" onsubmit="updateGalaxy(event)">
+                    <label class="seed-text" for="mobile-seed-input">SEED</label>
+                    <span class="expandable-form">
+                        <input id="mobile-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                        <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </form>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>给带后端的 Web 项目套上 Tauri 外壳</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/10/19
+            </span>
+            
+            <span class="category">
+                <a href="/categories/Tauri/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    Tauri
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Frontend/" style="color: #6a8fb0">
+                        Frontend
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Tauri/" style="color: #5a9a8a">
+                        Tauri
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <h1 id="用-sidecar-给带后端的-Web-应用套上-Tauri-外壳"><a href="#用-sidecar-给带后端的-Web-应用套上-Tauri-外壳" class="headerlink" title="用 sidecar 给带后端的 Web 应用套上 Tauri 外壳"></a>用 sidecar 给带后端的 Web 应用套上 Tauri 外壳</h1><p>很多 Web 应用已经拥有完整的后端：它负责 HTTP API、WebSocket、文件存储、任务执行和本地预览。把这类应用桌面化时，最省风险的路径通常不是重写后端，而是让 Tauri 管理一个 sidecar 进程，再让窗口访问这个本地服务。</p>
+<span id="more"></span>
+
+<h2 id="先确定边界"><a href="#先确定边界" class="headerlink" title="先确定边界"></a>先确定边界</h2><p>Tauri 负责窗口、应用生命周期、打包资源和桌面能力；后端继续负责原有的业务协议。只要后端通过 HTTP 或 WebSocket 提供服务，前端就可以继续使用相对路径请求 API，桌面端不需要复制一套 Rust API。</p>
+<pre><code class="language-text">Tauri 窗口  ── HTTP/WebSocket ──&gt;  本地后端 sidecar
+    │                                  │
+    └── 启动、等待就绪、退出清理       └── API、任务、文件、预览
+</code></pre>
+<p>这个边界也决定了迁移策略：先让后端在命令行中稳定运行，再把启动和停止交给 Tauri。</p>
+<h2 id="让后端支持可配置的工作目录"><a href="#让后端支持可配置的工作目录" class="headerlink" title="让后端支持可配置的工作目录"></a>让后端支持可配置的工作目录</h2><p>不要把用户数据写到安装目录。桌面安装目录可能只读，也可能在升级后被替换。后端最好已经支持类似下面的参数：</p>
+<pre><code class="language-text">backend --root &lt;user-data-dir&gt; --host 127.0.0.1 --port 0
+</code></pre>
+<p><code>root</code> 用于保存配置、任务记录、附件和生成结果；静态资源可以作为只读打包资源提供，也可以在首次启动时复制到工作目录。若后端原本只接受当前目录，应优先在外壳侧准备一个完整的工作目录，避免为了桌面版修改后端协议。</p>
+<h2 id="构建-sidecar-并按目标平台命名"><a href="#构建-sidecar-并按目标平台命名" class="headerlink" title="构建 sidecar 并按目标平台命名"></a>构建 sidecar 并按目标平台命名</h2><p>Tauri 通过文件名找到 sidecar。文件名必须包含当前构建目标的 Rust target triple，例如：</p>
+<pre><code class="language-text">webweave-backend-x86_64-pc-windows-msvc.exe
+webweave-backend-aarch64-apple-darwin
+webweave-backend-x86_64-unknown-linux-gnu
+</code></pre>
+<p>构建脚本需要完成三件事：读取 <code>rustc -vV</code> 的 <code>host</code>、创建 <code>src-tauri/binaries</code>、调用后端语言的编译器输出目标文件。不要把 <code>.exe</code> 固定写进所有平台的脚本逻辑。</p>
+<p>下面是一个 Node.js 构建脚本：</p>
+<pre><code class="language-js">// scripts/build-sidecar.mjs
+import { mkdirSync } from &quot;node:fs&quot;;
+import { dirname, join, resolve } from &quot;node:path&quot;;
+import { spawnSync } from &quot;node:child_process&quot;;
+import { fileURLToPath } from &quot;node:url&quot;;
+
+const scriptsDir = dirname(fileURLToPath(import.meta.url));
+const root = resolve(scriptsDir, &quot;..&quot;);
+const outputDir = join(root, &quot;src-tauri&quot;, &quot;binaries&quot;);
+const sourceDir = join(root, &quot;backend&quot;);
+
+function run(command, args, options = {}) {
+  const result = spawnSync(command, args, { stdio: &quot;inherit&quot;, ...options });
+  if (result.error) throw result.error;
+  if (result.status !== 0) throw new Error(`${command} failed`);
+}
+
+const rustc = spawnSync(&quot;rustc&quot;, [&quot;-vV&quot;], { encoding: &quot;utf8&quot; });
+if (rustc.status !== 0) throw new Error(&quot;rustc is required&quot;);
+const target = rustc.stdout.match(/^host:\s*(\S+)\s*$/m)?.[1];
+if (!target) throw new Error(&quot;Rust target triple was not found&quot;);
+
+const suffix = process.platform === &quot;win32&quot; ? &quot;.exe&quot; : &quot;&quot;;
+const output = join(outputDir, `backend-${target}${suffix}`);
+mkdirSync(outputDir, { recursive: true });
+run(&quot;go&quot;, [&quot;build&quot;, &quot;-trimpath&quot;, &quot;-o&quot;, output, &quot;.&quot;], { cwd: sourceDir });
+</code></pre>
+<p>对应的 <code>package.json</code> 脚本可以保持简单：</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;build:sidecar&quot;: &quot;node scripts/build-sidecar.mjs&quot;,
+    &quot;dev&quot;: &quot;pnpm build:sidecar &amp;&amp; tauri dev&quot;,
+    &quot;build&quot;: &quot;pnpm build:sidecar &amp;&amp; tauri build&quot;
+  }
+}
+</code></pre>
+<p>Tauri 配置声明不带平台后缀的逻辑名称，CLI 会根据当前目标寻找实际文件：</p>
+<pre><code class="language-json">{
+  &quot;bundle&quot;: {
+    &quot;externalBin&quot;: [&quot;binaries/backend&quot;],
+    &quot;resources&quot;: {
+      &quot;../frontend/&quot;: &quot;webui/&quot;
+    }
+  }
+}
+</code></pre>
+<h2 id="把资源和用户数据分开"><a href="#把资源和用户数据分开" class="headerlink" title="把资源和用户数据分开"></a>把资源和用户数据分开</h2><p>桌面应用通常有两类路径：</p>
+<ul>
+<li><strong>只读资源</strong>：前端页面、默认 Skills、图标和其他随安装包发布的文件。</li>
+<li><strong>用户数据</strong>：配置、历史记录、生成文件、附件和运行日志。</li>
+</ul>
+<p>只读资源放在 Tauri 的 resource 目录，用户数据使用 <code>app_data_dir</code> 或同等平台目录。首次启动时可以把默认资源复制到用户目录，但要使用“目标文件不存在才复制”的策略，避免覆盖用户修改过的内容。</p>
+<p>Rust 侧可以用一个递归复制函数完成首次初始化：</p>
+<pre><code class="language-rust">use std::{fs, path::Path};
+
+fn copy_tree(source: &amp;Path, target: &amp;Path) -&gt; std::io::Result&lt;()&gt; {
+    fs::create_dir_all(target)?;
+    for entry in fs::read_dir(source)? {
+        let entry = entry?;
+        let destination = target.join(entry.file_name());
+        if entry.file_type()?.is_dir() {
+            copy_tree(&amp;entry.path(), &amp;destination)?;
+        } else if !destination.exists() {
+            fs::copy(entry.path(), destination)?;
+        }
+    }
+    Ok(())
+}
+</code></pre>
+<p>调用时把资源目录和应用数据目录分开：</p>
+<pre><code class="language-rust">let data_dir = app.path().app_data_dir()?;
+let resource_dir = app.path().resource_dir()?;
+let webui = data_dir.join(&quot;webui&quot;);
+
+if !webui.join(&quot;index.html&quot;).exists() {
+    copy_tree(&amp;resource_dir.join(&quot;webui&quot;), &amp;webui)?;
+}
+</code></pre>
+<p>实际项目还应为“资源升级”设计版本标记。只判断文件是否存在适合默认资源不变的场景；如果资源需要随版本更新，可以在数据目录保存 <code>resource-version</code>，再按版本执行迁移。</p>
+<h2 id="启动-sidecar-并等待就绪"><a href="#启动-sidecar-并等待就绪" class="headerlink" title="启动 sidecar 并等待就绪"></a>启动 sidecar 并等待就绪</h2><p>Tauri 启动 sidecar 后，不能立即导航到窗口地址。后端进程还可能没有完成监听。一个简单可靠的协议是让后端在成功监听后输出：</p>
+<pre><code class="language-text">Web app started url=http://127.0.0.1:53142
+</code></pre>
+<p>Tauri 读取 stdout 或 stderr，解析地址后再让窗口导航。日志格式最好使用稳定的键值字段；如果日志会本地化，建议增加专用的机器可读就绪行，避免依赖自然语言文本。</p>
+<p>端口使用 <code>0</code> 让操作系统分配，可以避免固定端口冲突。后端必须输出实际端口，而不是配置中的 <code>0</code>。</p>
+<p>Go 后端的最小启动代码如下：</p>
+<pre><code class="language-go">listener, err := net.Listen(&quot;tcp&quot;, &quot;127.0.0.1:0&quot;)
+if err != nil {
+    return err
+}
+
+log.Printf(&quot;WEBWEAVE_READY url=http://%s&quot;, listener.Addr())
+return http.Serve(listener, handler)
+</code></pre>
+<p>如果使用结构化日志，建议单独保留一条稳定的就绪事件：</p>
+<pre><code class="language-go">slog.Info(&quot;sidecar ready&quot;, &quot;url&quot;, &quot;http://&quot;+listener.Addr().String())
+</code></pre>
+<p>Rust 侧只解析这条机器可读事件，不要依赖普通业务日志的中文或英文描述：</p>
+<pre><code class="language-rust">if let CommandEvent::Stderr(bytes) = event {
+    let line = String::from_utf8_lossy(&amp;bytes);
+    if let Some(url) = line.split(&quot;url=&quot;).nth(1).and_then(|s| s.split_whitespace().next()) {
+        window.navigate(url.parse()?)?;
+        break;
+    }
+}
+</code></pre>
+<h2 id="处理启动页和失败状态"><a href="#处理启动页和失败状态" class="headerlink" title="处理启动页和失败状态"></a>处理启动页和失败状态</h2><p>Tauri 的 <code>frontendDist</code> 可以指向一个很小的启动页。窗口先显示“正在启动”，后端就绪后再导航到本地服务。这样可以避免前端在服务尚未启动时反复请求 API。</p>
+<p>启动流程至少要处理三种结果：</p>
+<ol>
+<li>后端输出就绪地址，窗口加载应用。</li>
+<li>后端提前退出，窗口显示错误和日志位置。</li>
+<li>启动超时，终止子进程并提示用户检查环境或权限。</li>
+</ol>
+<p>启动器可以把 sidecar 保存到应用状态中，并在退出事件中清理：</p>
+<pre><code class="language-rust">let (mut events, child) = app
+    .shell()
+    .sidecar(&quot;backend&quot;)?
+    .args([
+        &quot;--root&quot;.to_string(), data_dir.to_string_lossy().into_owned(),
+        &quot;--port&quot;.to_string(), &quot;0&quot;.to_string(),
+    ])
+    .spawn()?;
+
+app.manage(std::sync::Mutex::new(Some(child)));
+
+tauri::async_runtime::spawn(async move {
+    while let Some(event) = events.recv().await {
+        // 读取 ready 事件并导航窗口
+    }
+});
+</code></pre>
+<p>退出时取出句柄并等待清理：</p>
+<pre><code class="language-rust">app.run(|handle, event| {
+    if let tauri::RunEvent::Exit = event {
+        if let Ok(mut child) = handle
+            .state::&lt;std::sync::Mutex&lt;Option&lt;CommandChild&gt;&gt;&gt;()
+            .lock()
+        {
+            if let Some(process) = child.take() {
+                let _ = process.kill();
+            }
+        }
+    }
+});
+</code></pre>
+<h2 id="在退出时清理整个进程树"><a href="#在退出时清理整个进程树" class="headerlink" title="在退出时清理整个进程树"></a>在退出时清理整个进程树</h2><p>只保存子进程句柄并调用 kill，未必能清理后端启动的预览进程。Windows 应使用 job object 或 Tauri shell 插件提供的进程组能力；Unix 平台则需要进程组或明确的子进程回收策略。退出清理应该等待进程真正结束，避免下次开发构建或删除临时目录时遇到文件锁。</p>
+<h2 id="CSP、WebSocket-和本地地址"><a href="#CSP、WebSocket-和本地地址" class="headerlink" title="CSP、WebSocket 和本地地址"></a>CSP、WebSocket 和本地地址</h2><p>如果窗口最终访问 <code>http://127.0.0.1:&lt;port&gt;</code>，CSP 至少要允许：</p>
+<ul>
+<li><code>http://127.0.0.1:*</code> 的页面和 API 请求</li>
+<li><code>ws://127.0.0.1:*</code> 的 WebSocket</li>
+<li>前端实际使用的 HTTPS、图片和字体来源</li>
+</ul>
+<p>预览页面如果还会打开 WebSocket，需要确认预览路由不会把连接错误地发到主界面地址。桌面 WebView 的安全策略应尽量收窄到实际使用的来源，不要为了快速调通而永久放开所有协议。</p>
+<p>一个最小 CSP 例子如下：</p>
+<pre><code class="language-json">{
+  &quot;app&quot;: {
+    &quot;security&quot;: {
+      &quot;csp&quot;: &quot;default-src &#39;self&#39; asset: http://127.0.0.1:*; connect-src &#39;self&#39; http://127.0.0.1:* ws://127.0.0.1:*; img-src &#39;self&#39; data: blob: http://127.0.0.1:*; style-src &#39;self&#39; &#39;unsafe-inline&#39;; script-src &#39;self&#39; &#39;unsafe-eval&#39;&quot;
+    }
+  }
+}
+</code></pre>
+<p>生产环境应根据实际资源来源收紧策略。<code>unsafe-eval</code>、外部 CDN 和任意网络来源都应该逐项确认，而不是直接复制到所有项目。</p>
+<h2 id="开发和发布验证"><a href="#开发和发布验证" class="headerlink" title="开发和发布验证"></a>开发和发布验证</h2><p>建议按下面顺序验证：</p>
+<pre><code class="language-text">1. 单独运行后端并访问健康检查
+2. 单独运行 sidecar 构建脚本
+3. cargo check
+4. 启动 Tauri 开发窗口
+5. 创建任务、上传文件、启动预览并停止预览
+6. 构建安装包并在干净环境启动
+</code></pre>
+<p>测试重点不是窗口能否打开，而是完整生命周期：数据目录是否可写、重启后历史是否保留、WebSocket 是否正常、预览进程是否能停止、应用退出后是否没有残留进程。</p>
+<p>可以先用一个健康检查做自动化冒烟测试：</p>
+<pre><code class="language-powershell">$response = Invoke-RestMethod &quot;http://127.0.0.1:$port/api/health&quot;
+if (-not $response.ok) {
+    throw &quot;sidecar health check failed&quot;
+}
+</code></pre>
+<p>Linux 或 macOS 中对应的命令是：</p>
+<pre><code class="language-bash">curl --fail &quot;http://127.0.0.1:${PORT}/api/health&quot;
+</code></pre>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>sidecar 方案的价值在于把桌面适配限制在进程生命周期、资源路径和窗口加载这几个边界上。成熟的后端继续服务原有的浏览器和桌面入口，Tauri 则提供一个轻量的桌面容器。只要提前定义好工作目录、就绪协议、目标文件命名和退出清理，带后端的 Web 应用就可以在不重写业务逻辑的情况下获得桌面发行能力。</p>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="目录">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="关闭目录">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8-sidecar-%E7%BB%99%E5%B8%A6%E5%90%8E%E7%AB%AF%E7%9A%84-Web-%E5%BA%94%E7%94%A8%E5%A5%97%E4%B8%8A-Tauri-%E5%A4%96%E5%A3%B3"><span class="toc-number">1.</span> <span class="toc-text">用 sidecar 给带后端的 Web 应用套上 Tauri 外壳</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E7%A1%AE%E5%AE%9A%E8%BE%B9%E7%95%8C"><span class="toc-number">1.1.</span> <span class="toc-text">先确定边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A9%E5%90%8E%E7%AB%AF%E6%94%AF%E6%8C%81%E5%8F%AF%E9%85%8D%E7%BD%AE%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="toc-number">1.2.</span> <span class="toc-text">让后端支持可配置的工作目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA-sidecar-%E5%B9%B6%E6%8C%89%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E5%91%BD%E5%90%8D"><span class="toc-number">1.3.</span> <span class="toc-text">构建 sidecar 并按目标平台命名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E8%B5%84%E6%BA%90%E5%92%8C%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E5%BC%80"><span class="toc-number">1.4.</span> <span class="toc-text">把资源和用户数据分开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-sidecar-%E5%B9%B6%E7%AD%89%E5%BE%85%E5%B0%B1%E7%BB%AA"><span class="toc-number">1.5.</span> <span class="toc-text">启动 sidecar 并等待就绪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E5%90%AF%E5%8A%A8%E9%A1%B5%E5%92%8C%E5%A4%B1%E8%B4%A5%E7%8A%B6%E6%80%81"><span class="toc-number">1.6.</span> <span class="toc-text">处理启动页和失败状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E9%80%80%E5%87%BA%E6%97%B6%E6%B8%85%E7%90%86%E6%95%B4%E4%B8%AA%E8%BF%9B%E7%A8%8B%E6%A0%91"><span class="toc-number">1.7.</span> <span class="toc-text">在退出时清理整个进程树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSP%E3%80%81WebSocket-%E5%92%8C%E6%9C%AC%E5%9C%B0%E5%9C%B0%E5%9D%80"><span class="toc-number">1.8.</span> <span class="toc-text">CSP、WebSocket 和本地地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%92%8C%E5%8F%91%E5%B8%83%E9%AA%8C%E8%AF%81"><span class="toc-number">1.9.</span> <span class="toc-text">开发和发布验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">1.10.</span> <span class="toc-text">结语</span></a></li></ol></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 回到顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="打开目录" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>

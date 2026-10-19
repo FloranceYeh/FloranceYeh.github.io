@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>给 Web 项目套上 Tauri 外壳 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script>
+    const mixins = {};
+    window.__PARTICLEX_I18N__ = {
+        codeExpand: "展开全部 (undefined 行)",
+        codeCollapse: "收起",
+        copyCode: "复制代码",
+        copiedCode: "已复制"
+    };
+</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <form class="seed-container" onsubmit="updateGalaxy(event)">
+            <label class="seed-text" for="desktop-seed-input">SEED</label>
+            <span class="expandable-form">
+                <input id="desktop-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </form>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw" :class="{ 'is-open': showMenuItems }"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <form class="seed-container" onsubmit="updateGalaxy(event)">
+                    <label class="seed-text" for="mobile-seed-input">SEED</label>
+                    <span class="expandable-form">
+                        <input id="mobile-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                        <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </form>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>给 Web 项目套上 Tauri 外壳</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/10/19
+            </span>
+            
+            <span class="category">
+                <a href="/categories/Tauri/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    Tauri
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Frontend/" style="color: #5a9a8a">
+                        Frontend
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Tauri/" style="color: #5a9aa8">
+                        Tauri
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <h1 id="给现有-Web-项目套上-Tauri-外壳"><a href="#给现有-Web-项目套上-Tauri-外壳" class="headerlink" title="给现有 Web 项目套上 Tauri 外壳"></a>给现有 Web 项目套上 Tauri 外壳</h1><p>Tauri 适合把已经可以在浏览器中运行的前端项目，打包成体积更小的桌面应用。它不会要求你把现有项目重写成某种框架：React、Vue、Svelte、原生 HTML&#x2F;JavaScript，以及只要能通过 HTTP 服务运行的其他前端项目，都可以作为 Tauri 的界面层。</p>
+<p>本文以一个已有的 Vite 前端项目为例，介绍如何在不改动原前端子模块的前提下接入 Tauri，并在最后介绍一个可选的进阶功能：隐藏系统标题栏后，通过初始化脚本注入自定义标题控件。</p>
+<span id="more"></span>
+
+<h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><p>以 Windows 为例，需要安装：</p>
+<ul>
+<li>Node.js</li>
+<li>Rust 和 <code>rustup</code></li>
+<li>Visual Studio C++ Build Tools</li>
+<li>WebView2</li>
+</ul>
+<p>检查环境：</p>
+<pre><code class="language-powershell">node --version
+rustc --version
+cargo --version
+</code></pre>
+<p>Tauri 2 使用系统 WebView 渲染页面。Windows 使用 WebView2，macOS 使用 WKWebView，Linux 通常使用 WebKitGTK。</p>
+<h2 id="认识现有前端项目"><a href="#认识现有前端项目" class="headerlink" title="认识现有前端项目"></a>认识现有前端项目</h2><p>接入前先确认三个问题：</p>
+<ol>
+<li>前端开发服务器如何启动？</li>
+<li>生产构建输出在哪里？</li>
+<li>页面是否依赖特殊的 HTTP 响应头？</li>
+</ol>
+<p>例如，项目的前端位于 <code>src</code> 子目录，<code>src/package.json</code> 中提供了：</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;vite --host 0.0.0.0&quot;,
+    &quot;build&quot;: &quot;vite build&quot;,
+    &quot;preview&quot;: &quot;node server.mjs&quot;
+  }
+}
+</code></pre>
+<p>这里的 <code>preview</code> 不只是一个静态文件服务器，还可以负责提供 <code>COOP</code>、<code>COEP</code> 等响应头。如果项目依赖 <code>SharedArrayBuffer</code>、Web Worker 或 WASM，就不能随便换成一个普通静态服务器。</p>
+<h2 id="在项目根目录安装-Tauri-CLI"><a href="#在项目根目录安装-Tauri-CLI" class="headerlink" title="在项目根目录安装 Tauri CLI"></a>在项目根目录安装 Tauri CLI</h2><p>如果前端项目已经是一个独立子目录，建议把 Tauri CLI 安装在仓库根目录，而不是把桌面端依赖混进前端子模块：</p>
+<pre><code class="language-powershell">pnpm add -D @tauri-apps/cli
+</code></pre>
+<p>根目录的 <code>package.json</code> 可以提供转发脚本：</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;npm --prefix src run dev&quot;,
+    &quot;build&quot;: &quot;npm --prefix src run build&quot;,
+    &quot;preview&quot;: &quot;npm --prefix src run preview&quot;,
+    &quot;tauri:dev&quot;: &quot;tauri dev --config src-tauri/tauri.conf.json&quot;,
+    &quot;tauri:build&quot;: &quot;tauri build --config src-tauri/tauri.conf.json&quot;
+  }
+}
+</code></pre>
+<p>这样做有两个好处：</p>
+<ul>
+<li>Tauri 始终从仓库根目录启动；</li>
+<li>原前端项目仍然使用自己的 <code>package.json</code> 和依赖，不需要迁移到根目录。</li>
+</ul>
+<p>安装依赖：</p>
+<pre><code class="language-powershell">pnpm install
+pnpm --dir src install
+</code></pre>
+<h2 id="创建-Tauri-配置"><a href="#创建-Tauri-配置" class="headerlink" title="创建 Tauri 配置"></a>创建 Tauri 配置</h2><p>Tauri 配置的核心是把前端的开发地址和构建目录告诉 Tauri：</p>
+<pre><code class="language-json">{
+  &quot;productName&quot;: &quot;LightningTeX&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;identifier&quot;: &quot;top.example.app&quot;,
+  &quot;build&quot;: {
+    &quot;frontendDist&quot;: &quot;../src/dist&quot;,
+    &quot;devUrl&quot;: &quot;http://localhost:4173&quot;,
+    &quot;beforeDevCommand&quot;: &quot;npm run preview&quot;,
+    &quot;beforeBuildCommand&quot;: &quot;npm run build&quot;
+  },
+  &quot;app&quot;: {
+    &quot;windows&quot;: [
+      {
+        &quot;title&quot;: &quot;LightningTeX&quot;,
+        &quot;width&quot;: 800,
+        &quot;height&quot;: 600,
+        &quot;resizable&quot;: true
+      }
+    ]
+  }
+}
+</code></pre>
+<p>几个字段的含义：</p>
+<ul>
+<li><code>frontendDist</code>：生产环境要嵌入或提供的前端目录的静态文件生成位置；</li>
+<li><code>devUrl</code>：开发模式下 WebView 加载的地址；</li>
+<li><code>beforeDevCommand</code>：启动 Tauri 前执行的前端服务命令；</li>
+<li><code>beforeBuildCommand</code>：打包前执行的前端构建命令。</li>
+</ul>
+<p>如果 <code>beforeDevCommand</code> 写的是 <code>npm run preview</code>，这个命令必须在当前工作目录可用。前端脚本位于子目录时，可以像本文前面那样，在根目录增加一个转发脚本。</p>
+<p><code>frontendDist</code> 必须指向一个完整的 Web 根目录，目录下需要直接存在 <code>index.html</code>，并且要包含页面引用的资源。例如，本项目的 Vite 入口是 <code>src/ui/index.html</code>，构建后的默认结构如下：</p>
+<pre><code class="language-text">src/dist/
+├─ ui/
+│  └─ index.html
+├─ assets/
+├─ runtime/
+├─ luahbtex/
+└─ fonts/
+</code></pre>
+<p>不能简单地把 <code>frontendDist</code> 改成 <code>../src/dist/ui</code>。虽然这样可以找到 HTML 文件，但页面中的 <code>../assets</code>、<code>../runtime</code> 和 <code>../luahbtex</code> 等相对资源路径会以 <code>src/dist/ui</code> 为根重新解析，无法稳定映射到完整的生产资源。</p>
+<p>一种不改动原前端构建结构的做法，是在构建结束后把入口复制到产物根目录，并将入口中的相对路径调整为根目录路径：</p>
+<pre><code class="language-text">src/dist/
+├─ index.html
+├─ assets/
+├─ runtime/
+├─ luahbtex/
+└─ fonts/
+</code></pre>
+<p>更目录构建脚本示例：</p>
+<pre><code class="language-js">import {readFile, writeFile} from &#39;node:fs/promises&#39;;
+import {resolve} from &#39;node:path&#39;;
+
+const dist = resolve(&#39;src&#39;, &#39;dist&#39;);
+const source = resolve(dist, &#39;ui&#39;, &#39;index.html&#39;);
+const target = resolve(dist, &#39;index.html&#39;);
+
+let html = await readFile(source, &#39;utf8&#39;);
+html = html.replaceAll(&#39;=&quot;../&#39;, &#39;=&quot;./&#39;);
+await writeFile(target, html);
+</code></pre>
+<p>根目录的构建脚本可以这样串联：</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;npm --prefix src run build &amp;&amp; node scripts/prepare-tauri-dist.mjs&quot;
+  }
+}
+</code></pre>
+<p>另一种方案是调整 Vite 的构建入口，让它直接输出扁平结构。这个方案不需要复制入口，但可能影响原项目的在线部署和资源路径；如果前端是独立子模块，优先使用构建后的入口准备脚本，通常更容易保持两边兼容。</p>
+<h2 id="启动开发模式"><a href="#启动开发模式" class="headerlink" title="启动开发模式"></a>启动开发模式</h2><p>在仓库根目录执行：</p>
+<pre><code class="language-powershell">pnpm run tauri:dev
+</code></pre>
+<p>Tauri 会依次完成以下工作：</p>
+<ol>
+<li>执行 <code>beforeDevCommand</code>；</li>
+<li>等待 <code>devUrl</code> 对应的前端服务；</li>
+<li>编译并启动 Rust 外壳；</li>
+<li>在桌面窗口中加载前端页面。</li>
+</ol>
+<p>如果需要分别调试前端和 Tauri，也可以手动启动：</p>
+<pre><code class="language-powershell"># 终端一
+pnpm --dir src run preview
+
+# 终端二
+pnpm exec tauri dev --config src-tauri/tauri.conf.json
+</code></pre>
+<h2 id="生产构建"><a href="#生产构建" class="headerlink" title="生产构建"></a>生产构建</h2><p>直接执行：</p>
+<pre><code class="language-powershell">pnpm tauri build
+</code></pre>
+<p>Tauri 会先执行 <code>beforeBuildCommand</code>，然后生成对应平台的应用包和安装包。输出通常位于：</p>
+<pre><code class="language-text">src-tauri/target/release/
+src-tauri/target/release/bundle/
+</code></pre>
+<p>正式发布前，建议检查：</p>
+<ul>
+<li>应用图标是否齐全；</li>
+<li><code>identifier</code> 是否稳定且唯一；</li>
+<li>前端引用的资源是否使用相对路径；</li>
+<li>WASM、Worker 和字体文件是否都被包含；</li>
+<li>生产环境是否仍然需要 COOP&#x2F;COEP 响应头。</li>
+</ul>
+<h2 id="不要急着修改原前端子模块"><a href="#不要急着修改原前端子模块" class="headerlink" title="不要急着修改原前端子模块"></a>不要急着修改原前端子模块</h2><p>将现有前端作为 Tauri 的 <code>frontendDist</code> 后，尽量把桌面端逻辑放在 <code>src-tauri</code>：</p>
+<pre><code class="language-text">project/
+├─ package.json
+├─ src/                 # 原前端项目
+└─ src-tauri/
+   ├─ Cargo.toml
+   ├─ tauri.conf.json
+   ├─ capabilities/
+   └─ src/
+</code></pre>
+<p>这样桌面端适配可以独立演进，减少以下风险：</p>
+<ul>
+<li>破坏原项目的在线部署；</li>
+<li>让前端子模块产生与桌面端绑定的依赖；</li>
+<li>在子模块中混入平台专属代码；</li>
+<li>让上游同步和后续升级变得困难。</li>
+</ul>
+<p>只有当页面本身确实需要桌面端专属 UI 或 API 时，才考虑修改前端代码。否则可以优先使用 Tauri 的配置、Rust 初始化脚本和权限配置完成集成。</p>
+<h2 id="进阶可选项：注入自定义标题栏控件"><a href="#进阶可选项：注入自定义标题栏控件" class="headerlink" title="进阶可选项：注入自定义标题栏控件"></a>进阶可选项：注入自定义标题栏控件</h2><p>系统标题栏通常最稳定，但如果应用需要统一的视觉风格，可以隐藏原生装饰并注入自定义标题栏。</p>
+<p>这不是套壳的必需步骤，建议在基础窗口已经稳定运行后再做。</p>
+<h3 id="隐藏系统装饰"><a href="#隐藏系统装饰" class="headerlink" title="隐藏系统装饰"></a>隐藏系统装饰</h3><p>在窗口配置中关闭系统装饰：</p>
+<pre><code class="language-json">{
+  &quot;app&quot;: {
+    &quot;windows&quot;: [
+      {
+        &quot;create&quot;: false,
+        &quot;decorations&quot;: false
+      }
+    ]
+  }
+}
+</code></pre>
+<p>使用 <code>create: false</code> 是为了让 Rust 代码可以先配置初始化脚本，再创建窗口。</p>
+<h3 id="使用-JavaScript-初始化脚本"><a href="#使用-JavaScript-初始化脚本" class="headerlink" title="使用 JavaScript 初始化脚本"></a>使用 JavaScript 初始化脚本</h3><p>创建用于注入元素的 JavaScript 脚本，例如：</p>
+<pre><code class="language-text">src-tauri/window-controls.js
+</code></pre>
+<p>脚本可以在页面中找到原项目已有的 <code>header.appbar</code> 后，动态追加按钮：</p>
+<pre><code class="language-js">const header = document.querySelector(&#39;header.appbar&#39;);
+const controls = document.createElement(&#39;div&#39;);
+
+header.setAttribute(&#39;data-tauri-drag-region&#39;, &#39;&#39;);
+controls.setAttribute(&#39;data-tauri-drag-region&#39;, &#39;&#39;);
+</code></pre>
+<h3 id="在-Rust-中注入脚本"><a href="#在-Rust-中注入脚本" class="headerlink" title="在 Rust 中注入脚本"></a>在 Rust 中注入脚本</h3><p>由于 Tauri 2 的窗口配置并不接受任意的 <code>initializationScript</code> 字段，应该通过 <code>WebviewWindowBuilder</code> 加载：</p>
+<pre><code class="language-rust">pub fn run() {
+  tauri::Builder::default()
+    .setup(|app| {
+      let window_config = &amp;app.config().app.windows[0];
+      tauri::WebviewWindowBuilder::from_config(app.handle(), window_config)?
+        .initialization_script(include_str!(&quot;../window-controls.js&quot;))
+        .build()?;
+      Ok(())
+    })
+    .run(tauri::generate_context!())
+    .expect(&quot;error while building tauri application&quot;);
+}
+</code></pre>
+<h3 id="让按钮真正可用"><a href="#让按钮真正可用" class="headerlink" title="让按钮真正可用"></a>让按钮真正可用</h3><p>初始化脚本可以调用当前窗口的 API：</p>
+<pre><code class="language-js">const currentWindow = window.__TAURI__?.window?.getCurrentWindow?.();
+
+await currentWindow.minimize();
+await currentWindow.toggleMaximize();
+await currentWindow.close();
+</code></pre>
+<p>对应的 capability 权限要显式声明：</p>
+<pre><code class="language-json">{
+  &quot;permissions&quot;: [
+    &quot;core:default&quot;,
+    &quot;core:window:allow-close&quot;,
+    &quot;core:window:allow-minimize&quot;,
+    &quot;core:window:allow-start-dragging&quot;,
+    &quot;core:window:allow-toggle-maximize&quot;
+  ]
+}
+</code></pre>
+<h3 id="实现窗口拖动"><a href="#实现窗口拖动" class="headerlink" title="实现窗口拖动"></a>实现窗口拖动</h3><p>仅仅添加 <code>data-tauri-drag-region</code> 在某些 WebView2 场景下并不可靠。可以在标题栏空白区域调用：</p>
+<pre><code class="language-js">header.addEventListener(&#39;mousedown&#39;, event =&gt; {
+  if (event.button !== 0 || event.target.closest(&#39;button&#39;)) return;
+  currentWindow.startDragging().catch(console.error);
+});
+</code></pre>
+<p>要注意排除窗口按钮，否则用户点击关闭或最大化时可能同时触发拖动。</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="Missing-script-preview"><a href="#Missing-script-preview" class="headerlink" title="Missing script: preview"></a><code>Missing script: preview</code></h3><p>说明 Tauri 执行命令的目录中没有 <code>preview</code> 脚本。可以在根目录转发到子项目：</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;preview&quot;: &quot;npm --prefix src run preview&quot;
+  }
+}
+</code></pre>
+<h3 id="点击标题栏按钮没有反应"><a href="#点击标题栏按钮没有反应" class="headerlink" title="点击标题栏按钮没有反应"></a>点击标题栏按钮没有反应</h3><p>依次检查：</p>
+<ol>
+<li>是否启用了 <code>withGlobalTauri</code>，或是否通过其他方式暴露了 Tauri API；</li>
+<li>capability 是否包含对应的 <code>core:window:allow-*</code> 权限；</li>
+<li>窗口是否在 <code>create: false</code> 后由 Rust 正确创建；</li>
+<li>浏览器控制台是否报告了初始化脚本错误。</li>
+</ol>
+<h3 id="前端页面空白"><a href="#前端页面空白" class="headerlink" title="前端页面空白"></a>前端页面空白</h3><p>检查 <code>devUrl</code> 是否与前端实际监听地址一致。还要确认 <code>beforeDevCommand</code> 启动的服务没有立即退出，并且前端资源路径不是只适用于 <code>file://</code>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>把一个已有前端项目套上 Tauri，核心只有三件事：</p>
+<ol>
+<li>用 <code>frontendDist</code> 指向前端产物；</li>
+<li>用 <code>devUrl</code>、<code>beforeDevCommand</code> 和 <code>beforeBuildCommand</code> 接通开发与构建流程；</li>
+<li>把桌面端专属逻辑尽量放进 <code>src-tauri</code>，避免污染原前端项目。</li>
+</ol>
+<p>自定义标题栏、窗口按钮和拖动区域属于进阶可选项。先让普通窗口稳定运行，再通过独立初始化脚本注入控件，通常是兼容性和可维护性更好的路径。</p>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="目录">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="关闭目录">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%99%E7%8E%B0%E6%9C%89-Web-%E9%A1%B9%E7%9B%AE%E5%A5%97%E4%B8%8A-Tauri-%E5%A4%96%E5%A3%B3"><span class="toc-number">1.</span> <span class="toc-text">给现有 Web 项目套上 Tauri 外壳</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">准备环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86%E7%8E%B0%E6%9C%89%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.</span> <span class="toc-text">认识现有前端项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E9%A1%B9%E7%9B%AE%E6%A0%B9%E7%9B%AE%E5%BD%95%E5%AE%89%E8%A3%85-Tauri-CLI"><span class="toc-number">1.3.</span> <span class="toc-text">在项目根目录安装 Tauri CLI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Tauri-%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.</span> <span class="toc-text">创建 Tauri 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text">启动开发模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E6%9E%84%E5%BB%BA"><span class="toc-number">1.6.</span> <span class="toc-text">生产构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E6%80%A5%E7%9D%80%E4%BF%AE%E6%94%B9%E5%8E%9F%E5%89%8D%E7%AB%AF%E5%AD%90%E6%A8%A1%E5%9D%97"><span class="toc-number">1.7.</span> <span class="toc-text">不要急着修改原前端子模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E5%8F%AF%E9%80%89%E9%A1%B9%EF%BC%9A%E6%B3%A8%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E9%A2%98%E6%A0%8F%E6%8E%A7%E4%BB%B6"><span class="toc-number">1.8.</span> <span class="toc-text">进阶可选项：注入自定义标题栏控件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E7%B3%BB%E7%BB%9F%E8%A3%85%E9%A5%B0"><span class="toc-number">1.8.1.</span> <span class="toc-text">隐藏系统装饰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-JavaScript-%E5%88%9D%E5%A7%8B%E5%8C%96%E8%84%9A%E6%9C%AC"><span class="toc-number">1.8.2.</span> <span class="toc-text">使用 JavaScript 初始化脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-Rust-%E4%B8%AD%E6%B3%A8%E5%85%A5%E8%84%9A%E6%9C%AC"><span class="toc-number">1.8.3.</span> <span class="toc-text">在 Rust 中注入脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A9%E6%8C%89%E9%92%AE%E7%9C%9F%E6%AD%A3%E5%8F%AF%E7%94%A8"><span class="toc-number">1.8.4.</span> <span class="toc-text">让按钮真正可用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%AA%97%E5%8F%A3%E6%8B%96%E5%8A%A8"><span class="toc-number">1.8.5.</span> <span class="toc-text">实现窗口拖动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.9.</span> <span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Missing-script-preview"><span class="toc-number">1.9.1.</span> <span class="toc-text">Missing script: preview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E6%A0%87%E9%A2%98%E6%A0%8F%E6%8C%89%E9%92%AE%E6%B2%A1%E6%9C%89%E5%8F%8D%E5%BA%94"><span class="toc-number">1.9.2.</span> <span class="toc-text">点击标题栏按钮没有反应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%A9%BA%E7%99%BD"><span class="toc-number">1.9.3.</span> <span class="toc-text">前端页面空白</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.10.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 回到顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="打开目录" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>
