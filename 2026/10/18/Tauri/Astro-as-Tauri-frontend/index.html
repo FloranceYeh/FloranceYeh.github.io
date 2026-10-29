@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <script>
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="dark"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
+    </script>
+    <title>使用 Astro 作为 Tauri 的前端 | Florance&#39;s Blog</title>
+    <meta name="author" content="Florance" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+/>
+<script>
+    const mixins = {};
+    window.__PARTICLEX_I18N__ = {
+        codeExpand: "展开全部 (undefined 行)",
+        codeCollapse: "收起",
+        copyCode: "复制代码",
+        copiedCode: "已复制"
+    };
+</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <link
+        id="hljs-theme-dark"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css"
+    />
+    <link
+        id="hljs-theme-light"
+        rel="stylesheet"
+        href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+        disabled
+    />
+    <script>
+    (function () {
+        var t = document.documentElement.getAttribute("data-theme") || "dark";
+        var dark = document.getElementById("hljs-theme-dark");
+        var light = document.getElementById("hljs-theme-light");
+        if (dark && light) {
+            dark.disabled = t === "light";
+            light.disabled = t !== "light";
+        }
+    })();
+    window.__PARTICLEX_HIGHLIGHT__ = {
+        wrap: true,
+        collapseEnable: true,
+        collapseLines: 20
+    };
+    </script>
+    <script src="/js/lib/highlight.js"></script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+<script>if (window.mermaid) {mermaid.initialize({theme: 'forest'});}</script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://unpkg.com/@waline/client@3.15.2/dist/waline.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@3.15.2/dist/waline-meta.css" />
+
+
+
+
+<script src="/js/lib/toc-light.js"></script>
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+:root {
+  --bg-page: #181b1a;
+  --bg-surface: #222524;
+  --bg-surface-elevated: #292e2b;
+  --bg-code: #1b1d1c;
+  --bg-inline-code: #242826;
+  --text-primary: #c6cdca;
+  --text-secondary: #88918c;
+  --text-heading: #d4d8d6;
+  --accent: #3d7a5c;
+  --accent-hover: #77a28d;
+  --accent-muted: #345946;
+  --border: #3b403d;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --danger: #e06c75;
+  --success: #6bbf8a;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(34, 37, 36, 0.92);
+  --menu-bg-scrolled: rgba(24, 27, 26, 0.55);
+  --overlay-bg: rgba(24, 27, 26, 0.85);
+  --home-info-bg: rgba(24, 27, 26, 0.72);
+  --on-accent: #ffffff;
+  --accent-rgb: 61, 122, 92;
+  --accent-muted-rgb: 52, 89, 70;
+  --danger-rgb: 224, 108, 117;
+  --success-rgb: 107, 191, 138;
+  --shadow-rgb: 0, 0, 0;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #2e5441;
+  --loop-bg-2: #41785d;
+  --loop-bg-3: #284738;
+  --loop-bg-4: #4d8179;
+}
+
+[data-theme="light"] {
+  --bg-page: #eff1f0;
+  --bg-surface: #fcfdfc;
+  --bg-surface-elevated: #e7e9e8;
+  --bg-code: #e4e7e5;
+  --bg-inline-code: #dfe2e0;
+  --text-primary: #2a322e;
+  --text-secondary: #59645e;
+  --text-heading: #1e2421;
+  --accent: #7eb89a;
+  --accent-hover: #65937b;
+  --accent-muted: #c4d9ce;
+  --border: #ccd1ce;
+  --shadow: rgba(40, 36, 28, 0.12);
+  --danger: #c94c57;
+  --success: #3d8f5c;
+  --shadow-card: 0 4px 24px var(--shadow);
+  --menu-bg: rgba(252, 253, 252, 0.92);
+  --menu-bg-scrolled: rgba(239, 241, 240, 0.7);
+  --overlay-bg: rgba(239, 241, 240, 0.88);
+  --home-info-bg: rgba(239, 241, 240, 0.82);
+  --on-accent: #ffffff;
+  --accent-rgb: 126, 184, 154;
+  --accent-muted-rgb: 196, 217, 206;
+  --danger-rgb: 201, 76, 87;
+  --success-rgb: 61, 143, 92;
+  --shadow-rgb: 40, 36, 28;
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --loop-bg-1: #719884;
+  --loop-bg-2: #a2c8b4;
+  --loop-bg-3: #97b89c;
+  --loop-bg-4: #77aaa2;
+}
+</style>
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <canvas id="starCanvas"></canvas>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>页面加载中...</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FLORANCE&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
+        
+        <form class="seed-container" onsubmit="updateGalaxy(event)">
+            <label class="seed-text" for="desktop-seed-input">SEED</label>
+            <span class="expandable-form">
+                <input id="desktop-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span class="seed-changer">CHANGER</span>
+        </form>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw" :class="{ 'is-open': showMenuItems }"></i>
+            <span>&emsp;FLORANCE&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
+                
+                <form class="seed-container" onsubmit="updateGalaxy(event)">
+                    <label class="seed-text" for="mobile-seed-input">SEED</label>
+                    <span class="expandable-form">
+                        <input id="mobile-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                        <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
+                            <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="seed-changer">CHANGER</span>
+                </form>
+                
+            </div>
+        </transition>
+    </nav>
+    
+    <button id="theme-toggle" type="button" aria-label="Switch theme">
+        <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+    </button>
+    
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            
+
+<div class="post-main-wrapper has-toc">
+    <div class="article">
+        <div>
+            <h1>使用 Astro 作为 Tauri 的前端</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2026/10/18
+            </span>
+            
+            <span class="category">
+                <a href="/categories/Tauri/">
+                    <span class="icon">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </span>
+                    Tauri
+                </a>
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Astro/" style="color: #c48a82">
+                        Astro
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Frontend/" style="color: #6a8fb0">
+                        Frontend
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Tauri/" style="color: #c48a82">
+                        Tauri
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Android/" style="color: #5a9aa8">
+                        Android
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+
+        
+            <div class="content" v-pre>
+                <h1 id="使用-Astro-作为-Tauri-的前端"><a href="#使用-Astro-作为-Tauri-的前端" class="headerlink" title="使用 Astro 作为 Tauri 的前端"></a>使用 Astro 作为 Tauri 的前端</h1><p>Tauri 通常被描述为“Rust 后端加 Web 前端”的应用框架。它并不要求前端一定使用 React、Vue 或 Svelte，只要前端最终能够提供一个静态目录，或者在开发阶段启动一个兼容的开发服务器，就可以作为 Tauri 的界面。</p>
+<p>Astro 很适合内容型应用：页面可以在构建阶段生成，Markdown 可以直接作为内容源，最终产物不需要 Node.js 运行时。本文以一个已经存在的 Tauri 2 项目为例，说明如何把 Astro 接入其中，并继续支持桌面端和 Android 调试。</p>
+<span id="more"></span>
+
+<h2 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h2><p>Astro 和 Tauri 的职责可以这样划分：</p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>负责内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Astro</td>
+<td>页面、组件、Markdown、CSS 和静态资源</td>
+</tr>
+<tr>
+<td>Astro build</td>
+<td>将站点输出到 <code>dist</code></td>
+</tr>
+<tr>
+<td>Tauri</td>
+<td>创建窗口、调用 Rust 命令、打包应用</td>
+</tr>
+<tr>
+<td>Android 工程</td>
+<td>将 Tauri 应用编译为 APK</td>
+</tr>
+</tbody></table>
+<p>Tauri 不需要理解 Astro 的组件语法。它只需要知道两个目录：</p>
+<pre><code class="language-text">开发阶段：Astro dev server
+生产构建：dist/
+</code></pre>
+<h2 id="项目目录结构"><a href="#项目目录结构" class="headerlink" title="项目目录结构"></a>项目目录结构</h2><p>本文示例中，Astro 项目和 Tauri 项目使用同一个仓库根目录。Astro<br>不是放在另一个嵌套的子目录中，因此 <code>package.json</code>、<code>astro.config.mjs</code><br>和 <code>src/</code> 位于同一级：</p>
+<pre><code class="language-text">Tauri-project/
+├── package.json
+├── astro.config.mjs
+├── tsconfig.json
+├── public/
+│   └── images/
+├── src/
+│   ├── pages/
+│   │   └── index.astro
+│   ├── components/
+│   ├── content/
+│   ├── config/
+│   ├── styles/
+│   └── content.config.ts
+├── dist/
+└── src-tauri/
+    ├── tauri.conf.json
+    └── src/
+        ├── lib.rs
+        └── main.rs
+</code></pre>
+<p>这些文件的路径和职责如下：</p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>astro.config.mjs</code></td>
+<td>Astro 的站点、Markdown 和开发服务器配置</td>
+</tr>
+<tr>
+<td><code>src/pages/</code></td>
+<td>Astro 页面入口；文件路径会映射为网站路由</td>
+</tr>
+<tr>
+<td><code>src/components/</code></td>
+<td>可复用的 Astro 组件</td>
+</tr>
+<tr>
+<td><code>src/content/</code></td>
+<td>Markdown 等内容文件</td>
+</tr>
+<tr>
+<td><code>src/styles/</code></td>
+<td>全局样式和组件样式</td>
+</tr>
+<tr>
+<td><code>public/</code></td>
+<td>原样复制到构建产物根目录的静态资源</td>
+</tr>
+<tr>
+<td><code>dist/</code></td>
+<td><code>npm run build</code> 生成的静态站点</td>
+</tr>
+<tr>
+<td><code>src-tauri/</code></td>
+<td>Tauri 的 Rust 代码、权限和应用配置</td>
+</tr>
+</tbody></table>
+<p>例如，<code>src/pages/about.astro</code> 会生成 <code>/about/</code> 页面，<br><code>public/images/avatar.svg</code> 会在构建后对应<br><code>dist/images/avatar.svg</code>。这里的 <code>src/</code> 是 Astro 的源码目录，<br>不是另一个独立的 Node 或 Astro 项目；项目根目录只有一个<br><code>package.json</code>。</p>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>项目应该只在根目录有一个 <code>package.json</code>，包含 Astro 和 Tauri 的依赖。</p>
+<p>然后把 <code>package.json</code> 中的脚本改为：</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;astro dev&quot;,
+    &quot;build&quot;: &quot;astro build&quot;,
+    &quot;preview&quot;: &quot;astro preview&quot;,
+    &quot;tauri&quot;: &quot;tauri&quot;
+  }
+}
+</code></pre>
+<p><code>tauri</code> 脚本仍然保留，之后可以使用 <code>npm run tauri</code> 调用 Tauri CLI。</p>
+<p>所有命令都应从仓库根目录执行。不要在 <code>src/</code> 目录中再次执行<br><code>npm install</code> 或 <code>npm run dev</code>，否则 Astro 可能找不到根目录的<br>配置和页面。</p>
+<h2 id="配置-Astro"><a href="#配置-Astro" class="headerlink" title="配置 Astro"></a>配置 Astro</h2><p>根目录下的 <code>astro.config.mjs</code> 可以这样配置：</p>
+<pre><code class="language-js">// @ts-check
+import { defineConfig } from &quot;astro/config&quot;;
+
+const host = process.env.TAURI_DEV_HOST;
+
+export default defineConfig({
+  site: process.env.PUBLIC_SITE_URL,
+  server: {
+    host: host || false,
+    port: 1420,
+    strictPort: true,
+  },
+});
+</code></pre>
+<p>这里有三个关键点：</p>
+<ol>
+<li><code>port: 1420</code> 必须和 Tauri 配置中的 <code>devUrl</code> 端口一致；</li>
+<li><code>strictPort: true</code> 可以避免端口被自动改写后导致 Tauri 找不到页面；</li>
+</ol>
+<h2 id="配置-Tauri"><a href="#配置-Tauri" class="headerlink" title="配置 Tauri"></a>配置 Tauri</h2><p><code>src-tauri/tauri.conf.json</code> 的构建部分应指向 Astro 的开发地址和构建目录：</p>
+<pre><code class="language-json">{
+  &quot;build&quot;: {
+    &quot;beforeDevCommand&quot;: &quot;npm run dev&quot;,
+    &quot;devUrl&quot;: &quot;http://localhost:1420&quot;,
+    &quot;beforeBuildCommand&quot;: &quot;npm run build&quot;,
+    &quot;frontendDist&quot;: &quot;../dist&quot;
+  }
+}
+</code></pre>
+<p>开发时，Tauri 会先执行 <code>npm run dev</code>，然后加载 Astro 开发服务器。构建时，Tauri 会先执行 <code>npm run build</code>，再把 <code>dist</code> 中的静态文件打进应用。</p>
+<h2 id="启动桌面端调试"><a href="#启动桌面端调试" class="headerlink" title="启动桌面端调试"></a>启动桌面端调试</h2><p>先确认 Astro 单独运行正常：</p>
+<pre><code class="language-powershell">npm run dev
+</code></pre>
+<p>浏览器打开 <code>http://localhost:1420</code>，确认首页可以访问后，再使用 Tauri 启动：</p>
+<pre><code class="language-powershell">npm run tauri dev
+</code></pre>
+<p>修改 Astro 页面、组件或 CSS 后，开发服务器会重新构建对应页面，Tauri 窗口通常可以直接看到更新。</p>
+<h2 id="生产构建"><a href="#生产构建" class="headerlink" title="生产构建"></a>生产构建</h2><p>先单独检查 Astro 静态构建：</p>
+<pre><code class="language-powershell">npm run build
+</code></pre>
+<p>构建成功后，<code>dist</code> 目录中应包含 <code>index.html</code> 和其他生成页面。接着可以构建 Tauri 应用：</p>
+<pre><code class="language-powershell">npm run tauri build
+</code></pre>
+<p>Astro 的静态输出有一个重要优点：最终应用不需要在设备上运行 Astro 或 Node.js。页面、样式、脚本和图片会作为应用资源随 Tauri 一起分发。</p>
+<h2 id="路由和资源路径"><a href="#路由和资源路径" class="headerlink" title="路由和资源路径"></a>路由和资源路径</h2><p>如果页面使用绝对路径，例如：</p>
+<pre><code class="language-html">&lt;img src=&quot;/images/avatar.svg&quot; alt=&quot;头像&quot; /&gt;
+</code></pre>
+<p>资源应放在 Astro 的 <code>public/images/avatar.svg</code>。Astro 构建后会将它复制到 <code>dist/images/avatar.svg</code>。</p>
+<p>对于多页面站点，建议让 Astro 生成目录形式的页面：</p>
+<pre><code class="language-text">dist/
+├── index.html
+├── about/
+│   └── index.html
+└── archive/
+    └── index.html
+</code></pre>
+<p>这样既适合静态部署，也适合 Tauri 的本地资源加载。</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="页面显示空白"><a href="#页面显示空白" class="headerlink" title="页面显示空白"></a>页面显示空白</h3><p>依次检查：</p>
+<ol>
+<li><code>npm run build</code> 是否成功；</li>
+<li><code>src-tauri/tauri.conf.json</code> 中的 <code>frontendDist</code> 是否为 <code>../dist</code>；</li>
+<li><code>devUrl</code> 是否和 Astro 的端口一致；</li>
+<li>页面是否依赖服务端 API，而这些 API 在应用内并不存在。</li>
+</ol>
+<h3 id="使用-window-导致构建失败"><a href="#使用-window-导致构建失败" class="headerlink" title="使用 window 导致构建失败"></a>使用 <code>window</code> 导致构建失败</h3><p>Astro 默认会在构建阶段渲染页面。访问 <code>window</code>、<code>document</code> 或 <code>localStorage</code> 的代码应放在客户端脚本中，或者等页面加载后执行：</p>
+<pre><code class="language-astro">&lt;script&gt;
+  const theme = localStorage.getItem(&quot;theme&quot;);
+  document.documentElement.dataset.theme = theme ?? &quot;light&quot;;
+&lt;/script&gt;
+</code></pre>
+<p>不要在 Astro 组件的顶层直接执行依赖浏览器环境的代码。</p>
+<h3 id="需要调用-Rust-命令"><a href="#需要调用-Rust-命令" class="headerlink" title="需要调用 Rust 命令"></a>需要调用 Rust 命令</h3><p>Astro 页面中的客户端脚本仍然可以使用 Tauri API：</p>
+<pre><code class="language-ts">import { invoke } from &quot;@tauri-apps/api/core&quot;;
+
+const result = await invoke&lt;string&gt;(&quot;greet&quot;, { name: &quot;Astro + Tauri&quot; });
+console.log(result);
+</code></pre>
+<p>这段代码应在浏览器端脚本中运行，而不是在 Astro 的构建阶段运行。Rust 命令则继续在 <code>src-tauri/src/lib.rs</code> 或相关 Rust 文件中定义。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>把 Astro 用作 Tauri 前端的核心并不复杂：</p>
+<ol>
+<li>让 Astro 负责页面和内容；</li>
+<li>让开发服务器监听 Tauri 使用的端口；</li>
+<li>让 <code>frontendDist</code> 指向 Astro 的 <code>dist</code>；</li>
+<li>将需要浏览器环境的代码放进客户端脚本；</li>
+<li>通过 Tauri API 和 Rust 命令连接本地能力。</li>
+</ol>
+<p>这种组合特别适合文章、笔记、文档和个人知识库类应用：Astro 提供内容组织和静态生成能力，Tauri 则负责把同一套前端包装成桌面端和移动端应用。</p>
+
+            </div>
+        
+
+        
+            <div class="comments-section">
+                
+                
+                
+                <div id="comment">
+                    <div id="waline-container"></div>
+                </div>
+                
+                
+            </div>
+        
+    </div>
+
+     
+
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="目录">
+    <div class="toc-panel" id="toc-panel">
+        <div class="toc-panel-header">
+            <div class="toc-header">
+                <i class="fa-solid fa-list"></i> 目录
+            </div>
+            <button type="button" class="toc-close" id="toc-close" aria-label="关闭目录">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="toc-wrapper" id="toc-wrapper">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Astro-%E4%BD%9C%E4%B8%BA-Tauri-%E7%9A%84%E5%89%8D%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">使用 Astro 作为 Tauri 的前端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">工作方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">项目目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-number">1.3.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-Astro"><span class="toc-number">1.4.</span> <span class="toc-text">配置 Astro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-Tauri"><span class="toc-number">1.5.</span> <span class="toc-text">配置 Tauri</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%A1%8C%E9%9D%A2%E7%AB%AF%E8%B0%83%E8%AF%95"><span class="toc-number">1.6.</span> <span class="toc-text">启动桌面端调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E6%9E%84%E5%BB%BA"><span class="toc-number">1.7.</span> <span class="toc-text">生产构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%92%8C%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84"><span class="toc-number">1.8.</span> <span class="toc-text">路由和资源路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.9.</span> <span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD"><span class="toc-number">1.9.1.</span> <span class="toc-text">页面显示空白</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-window-%E5%AF%BC%E8%87%B4%E6%9E%84%E5%BB%BA%E5%A4%B1%E8%B4%A5"><span class="toc-number">1.9.2.</span> <span class="toc-text">使用 window 导致构建失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E8%B0%83%E7%94%A8-Rust-%E5%91%BD%E4%BB%A4"><span class="toc-number">1.9.3.</span> <span class="toc-text">需要调用 Rust 命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.10.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+        </div>
+        <div class="toc-nav-buttons">
+            <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
+                <i class="fa-solid fa-arrow-up"></i> 回到顶部
+            </a>
+            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
+                <i class="fa-solid fa-comments"></i> 评论
+            </a>
+        </div>
+    </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-label="打开目录" aria-controls="toc-sidebar" aria-expanded="false">
+    <i class="fa-solid fa-list" aria-hidden="true"></i>
+    <span>目录</span>
+</button>
+
+ 
+    
+</div>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2026 Florance&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Florance
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/FloranceYeh/hexo-theme-particlexf">ParticleXF Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="/js/theme.js"></script>
+    
+    <script src="/js/lib/stellars.js"></script>
+    
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "https://blogcomments.florance.top",
+        commentCount: true,
+        pageview: false,
+        dark: 'html[data-theme="dark"]',
+        emoji: ["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+        search: false,
+        meta: ["nick","mail"],
+        requiredMeta: ["nick"],
+        lang: "zh-CN",
+        wordLimit: 0,
+        pageSize: 10,
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+</body>
+</html>
